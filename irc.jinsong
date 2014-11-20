@@ -1,0 +1,10 @@
+irc server有很多安装包，我们选择 ircu2.10.12.14，下载解压 .10.12.14.tar.gz
+cd  ircu2
+./configure –prefix=/home/jinsong/software/ircu2
+make 
+make install
+ircu2一般用普通用户运行，安装好后需要copy配置文件 lib/example.conf 为 lib/ircd.conf
+然后修改ircd.conf配置文件Connect段 修改host 为服务器的域名或者ip地址，修改默认端口号4400为6667(4400必须改，否则无法运行)
+然后执行 bin/ircd二进制文件，无任何提示并且ps -ef | grep ircd 或者lib/下生成ircd.pid文件则运行成功！
+
+然后修改防火墙设置，放行相关端口号即可。

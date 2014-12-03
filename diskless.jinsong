@@ -1,0 +1,54 @@
+安装所需软件包
+yum install tftp tftp-server dhcp vsftpd syslinux dracut dracut-network
+
+配置tftp /etc/xinetd.d/tftp
+set disable=no  server_args=-s /diskless/tftpboot #指定tftp主目录
+
+配置dhcp服务 /etc/dhcp/dhcpd.conf
+subnet 10.0.0.50 netmask 255.255.255.0{
+	range 10.0.0.100 10.0.0.150;
+	option routers 10.0.0.50;
+	next-server 10.0.0.50;
+	filename="pxelinux.0";
+	authourtative;
+}
+
+准备相关文件目录
+mkdir -p /diskless/root
+mkdir -p /diskless/tftpboot
+
+制作无盘系统模板
+rsync -auv -e ssh --delete --exclude='/group/*' --exclude='/proc/*' --exclude='/sys/*' --exclude='/tmp/*' --exclude='/var/log/*' / root@10.0.0.50:/diskless/root/
+#-a 归档模式，以递归方式传送，并保持所有文件属性 -v 详细模式输出 -u 更新模式，只传送更新文件，现有不变文件不传送 -e ssh 使用ssh方式传送文件 --delete 删除目录下现有其他文件 --exclude 指定排除不传送的文件
+
+准备引导文件
+cp /usr/share/syslinux/pxelinux.0 /diskless/tftpboot/
+mkdir -p /diskless/tftpboot/pxelinux.cfg
+拷贝内核
+cp /boot/vmlinuz-2.6.32-358.el6.x86_64 /diskless/tftpboot/
+生成init文件并移动到引导文件目录
+dracut initramfs-2.6.32-358.el6.x86_64.img 2.6.32-358.el6.x86_64
+mv initramfs-2.6.32-358.el6.x86_64.img /diskless/tftpboot/
+设置权限 chmod 644 initramfs-2.6.32-358.el6.x86_64.img
+
+编辑引导默认配置文件
+vim /diskless/tftpboot/pxelinux.cfg/default
+default centos6.4
+label centos6.4
+	kernel vmlinuz-2.6.32-358.el6.x86_64
+	append initrd=initramfs-2.6.32-358.el6.x86_64.img selinux=0 rw root=nfs:10.0.0.50:/diskless/root ip=dhcp
+
+设置nfs /etc/exports
+/diskless/root/ *(rw,no_root_squash,sync)
+
+修改模板系统 /diskless/root/etc/fstab
+删除相关本地硬盘挂在项目
+
+启动/重启相关服务
+service xinetd restart
+service dhcpd restart
+service nfs restart
+
+客户端设置开机已网卡启动即可
+
+enjoy !

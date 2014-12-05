@@ -1,5 +1,7 @@
 安装所需软件包
-yum install tftp tftp-server dhcp vsftpd syslinux dracut dracut-network
+rpm -ivh dracut-network-004-356.el6.noarch.rpm
+#下面包服务器默认已经安装就不用安装，如光盘安装系统可能需要安装。
+(tftp tftp-server dhcp vsftpd syslinux dracut #yum安装)
 
 配置tftp /etc/xinetd.d/tftp
 disable=no  
@@ -11,11 +13,12 @@ ignore client-updates;
 default-lease-time 43200;
 max-lease-time 86200;
 subnet 10.0.0.0 netmask 255.255.255.0 {
-	range 10.0.0.100 10.0.0.150; #dhcp分配的ip范围，因设固定可不设置。
+	range 10.0.0.100 10.0.0.150; #dhcp分配的ip范围。
 	option routers 10.0.0.50;
 	next-server 10.0.0.50;
 	filename="pxelinux.0";
 	authourtative; 
+	#以下是无盘客户端配置,多个客户端则配置多个host
 	host node03 {
 		option host-name "node03";  #设置主机名
 		hardware ethernet 00:30:67:55:ad:69; #绑定客户端mac地址
@@ -53,7 +56,7 @@ label centos6.4
 /diskless/root/ *(rw,no_root_squash,sync)
 
 修改模板系统 /diskless/root/etc/fstab
-删除相关本地硬盘挂载项目并挂载nfs根
+删除相关本地硬盘挂载项目(/ /boot)并挂载nfs根
 10.0.0.50:/diskless/root /       nfs     defaults,acl    1 1
 
 移除主机名文件
@@ -73,7 +76,7 @@ service nfs restart
 chkconfig xinetd on
 chkconfig dhcpd on
 chkconfig nfs on
-服务器必须关系防火墙和selinux或者针对相关服务放行。
+服务器必须关系防火墙和selinux,或者针对相关服务放行。
 客户端设置开机以网卡启动即可
 
-enjoy ! 有问题可与松哥联系。
+enjoy ! 有问题可与白劲松联系。

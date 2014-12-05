@@ -11,15 +11,15 @@ ignore client-updates;
 default-lease-time 43200;
 max-lease-time 86200;
 subnet 10.0.0.0 netmask 255.255.255.0 {
-	range 10.0.0.100 10.0.0.150;
+	range 10.0.0.100 10.0.0.150; #dhcp分配的ip范围，因设固定可不设置。
 	option routers 10.0.0.50;
 	next-server 10.0.0.50;
 	filename="pxelinux.0";
 	authourtative; 
-	host node02 {
-		option host-name "node03";
-		hardware ethernet 00:30:67:55:ad:69;
-		fixed-address 10.0.0.103;
+	host node03 {
+		option host-name "node03";  #设置主机名
+		hardware ethernet 00:30:67:55:ad:69; #绑定客户端mac地址
+		fixed-address 10.0.0.103; #设置固定ip
 	}
 }
 
@@ -54,16 +54,26 @@ label centos6.4
 
 修改模板系统 /diskless/root/etc/fstab
 删除相关本地硬盘挂载项目并挂载nfs根
-10.0.0.50:/diskless/root /                      nfs     defaults,acl    1 1
+10.0.0.50:/diskless/root /       nfs     defaults,acl    1 1
 
 移除主机名文件
 mv /diskless/root/etc/sysconfig/network /diskless/root/etc/sysconfig/networkbak 
+移除显示配置文件
+mv /diskless/root/etc/X11/xorg.conf /diskless/root/etc/X11/xorg.conf.bak
+修改网卡设置 /diskless/root/etc/sysconfig/network-scripts/ifcfg-eth0
+DEVICE=eth0
+ONBOOT=yes
+BOOTPROTO=dhcp
 
 启动/重启相关服务
 service xinetd restart
 service dhcpd restart
 service nfs restart
-
-客户端设置开机已网卡启动即可
+设置开机自启
+chkconfig xinetd on
+chkconfig dhcpd on
+chkconfig nfs on
+服务器必须关系防火墙和selinux或者针对相关服务放行。
+客户端设置开机以网卡启动即可
 
 enjoy ! 有问题可与松哥联系。

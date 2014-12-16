@@ -1,0 +1,82 @@
+安装所需软件包
+rpm -ivh dracut-network-004-356.el6.noarch.rpm
+#下面包服务器默认已经安装就不用安装，如光盘安装系统可能需要安装。
+(tftp tftp-server dhcp vsftpd syslinux dracut #yum安装)
+
+配置tftp /etc/xinetd.d/tftp
+disable=no  
+server_args=-s /diskless/tftpboot #指定tftp主目录
+
+配置dhcp服务 /etc/dhcp/dhcpd.conf #10.0.0.0指10这个网段 10.0.0.50服务器ip
+ddns-update-style none;
+ignore client-updates;
+default-lease-time 43200;
+max-lease-time 86200;
+subnet 10.0.0.0 netmask 255.255.255.0 {
+	range 10.0.0.100 10.0.0.150; #dhcp分配的ip范围。
+	option routers 10.0.0.50;
+	next-server 10.0.0.50;
+	filename="pxelinux.0";
+	authourtative; 
+	#以下是无盘客户端配置,多个客户端则配置多个host
+	host node03 {
+		option host-name "node03";  #设置主机名
+		hardware ethernet 00:30:67:55:ad:69; #绑定客户端mac地址
+		fixed-address 10.0.0.103; #设置固定ip
+	}
+}
+
+准备相关文件目录
+mkdir -pv /diskless/root
+mkdir -pv /diskless/tftpboot
+
+制作无盘系统模板
+rsync -auv -e ssh --delete --exclude='/group/*' --exclude='/proc/*' --exclude='/sys/*' --exclude='/tmp/*' --exclude='/var/log/*' / root@10.0.0.50:/diskless/root/
+#-a 归档模式，以递归方式传送，并保持所有文件属性 -v 详细模式输出 -u 更新模式，只传送更新文件，现有不变文件不传送 -e ssh 使用ssh方式传送文件 --delete 删除目录下现有其他文件 --exclude 指定排除不传送的文件
+
+准备引导文件
+cp /usr/share/syslinux/pxelinux.0 /diskless/tftpboot/
+mkdir -p /diskless/tftpboot/pxelinux.cfg
+拷贝内核
+cp /boot/vmlinuz-2.6.32-358.el6.x86_64 /diskless/tftpboot/
+生成init文件并移动到引导文件目录
+cd /
+dracut initramfs-2.6.32-358.el6.x86_64.img 2.6.32-358.el6.x86_64
+mv initramfs-2.6.32-358.el6.x86_64.img /diskless/tftpboot/
+设置权限 chmod 644 initramfs-2.6.32-358.el6.x86_64.img
+
+编辑引导默认配置文件
+vim /diskless/tftpboot/pxelinux.cfg/default
+default centos6.4
+label centos6.4
+	kernel vmlinuz-2.6.32-358.el6.x86_64
+	append initrd=initramfs-2.6.32-358.el6.x86_64.img selinux=0 rw root=nfs:10.0.0.50:/diskless/root ip=dhcp
+
+设置nfs /etc/exports
+/diskless/root/ *(rw,no_root_squash,sync)
+
+修改模板系统 /diskless/root/etc/fstab
+删除相关本地硬盘挂载项目(/ /boot)并挂载nfs根
+10.0.0.50:/diskless/root /       nfs     defaults,acl    1 1
+
+移除主机名文件
+mv /diskless/root/etc/sysconfig/network /diskless/root/etc/sysconfig/networkbak 
+移除显示配置文件
+mv /diskless/root/etc/X11/xorg.conf /diskless/root/etc/X11/xorg.conf.bak
+修改网卡设置 /diskless/root/etc/sysconfig/network-scripts/ifcfg-eth0
+DEVICE=eth0
+ONBOOT=yes
+BOOTPROTO=dhcp
+
+启动/重启相关服务
+service xinetd restart
+service dhcpd restart
+service nfs restart
+设置开机自启
+chkconfig xinetd on
+chkconfig dhcpd on
+chkconfig nfs on
+服务器必须关系防火墙和selinux,或者针对相关服务放行。
+客户端设置开机以网卡启动即可
+
+enjoy ! 有问题可与白劲松联系。

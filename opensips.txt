@@ -1,0 +1,15 @@
+yum install http://yum.opensips.org/1.11/releases/el/6/x86_64/opensips-yum-releases-1.11-1.el6.noarch.rpm 
+yum install opensips opensips-mysql -y
+
+编辑 /etc/opensips/opensipsctlrc
+设置数据库参数，和域名(ip)地址端口号等
+opensipsctl create (创建数据库，输入root用户密码，然后一路yes)
+编辑 /etc/opensips/opensips.cfg
+设置监听地址端口 
+
+增加用户
+opensipsctl add user@domain pass
+
+开启服务
+opensipsctl start
+chkconfig opensips on

@@ -1,0 +1,9 @@
+Linux 
+命令启动(无图形化)
+matlab -nodesktop -nosplash
+
+调用m文件计算
+matlab -nojvm -nodisplay -nosplash -nodesktop <my.m 1>runm.log 2>runm.err 
+
+调用m文件计算(后台)
+nohup matlab -nojvm -nodisplay -nosplash -nodesktop <my.m 1>runm.log 2>runm.err &

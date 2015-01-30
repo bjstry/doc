@@ -7,4 +7,5 @@
 	}
 	spl_autoload_register(array('LOAD','loadClass'));
 	$a = new Jin();
+	echo md5('shgentai');
 ?>

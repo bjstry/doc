@@ -1,10 +1,7 @@
 <?php
-	session_start();
-	include_once('./lib/mysql.class.php');
+	include_once('./lib/config.php');
 //	function login_check(){
 		if(isset($_POST['login'])){
-			$mysql = new Mysql();
-			$mysql->connect('localhost','root','gentai','gentai');
 			$sql = "select * from `gt_users` where `uname`='$_POST[uname]'";
 			$val = mysql_query($sql);
 			$val = mysql_fetch_array($val);
@@ -17,10 +14,14 @@
 					echo "<script>alert('succes');</script>";
 					echo "<script>location.href='index.php'</script>";
 				}else{
+					$_SESSION['user']=null;
+					$_SESSION['id']=null;
 					echo "<script>alert('密码错误!');</script>";
 					echo "<script>javascript:history.back(-1);</script>";
 				}
 			}else{
+				$_SESSION['user']=null;
+				$_SESSION['id']=null;
 				echo "<script>alert('用户名不存在！');</script>";
 				echo "<script>javascript:history.back(-1);</script>";
 			}

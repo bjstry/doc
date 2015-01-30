@@ -13,6 +13,42 @@ td{
 </head>
 
 <body>
+
+
+<?php
+    include_once('./lib/config.php');
+    if($_SESSION['user']){
+        $val = showlist();
+        print_r($val);
+        switch ($_SESSION['id']){
+            case 1:
+                $well = "Well come! 合同".$_SESSION['user'];
+                break;
+            case 2:
+                $well = "Well come! 下单".$_SESSION['user'];
+                break;
+            case 3:
+                $well = "Well come! 发货".$_SESSION['user'];
+                break;
+            case 4:
+                $well = "Well come! 开票".$_SESSION['user'];
+                break;
+            case 5:
+                $well = "Well come! 收款".$_SESSION['user'];
+                break;
+            case 0:
+                $well = "Well come! 管理员".$_SESSION['user'];
+                break;
+            default:
+                $well = "<script>alert('非法用户!');</script>";
+        }   
+        echo $well;
+    }else{
+        die('请先登录!');
+    }   
+?>
+
+
 	<table cellpadding='5' frame='hsides'>
 		<caption>项目管理汇总表</caption>
 		<tr>

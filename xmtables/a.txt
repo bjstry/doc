@@ -1,7 +1,0 @@
-合同 下单 开票 收款 发货 项目管理员
-
-
-user gentaihg gentaixd gentaikp gentaisk gentaifh gentai
-tables: gt_users gt_protables
-gt_users -> uid gid uname upass 
-gt_protables -> id date customer/客户 salesman/业务员 cdate/合同日期 aom/合同金额 odate/下单日期 sdate/发货日期 kdate/开票日期 kom/开票金额  gdate/付款日期 god/付款金额 shdate/应收账款

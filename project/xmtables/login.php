@@ -1,0 +1,32 @@
+<?php
+	session_start();
+	include_once('./lib/mysql.class.php');
+//	function login_check(){
+		if(isset($_POST['login'])){
+			$mysql = new Mysql();
+			$mysql->connect('localhost','root','gentai','gentai');
+			$sql = "select * from `gt_users` where `uname`='$_POST[uname]'";
+			$val = mysql_query($sql);
+			$val = mysql_fetch_array($val);
+			//print_r($val);
+			if(is_array($val)){
+				$pass = md5($_POST['upass']);
+				if($pass == $val['upass']){
+					$_SESSION['user']=$val['uname'];
+					$_SESSION['id']=$val['gid'];
+					echo "<script>alert('succes');</script>";
+					echo "<script>location.href='index.php'</script>";
+				}else{
+					echo "<script>alert('密码错误!');</script>";
+					echo "<script>javascript:history.back(-1);</script>";
+				}
+			}else{
+				echo "<script>alert('用户名不存在！');</script>";
+				echo "<script>javascript:history.back(-1);</script>";
+			}
+		}
+//	}
+	function login(){
+	}
+//	login_check();
+?>

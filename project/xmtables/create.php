@@ -10,7 +10,7 @@
 				$sql = "update `gt_protables` set `date`='$_POST[date]',`author`='$_POST[author]',`customer_a`='$_POST[customer_a]',`customer_b`='$_POST[customer_b]',`salesman`='$_POST[salesman]',`aom`='$_POST[aom]',`mdate`='$_POST[mdate]',`ydate`='$_POST[ydate]',`cdate`='$_POST[cdate]',`paytype`='$_POST[paytype]',`cnum`='$_POST[cnum]',`onum`='$_POST[onum]',`prjman`='$_POST[prjman]',`htstatus`=$_POST[htstatus] where `id`=$_SESSION[gid]";
 				$resut = mysql_query($sql);
 				if($resut){
-					die('提交成功,<a href='index.php'>返回</a>');
+					die('提交成功,<a href=\'index.php\'>返回</a>');
 				}else{
 					echo 'SQL - '.$sql.'<br>';
 					die('操作错误: '.mysql_error());
@@ -19,7 +19,7 @@
 				$sql = "insert into `gt_protables` (`id`,`date`,`author`,`customer_a`,`customer_b`,`salesman`,`aom`,`mdate`,`ydate`,`cdate`,`paytype`,`cnum`,`onum`,`prjman`,`subdate`,`htstatus`,`showstatus`) values ('','$_POST[date]','$_POST[author]','$_POST[customer_a]','$_POST[customer_b]','$_POST[salesman]','$_POST[aom]','$_POST[mdate]','$_POST[ydate]','$_POST[cdate]','$_POST[paytype]','$_POST[cnum]','$_POST[onum]','$_POST[prjman]',".mktime().",$_POST[htstatus],1)";
 				$resut = mysql_query($sql);
 				if($resut){
-					die('添加成功,<a href='index.php'>返回</a>');
+					die('添加成功,<a href=\'index.php\'>返回</a>');
 				}else{
 					echo 'SQL - '.$sql.'<br>';
 					die('操作错误: '.mysql_error());

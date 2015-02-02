@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	include_once('mysql.class.php');
+	include_once('view.class.php');
 	include_once('common.php');
 	$config = array(
 		'host'   =>  'localhost',

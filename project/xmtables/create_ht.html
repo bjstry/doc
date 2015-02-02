@@ -12,11 +12,14 @@
 	<input type='text' name='aom' placeholder='合同金额'><br>
 	<input type='text' name='mdate' placeholder='我方签字盖章日期'><br>
 	<input type='text' name='ydate' placeholder='客户签字盖章日期'><br>
+	<input type='text' name='cdate' placeholder='合同签订日期'><br>
 	<input type='text' name='paytype' placeholder='付款方式'><br>
 	<input type='text' name='cnum' placeholder='合同编号'><br>
 	<input type='text' name='onum' placeholder='下单编号'><br>
 	<input type='text' name='prjman' placeholder='项目负责人'><br>
-	<input type='text' name='odate' placeholder='下单日期'><br>
+	是否存为<abbr title="无法修改">最终</abbr>？<br>
+	<input type="radio" name="htstatus" checked value=0 >否
+	<input type="radio" name="htstatus" value=1 >是<br>
 	<input type='submit' name='create_ht' value='提交'><br>
 	<input type="button" name="Submit" onclick="javascript:history.back(-1);" value="返回">
 </form>

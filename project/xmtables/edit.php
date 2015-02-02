@@ -1,6 +1,9 @@
 <?php
 	include_once('./lib/config.php');
 	switch($_SESSION['id']){
+		case 1:
+			include_once('create_ht.html');
+			break;
 		case 2:
 			include_once('create_xd.html');
 			break;
@@ -14,6 +17,9 @@
 			include_once('create_fk.html');
 			break;
 	}
-	$_SESSION['gid']=$_GET['id'];
-	print_r($_SESSION);
+	if(!$_GET['id']==0){
+		$_SESSION['gid']=$_GET['id'];
+	}else{
+		$_SESSION['gid']=null;	
+	}
 ?>

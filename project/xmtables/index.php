@@ -17,7 +17,7 @@ td{
 
 <?php
     include_once('./lib/config.php');
-    if($_SESSION['user']){
+    if(isset($_SESSION['user'])){
         switch ($_SESSION['id']){
             case 1:
                 $well = "Well come! 合同".$_SESSION['user'];
@@ -64,7 +64,11 @@ td{
 		</tr>
 <?php
     $id=$_SESSION['id'];
-	$val = showlist();
+	if($id==0){
+		$val = showlist(1);
+	}else{
+		$val = showlist();
+	}
 	while($row=mysql_fetch_array($val)){
 ?>	
 
@@ -95,22 +99,8 @@ td{
 	</table>
 	<br>
 <?php
-switch ($_SESSION['id']){
-	case 1:
-		echo "<a href='create_ht.html'>合同</a>";
-		break;
-	case 2:
-		echo "<a href='create_xd.html'>下单</a>";
-		break;
-	case 3:
-		echo "<a href='create_fh.html'>发货</a>";
-		break;
-	case 4:
-		echo "<a href='create_kp.html'>开票</a>";
-		break;
-	case 5:
-		echo "<a href='create_sk.html'>收款</a>";
-		break;
+if($_SESSION['id']==1){
+	echo "<a href='edit.php?id=0'>添加合同</a>";
 }
 ?>
 </body>

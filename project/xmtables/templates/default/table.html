@@ -1,0 +1,68 @@
+<div class='uk-grid'>
+<div class='uk-width-7-10 uk-container-center'>
+<table class='uk-table uk-table-hover'>
+  <br>
+  <h2 class='uk-text-center' >项目管理表格</h2>
+  <tr>
+  <td colspan=4><span>建表日期:&nbsp;<?php echo $row['date']?></span><span class='uk-float-right'>填表人:&nbsp;<?php echo $row['author']?></span></td>
+  </tr>
+  <tr>
+    <th class='uk-text-center' colspan=4>合同基本情况</th>
+  </tr>	
+  <tr>
+    <td>客户单位</td><td><?php echo $row['customer_a']?></td><td>院系、姓名</td><td><?php echo $row['customer_b']?></td>
+  </tr>
+  <tr>
+    <td>业务负责人</td><td><?php echo $row['salesman']?></td><td>合同金额</td><td><?php echo $row['aom']?></td>
+  </tr>
+  <tr>
+    <td>我方签字日期</td><td><?php echo $row['mdate']?></td><td>客户签字日期</td><td><?php echo $row['ydate']?></td>
+  </tr>
+  <tr>
+    <td>合同签订日期</td><td><?php echo $row['cdate']?></td><td>付款方式</td><td><?php echo $row['paytype']?></td>
+  </tr>
+  <tr>
+    <td>合同编号</td><td><?php echo $row['cnum']?></td><td>项目负责人</td><td><?php echo $row['prjman']?></td>
+  </tr>
+  <tr>
+    <td>方案报价</td><td><?php echo $row['startom']?></td><td>最终售价</td><td><?php echo $row['overom']?></td>
+  </tr>
+  <tr>
+    <td>业务主要沟通人</td><td><?php echo $row['tman']?></td><td>辅助人员</td><td><?php echo $row['otman']?></td>
+  </tr>
+  <tr>
+    <th class='uk-text-center' colspan=4>下单</th>
+  </tr>
+  <tr>
+    <td>下单编号</td><td><?php echo $row['onum']?></td><td>下单日期</td><td><?php echo $row['odate']?></td>
+  </tr>
+  <tr>
+    <th class='uk-text-center' colspan=4>发货</th>
+  </tr>
+  <tr>
+    <td>发货日期</td><td><?php echo $row['sdate']?></td><td>发货方式/单号</td><td><?php echo $row['stype']?></td>
+  </tr>
+  <tr>
+    <td>安装人员</td><td><?php echo $row['techman']?></td><td>安装日期</td><td><?php echo $row['tdate']?></td>
+  </tr>
+  <tr>
+    <td>验收日期</td><td><?php echo $row['checkdate']?></td><td>验收人</td><td><?php echo $row['checkman']?></td>
+  </tr>
+  <tr>
+    <th colspan=4>开票</th>
+  </tr>
+  <tr>
+    <td>开票日期</td><td>开票金额</td><td>发票寄送日期</td><td>发票寄送方式</td>
+	<?php 
+		$sql = "select * from gt_protablekp where `cid`=$row[id]";
+		$query = mysql_query();
+		while($srow=mysql_fetch_array($query)){
+	?>
+    <td></td><?php echo $row['kdate']?><td><?php echo $row['kom']?></td><td><?php echo $row['fsdate']?></td><td><?php echo $row['fstype']?></td>
+	<?php 
+	}
+	?>
+  </tr>
+</table>
+</div>
+</div>

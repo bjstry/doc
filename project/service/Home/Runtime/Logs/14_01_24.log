@@ -1,0 +1,261 @@
+[ 2014-01-24T01:53:35+08:00 ] 111.161.35.145 /service/index.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.001815s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8] Undefined index: username /home/4/f/fangxinworld/www/service/Home/Lib/Action/IndexAction.class.php 第 5 行.
+
+[ 2014-01-24T01:53:36+08:00 ] 111.161.35.145 /service/index.php/User/login.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001446s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001568s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000930s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001010s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.023011s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.023111s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000929s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000935s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000804s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.001016s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003908s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.001174s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001254s ]
+
+[ 2014-01-24T01:54:08+08:00 ] 111.161.35.145 /service/index.php/User/userAdd
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001237s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001374s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000885s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000971s ]
+SQL: SHOW COLUMNS FROM `think_user` [ RunTime:0.011288s ]
+SQL: INSERT INTO `think_user` (`uname`,`upasswd`,`depart`) VALUES ('zouzheyi','d41ea0965ee5a60f0a8d60dfd4687658','技术部') [ RunTime:0.002016s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.016518s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016635s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000810s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.001072s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000851s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.001231s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004274s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.001861s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001986s ]
+
+[ 2014-01-24T01:54:10+08:00 ] 111.161.35.145 /service/index.php/User/login
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001651s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001817s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.002569s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002692s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.024745s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.024873s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000852s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000800s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000645s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.001079s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003664s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.001436s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001560s ]
+
+[ 2014-01-24T01:54:19+08:00 ] 111.161.35.145 /service/index.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000997s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001131s ]
+NOTIC: [8] Undefined index: username /home/4/f/fangxinworld/www/service/Home/Lib/Action/IndexAction.class.php 第 5 行.
+
+[ 2014-01-24T01:54:21+08:00 ] 111.161.35.145 /service/index.php/User/login.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001631s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001800s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.001268s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001388s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.025547s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.025658s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000843s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.001048s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.001031s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.001196s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004421s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.001359s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001472s ]
+
+[ 2014-01-24T01:54:31+08:00 ] 111.161.35.145 /service/index.php/User/logincheck
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001145s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001270s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000889s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000971s ]
+SQL: SHOW COLUMNS FROM `think_user` [ RunTime:0.001778s ]
+SQL: SELECT * FROM `think_user` WHERE ( uname='zouzheyi' ) LIMIT 1   [ RunTime:0.031476s ]
+
+[ 2014-01-24T01:54:32+08:00 ] 111.161.35.145 /service/index.php/Index/index.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001163s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001289s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000926s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001006s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.021000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021095s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000690s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000719s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000602s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000815s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003048s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000990s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001070s ]
+
+[ 2014-01-24T01:54:33+08:00 ] 111.161.35.145 /service/index.php/Index/top.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001173s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001306s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000940s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001022s ]
+NOTIC: [8] Constant THEME_NAME already defined /home/4/f/fangxinworld/www/service/ThinkPHP/Lib/Core/View.class.php 第 221 行.
+NOTIC: [8] Constant THEME_PATH already defined /home/4/f/fangxinworld/www/service/ThinkPHP/Lib/Core/View.class.php 第 172 行.
+NOTIC: [8] Constant APP_TMPL_PATH already defined /home/4/f/fangxinworld/www/service/ThinkPHP/Lib/Core/View.class.php 第 173 行.
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.022786s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022896s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000795s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000762s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000693s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000815s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003289s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000953s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001031s ]
+
+[ 2014-01-24T01:54:33+08:00 ] 111.161.35.145 /service/index.php/Index/left.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001207s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001347s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000895s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000982s ]
+NOTIC: [8] Constant THEME_NAME already defined /home/4/f/fangxinworld/www/service/ThinkPHP/Lib/Core/View.class.php 第 221 行.
+NOTIC: [8] Constant THEME_PATH already defined /home/4/f/fangxinworld/www/service/ThinkPHP/Lib/Core/View.class.php 第 172 行.
+NOTIC: [8] Constant APP_TMPL_PATH already defined /home/4/f/fangxinworld/www/service/ThinkPHP/Lib/Core/View.class.php 第 173 行.
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.025721s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.025823s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000753s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000848s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000664s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000859s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003358s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000904s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000983s ]
+
+[ 2014-01-24T01:54:33+08:00 ] 111.161.35.145 /service/index.php/Apply/applyTip.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001780s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001940s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000874s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000959s ]
+NOTIC: [8] Constant THEME_NAME already defined /home/4/f/fangxinworld/www/service/ThinkPHP/Lib/Core/View.class.php 第 221 行.
+NOTIC: [8] Constant THEME_PATH already defined /home/4/f/fangxinworld/www/service/ThinkPHP/Lib/Core/View.class.php 第 172 行.
+NOTIC: [8] Constant APP_TMPL_PATH already defined /home/4/f/fangxinworld/www/service/ThinkPHP/Lib/Core/View.class.php 第 173 行.
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.022079s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022204s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.001025s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.001046s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000910s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.001230s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004570s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.001606s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001732s ]
+
+[ 2014-01-24T01:55:14+08:00 ] 111.161.35.145 /service/index.php/Tech/workList
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001641s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001775s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000925s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001003s ]
+SQL: SHOW COLUMNS FROM `think_apply` [ RunTime:0.013882s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `think_apply` WHERE ( `status` = 1 ) AND ( `assignstatus` = 1 ) AND ( `techreponsor` = 'zouzheyi' ) LIMIT 1   [ RunTime:0.000291s ]
+SQL: SELECT * FROM `think_apply` WHERE ( `status` = 1 ) AND ( `assignstatus` = 1 ) AND ( `techreponsor` = 'zouzheyi' ) ORDER BY aid desc LIMIT 0,6   [ RunTime:0.000320s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.040481s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.040621s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.001565s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.001076s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000697s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000979s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004566s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.001059s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001144s ]
+
+[ 2014-01-24T01:55:21+08:00 ] 111.161.35.145 /service/index.php/User/infoManage/id/40
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001154s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001287s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000808s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000887s ]
+SQL: SHOW COLUMNS FROM `think_user` [ RunTime:0.001653s ]
+SQL: SELECT * FROM `think_user` WHERE ( id=40 ) LIMIT 1   [ RunTime:0.000250s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.024789s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.024913s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000650s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000667s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000557s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000753s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002840s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000900s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000975s ]
+
+[ 2014-01-24T01:55:26+08:00 ] 111.161.35.145 /service/index.php/Apply/applyTip
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001938s ]
+INFO: [ route_check ] --END-- [ RunTime:0.002143s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.001388s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001517s ]
+NOTIC: [8] Constant THEME_NAME already defined /home/4/f/fangxinworld/www/service/ThinkPHP/Lib/Core/View.class.php 第 221 行.
+NOTIC: [8] Constant THEME_PATH already defined /home/4/f/fangxinworld/www/service/ThinkPHP/Lib/Core/View.class.php 第 172 行.
+NOTIC: [8] Constant APP_TMPL_PATH already defined /home/4/f/fangxinworld/www/service/ThinkPHP/Lib/Core/View.class.php 第 173 行.
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.018179s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018350s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.001110s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.001073s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000926s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.001257s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004715s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.001493s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001602s ]
+

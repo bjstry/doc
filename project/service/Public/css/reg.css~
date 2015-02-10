@@ -1,0 +1,22 @@
+/*注册页面层叠样式表*/
+*{
+	margin:0px;
+	padding:0px;	
+}
+
+body{
+	background-image:url(../images/reg.jpg);
+}
+
+
+fieldset {
+	
+	width:500px;	
+	background:gray;
+	margin: 100px auto;
+}
+
+table {
+
+	
+}

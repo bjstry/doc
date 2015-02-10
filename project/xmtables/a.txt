@@ -2,6 +2,9 @@
 1    2    3    4    5     0
 
 
+alter table gt_protables add harddisk varchar(25) not null comment '硬盘' after memery;
+
+
 user gentaihg gentaixd gentaikp gentaisk gentaifh gentai
 tables: gt_users gt_protables
 gt_users -> uid gid uname upass 

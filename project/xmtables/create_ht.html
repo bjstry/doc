@@ -5,19 +5,18 @@
 </head>
 <h2>合同</h2>
 <form action='create.php' method='post'>
-	<input type='text' name='date' placeholder='建表日期'><br />
-	<input type='text' name='author'placeholder='填表人'><br>
-	<input type='text' name='customer_a' placeholder='客户单位'><br>
-	<input type='text' name='customer_b' placeholder='客户姓名'><br>
-	<input type='text' name='salesman' placeholder='业务负责人'><br>
-	<input type='text' name='aom' placeholder='合同金额'><br>
-	<input type='text' name='mdate' placeholder='我方签字盖章日期'><br>
-	<input type='text' name='ydate' placeholder='客户签字盖章日期'><br>
-	<input type='text' name='cdate' placeholder='合同签订日期'><br>
-	<input type='text' name='paytype' placeholder='付款方式'><br>
-	<input type='text' name='cnum' placeholder='合同编号'><br>
-	<input type='text' name='onum' placeholder='下单编号'><br>
-	<input type='text' name='prjman' placeholder='项目负责人'><br>
+	建表日期:<input type='text' name='date' value="<?php echo $obj['date']?>"><br />
+	填表人:<input type='text' name='author'value="<?php echo $obj['author']?>"><br>
+	客户单位:<input type='text' name='customer_a' value="<?php echo $obj['customer_a']?>"><br>
+	客户姓名:<input type='text' name='customer_b' value="<?php echo $obj['customer_b']?>"><br>
+	业务负责人:<input type='text' name='salesman' value="<?php echo $obj['salesman']?>"><br>
+	合同金额:<input type='text' name='aom' value="<?php echo $obj['aom']?>"><br>
+	我方签字盖章日期:<input type='text' name='mdate' value="<?php echo $obj['mdate']?>"><br>
+	客户签字盖章日期:<input type='text' name='ydate' value="<?php echo $obj['ydate']?>"><br>
+	合同签订日期:<input type='text' name='cdate' value="<?php echo $obj['cdate']?>"><br>
+	付款方式:<input type='text' name='paytype' value="<?php echo $obj['paytype']?>"><br>
+	合同编号:<input type='text' name='cnum' value="<?php echo $obj['cnum']?>"><br>
+	项目负责人:<input type='text' name='prjman' value="<?php echo $obj['prjman']?>"><br>
 	是否存为<abbr title="无法修改">最终</abbr>？<br>
 	<input type="radio" name="htstatus" checked value=0 >否
 	<input type="radio" name="htstatus" value=1 >是<br>

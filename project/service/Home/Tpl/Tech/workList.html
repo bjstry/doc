@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<meta http-equiv = "content-type" content = "text/html;charset=utf-8"/>
+		<link rel = "stylesheet" type = "text/css" href = "/service__PUBLIC__/css/common_table.css">
+	</head>
+	<body>	
+		<table class = "bordered">
+			<tr>
+				<th>项目名称</th><th>售后类型</th><th>业务负责人</th><th>机器生产时间</th><th>查看详情</th>
+			</tr>
+		<volist name="list" id="vo">
+			<tr>
+				<td>{$vo['projectname']}</td>
+				<td>
+					<if condition="$vo['servicetype'] eq 0">
+						已过质保
+					<else />
+						未过质保
+					</if>
+				</td>
+				<td>{$vo['business']}</td>
+				<td>{$vo['producttime']}</td>
+				<td>
+					<if condition = "($vo['terminate'] eq 0)">				
+						<a href = "__URL__/workCheck/aid/{$vo['aid']}">查看详情</a>
+					<elseif condition = "($vo['terminate'] eq 1)" />
+						已解决
+					</if>
+				</td>
+			</tr>
+		</volist>
+			<tr>
+				<td colspan = "6">{$page}</td>
+			</tr>
+		</table>
+	</body>
+</html>

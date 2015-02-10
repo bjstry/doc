@@ -2,8 +2,17 @@
   <div class='uk-width-7-10 uk-container-center'>
 	<table class='uk-table uk-table-hover'>
 	  <tr>
-	    <td></td><td><a href=''>编辑</a></td>
+	    <td>开票日期</td><td>开票金额</td><td>发票寄送日期</td><td>发票寄送方式</td><td>操作</td>
 	  </tr>
+	<?php 
+		foreach($srow as $key=>$val){
+	?>
+	  <tr>
+	    <td><?php echo $vrow['kid'] ?></td><td><?php echo $vrow['koe'] ?></td><td><?php echo $vrow['fsdate'] ?></td><td><?php echo $vrow['fstype'] ?></td><td><a href="edit.php?e=<?php echo $vrow[id] ?>" onclick=''>编辑</a></td>
+	  </tr>
+	<?php
+		}
+	?>
 	</table>
   </div>
 </div>

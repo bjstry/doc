@@ -7,5 +7,10 @@
 	}
 	spl_autoload_register(array('LOAD','loadClass'));
 	$a = new Jin();
-	echo md5('shgentai');
+	$jin = 10;
+	$bai = 5;
+	$song = 0;
+	$bai < $jin or $song = 1;
+	echo $song;
+
 ?>

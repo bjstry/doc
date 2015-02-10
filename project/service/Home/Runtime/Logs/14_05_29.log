@@ -1,0 +1,6 @@
+[ 2014-05-29T02:53:28+08:00 ] 37.58.100.148 /service/index.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.001344s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001470s ]
+NOTIC: [8] Undefined index: username /home/4/f/fangxinworld/www/service/Home/Lib/Action/IndexAction.class.php 第 5 行.
+

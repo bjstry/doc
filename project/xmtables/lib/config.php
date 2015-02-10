@@ -1,8 +1,10 @@
 <?php
 	session_start();
-	include_once('mysql.class.php');
-	include_once('view.class.php');
 	include_once('common.php');
+	function my_autoload($class_name){
+		include_once './lib/'.$class_name.'.class.php';
+	}
+	spl_autoload_register('my_autoload');
 	$config = array(
 		'host'   =>  'localhost',
 		'user'   =>  'root',

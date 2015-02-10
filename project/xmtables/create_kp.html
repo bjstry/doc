@@ -5,15 +5,15 @@
 </head>
 <h2>开票</h2>
 <form action='create.php' method='post'>
-	<input type='text' name='kdate' placeholder='开票日期'><br />
-	<input type='text' name='kom'placeholder='开票金额'><br>
-	<input type='text' name='vatax' placeholder='增值税额'><br>
-	<input type='text' name='othertax' placeholder='其他税额'><br>
-	<input type='text' name='salescost' placeholder='售前成本'><br>
-	<input type='text' name='accost' placeholder='配件成本'><br>
-	<input type='text' name='sentcost' placeholder='送货及安装成本'><br>
-	<input type='text' name='mancost' placeholder='相关人力成本'><br>
-	<input type='text' name='cost' placeholder='总成本'><br>
+	开票日期:<input type='text' name='kdate' value="<?php echo $obj['kdate']?>"><br />
+	开票金额:<input type='text' name='kom'value="<?php echo $obj['kom']?>"><br>
+	增值税额:<input type='text' name='vtax' value="<?php echo $obj['vtax']?>"><br>
+	其他税额:<input type='text' name='othertax' value="<?php echo $obj['othertax']?>"><br>
+	售前成本:<input type='text' name='salescost' value="<?php echo $obj['salescost']?>"><br>
+	配件成本:<input type='text' name='accost' value="<?php echo $obj['accost']?>"><br>
+	送货及安装成本:<input type='text' name='sentcost' value="<?php echo $obj['sentcost']?>"><br>
+	相关人力成本:<input type='text' name='mancost' value="<?php echo $obj['mancost']?>"><br>
+	总成本:<input type='text' name='cost' value="<?php echo $obj['cost']?>"><br>
 	是否存为<abbr title="无法修改">最终</abbr>？<br>
     <input type="radio" name="kpstatus" checked value=0 >否
 	<input type="radio" name="kpstatus" value=1 >是<br>

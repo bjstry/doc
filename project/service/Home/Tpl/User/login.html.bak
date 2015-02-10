@@ -1,0 +1,89 @@
+<!DOCTYPE HTML> 
+<html>
+	<head>
+		<title>登录</title>
+		<meta http-equiv = "content-type" content = "text/html;charset=utf-8"/>
+		<link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet">
+		<script language="JavaScript">
+			 function fleshVerify(){ 
+				//重载验证码
+				var time = new Date().getTime();
+					document.getElementById('verifyImg').src= '__APP__/Public/verify/'+time;
+			 }
+		 </script>
+	    <style type="text/css">
+		 .top{
+		 	line-height: 30px;
+		 	background:black;
+		 	height: 30px;
+		 	width: 100%;
+		 	margin-bottom: 60px;
+		 	color: white;
+		 }
+	     body {
+	      	margin: 0px;
+	        padding-top: 0px;
+	        padding-bottom: 40px;
+	        /*background-color: #f5f5f5;*/
+	         background-color:#2E3A47;
+	    }
+
+     	.form-signin {
+	        max-width: 300px;
+	        padding: 19px 29px 29px;
+	        margin: 0 auto 20px;
+	        background-color: #fff;
+	        border: 1px solid #e5e5e5;
+	        -webkit-border-radius: 5px;
+	           -moz-border-radius: 5px;
+	                border-radius: 5px;
+	        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+	           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+	                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+	    }
+	    .form-signin .form-signin-heading,
+	    .form-signin .checkbox {
+	        margin-bottom: 10px;
+	    }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+	a {
+		text-decoration:none;
+	}
+    </style>
+     <link href="__PUBLIC__css/bootstrap-responsive.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.bootcss.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+	</head>
+	<body>
+		<div class="top"><a href = http://"www.shgentai.com" style = "color:white;">上海艮泰</a></div>
+	    <div class="container">
+	     	 <form class="form-signin" action="__URL__/logincheck" method="POST">
+		        <h3 class="form-signin-heading"><i>--登录--</i></h3>
+
+		       用户名： <input type="text" class="input-block-level input-medium" placeholder="请输入用户名" name = "username"><br/>
+		        密&nbsp;&nbsp;&nbsp;码：&nbsp;<input type="password" class="input-block-level input-medium" placeholder="请输入密码" name = "password"><br/>
+		        <img id="verifyImg" src='__APP__/Public/verify/' onclick="fleshVerify()" width="60px" height="20px" />&nbsp;&nbsp;&nbsp;&nbsp;
+		        <input type = "text" name = "verify" class="input-small" placeholder="输入验证码" style="padding:0px;margin-buttom:10px;" />
+		        <br/>
+		        <button class="btn btn-large btn-primary" type="submit" style="margin-right:30px;">登录</button>
+		        <a href="__URL__/reg">注册</a>&nbsp;&nbsp;<a href = "http://www.shgentai.com" >艮泰主页</a> 
+	      	</form>
+	    </div> <!-- /container -->
+	    <!-- Le javascript
+	    ================================================== -->
+	    <!-- Placed at the end of the document so the pages load faster -->
+	    <script src="__PUBLIC__/js/jquery-1.9.1.min.js"></script>
+	    <script src="__PUBLIC__/js/bootstrap.min.js"></script>
+	</body>
+</html>

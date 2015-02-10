@@ -1,0 +1,52 @@
+[ 2014-07-06T02:40:44+08:00 ] 58.196.140.59 /service/index.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.002057s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002209s ]
+NOTIC: [8] Undefined index: username /home/4/f/fangxinworld/www/service/Home/Lib/Action/IndexAction.class.php 第 5 行.
+
+[ 2014-07-06T02:40:45+08:00 ] 58.196.140.59 /service/index.php/User/login.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.004338s ]
+INFO: [ route_check ] --END-- [ RunTime:0.004470s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000925s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001006s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.022691s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022848s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.001777s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.001750s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.001676s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.002430s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.007990s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.003575s ]
+INFO: [ view_end ] --END-- [ RunTime:0.003671s ]
+
+[ 2014-07-06T21:22:53+08:00 ] 66.249.78.243 /service/index.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.001890s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002085s ]
+NOTIC: [8] Undefined index: username /home/4/f/fangxinworld/www/service/Home/Lib/Action/IndexAction.class.php 第 5 行.
+
+[ 2014-07-06T21:22:54+08:00 ] 66.249.78.243 /service/index.php/User/login.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001430s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001552s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000893s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000975s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.015845s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015942s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000980s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.003212s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000827s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.001838s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.007079s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.001220s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001300s ]
+

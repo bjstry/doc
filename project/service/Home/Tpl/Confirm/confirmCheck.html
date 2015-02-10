@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<meta http-equiv = "content-type" content = "text/html;charset=utf-8"/>
+	</head>
+	<body>			
+		<fieldset>
+			<legend>申请表详情</legend>
+			<p>
+				项目名称：{$list["projectname"]}	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;售后类型：{$type}	
+			</p>
+			<p>
+				购买人姓名：{$list["buyer"]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系电话：{$list["projectname"]}		
+			</p>
+			<p>
+				机器使用人姓名：{$list["user"]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系电话：{$list["userphone"]}			
+			</p>
+			<p>
+				业务负责人：{$list["business"]}			
+			</p>
+			<p>
+				机器生产时间：{$list["producttime"]}			
+			</p>
+			<p>
+				售后详情：<br/><textarea readonly = "readonly"  cols = "40">{$list["detail"]}</textarea>			
+			</p>
+			<form action = "__URL__/confirmDeny/id/{$list['aid']}" method = "POST">
+			<p>
+				<if condition = "$ustatus eq 0">
+				审核建议：<br/><textarea cols = "40" name = "advice"></textarea>			
+			</p>
+			<p>
+				
+					<input type = "submit" value = "不同意" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</if>
+				<input type = "button" value = "返回列表" onclick = "history.go(-1)">			
+			</p>
+			</form>
+		</fieldset>
+
+	</body>
+</html>

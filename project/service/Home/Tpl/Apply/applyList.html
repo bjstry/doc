@@ -1,0 +1,86 @@
+<html>
+	<head>
+		<meta http-equiv = "content-type" content = "text/html;charset=utf-8"/>
+		<link rel = "stylesheet" type = "text/css" href = "/service__PUBLIC__/css/common_table.css">
+		<style type="text/css">
+			a {
+				text-decoration: none;
+			}
+			* {
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	<body>	
+		<table class = "bordered">
+			<tr>
+				<th>项目名称</th><th>售后类型</th><th>业务负责人</th><th>机器生产时间</th><th>查看</th><th>操作</th><th>申请提交</th><th>业务主管</th><th>行政部</th><th>财务部</th><th>售后进度</th>
+			</tr>
+			<volist name="list" id="vo">
+			<tr>
+				<td>{$vo['projectname']}</td>
+				<td>
+					<if condition="$vo['servicetype'] eq 0">
+						已过质保
+					<else />
+						未过质保
+					</if>
+				</td>
+				<td>{$vo['business']}</td>
+				<td>{$vo['producttime']}</td>
+				<td><a href = "__URL__/applyCheck/aid/{$vo['aid']}">查看详情</a></td>
+				<td>
+					<if condition="$vo['status'] neq 1">
+						<a href ="__URL__/applyMod/aid/{$vo['aid']}">编辑/</a><a href ="__URL__/applyDel/id/{$vo['aid']}">删除</a>
+					<else />
+						不可操作
+					</if>
+				</td>				
+				<td>
+					<if condition="$vo['status'] neq 1">				
+						<a href = "__URL__/applyConfirm/aid/{$vo['aid']}">确认提交</a>
+					<else />
+						申请已提交
+					</if>
+				</td>
+				<td>
+					<if condition="$vo['busstatus'] eq 1">				
+						同意
+					<elseif condition="$vo['busstatus'] eq 2"/>
+						不同意
+					<elseif condition="$vo['busstatus'] eq 0"/>
+						未审核
+					</if>
+				</td>
+				<td>
+					<if condition="$vo['adminstatus'] eq 1">				
+						同意
+					<elseif condition="$vo['adminstatus'] eq 2"/>
+						不同意
+					<elseif condition="$vo['adminstatus'] eq 0"/>
+						未审核
+					</if>
+				</td>
+				<td>
+					<if condition="$vo['moneystatus'] eq 1">				
+						同意
+					<elseif condition="$vo['moneystatus'] eq 2"/>
+						不同意
+					<elseif condition="$vo['moneystatus'] eq 0"/>
+						未审核
+					</if>					
+				</td>
+				<td>
+					<if condition="$vo['terminate'] eq 0">				
+						未完成
+					<else/>完成
+					</if>					
+				</td>
+			</tr>
+			</volist>
+			<tr>
+				<td colspan = "11">{$page}</td>
+			</tr>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<meta http-equiv = "content-type" content = "text/html;charset=utf-8"/>
+		<link rel = "stylesheet" type = "text/css" href = "/service__PUBLIC__/css/common_table.css">
+	</head>
+	<body>	
+		<table class = "bordered">
+			<tr>
+				<th>项目名称</th><th>售后类型</th><th>业务负责人</th><th>查看</th><th>操作</th>
+		<volist name="list" id="li">
+			<tr>
+				<td>{$li['projectname']}</td>
+				<td>已过质保期</td>
+				<td>{$li['business']}</td>
+				<td><a href = "__URL__/confirmCheck/aid/{$li['aid']}">查看详情</a></td>
+				<td>
+					<if condition = "($_SESSION['department'] eq '业务部') and ($li['busstatus'] eq 0)">
+						<a href = "__URL__/confirmPass/aid/{$li['aid']}">同意</a>
+					<elseif condition = "($_SESSION['department'] eq '行政部') and ($li['adminstatus'] eq 0)"/>	<a href = "__URL__/confirmPass/aid/{$li['aid']}">同意</a>
+					<elseif condition = "($_SESSION['department'] eq '财务部') and ($li['moneystatus'] eq 0)"/>	<a href = "__URL__/confirmPass/aid/{$li['aid']}">同意</a>
+					<else/>已同意
+					</if>
+				</td>				
+			</tr>
+		</volist>
+			<tr>
+				<td colspan = "7">{$page}</td>
+			</tr>
+		</table>
+	</body>
+</html>

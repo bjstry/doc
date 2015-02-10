@@ -16,6 +16,40 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `gt_protablekp`
+--
+
+DROP TABLE IF EXISTS `gt_protablekp`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `gt_protablekp` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'å”¯ä¸€è‡ªå¢žid',
+  `cid` int(11) NOT NULL COMMENT 'ä¸»æ¡ç›®id',
+  `kdate` varchar(20) NOT NULL COMMENT 'å¼€ç¥¨æ—¥æœŸ',
+  `kom` int(10) NOT NULL COMMENT 'å¼€ç¥¨é‡‘é¢',
+  `fsdate` varchar(20) NOT NULL COMMENT 'å‘ç¥¨å¯„é€æ—¥æœŸ',
+  `fstype` varchar(20) NOT NULL COMMENT 'å‘ç¥¨å¯„é€æ–¹å¼',
+  `vtax` int(10) NOT NULL COMMENT 'å¢žå€¼ç¨Žé¢',
+  `othertax` int(10) NOT NULL COMMENT 'å…¶ä»–ç¨Žé¢',
+  `salescost` int(10) NOT NULL COMMENT 'å”®å‰æˆæœ¬',
+  `thingcost` int(10) NOT NULL COMMENT 'é…ä»¶æˆæœ¬',
+  `sentcost` int(10) NOT NULL COMMENT 'é€è´§æˆæœ¬',
+  `mancost` int(10) NOT NULL COMMENT 'äººåŠ›æˆæœ¬',
+  `cost` int(10) NOT NULL COMMENT 'æ€»æˆæœ¬',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `gt_protablekp`
+--
+
+LOCK TABLES `gt_protablekp` WRITE;
+/*!40000 ALTER TABLE `gt_protablekp` DISABLE KEYS */;
+/*!40000 ALTER TABLE `gt_protablekp` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `gt_protables`
 --
 
@@ -24,6 +58,7 @@ DROP TABLE IF EXISTS `gt_protables`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `gt_protables` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'å”¯ä¸€è‡ªå¢žid',
+  `cid` int(1) NOT NULL DEFAULT '1' COMMENT 'å°ç»„åˆ†ç±»id',
   `date` varchar(15) NOT NULL COMMENT 'å¡«è¡¨æ—¥æœŸå­—ç¬¦ä¸²',
   `author` varchar(10) NOT NULL COMMENT 'å¡«è¡¨äºº',
   `customer_a` varchar(20) NOT NULL COMMENT 'å®¢æˆ·å•ä½',
@@ -37,6 +72,10 @@ CREATE TABLE `gt_protables` (
   `cnum` int(20) NOT NULL COMMENT 'åˆåŒç¼–å·',
   `onum` int(20) NOT NULL COMMENT 'ä¸‹å•ç¼–å·',
   `prjman` varchar(10) NOT NULL COMMENT 'é¡¹ç›®è´Ÿè´£äºº',
+  `startom` int(10) NOT NULL COMMENT 'æ–¹æ¡ˆæŠ¥ä»·',
+  `overom` int(10) NOT NULL COMMENT 'æœ€ç»ˆæŠ¥ä»·',
+  `tman` varchar(10) NOT NULL COMMENT 'ä¸»è¦æ²Ÿé€šäºº',
+  `otman` varchar(10) NOT NULL COMMENT 'è¾…åŠ©æ²Ÿé€šäºº',
   `odate` varchar(20) NOT NULL COMMENT 'ä¸‹å•æ—¥æœŸ',
   `sdate` varchar(20) NOT NULL COMMENT 'å‘è´§æ—¥æœŸ',
   `stype` varchar(20) NOT NULL COMMENT 'å‘è´§æ–¹å¼',
@@ -46,6 +85,7 @@ CREATE TABLE `gt_protables` (
   `checkman` varchar(10) NOT NULL COMMENT 'éªŒæ”¶äºº',
   `cpu` varchar(20) NOT NULL COMMENT 'CPU',
   `memery` varchar(20) NOT NULL COMMENT 'å†…å­˜',
+  `harddisk` varchar(25) NOT NULL COMMENT 'ç¡¬ç›˜',
   `board` varchar(20) NOT NULL COMMENT 'ä¸»æ¿',
   `other` varchar(50) NOT NULL COMMENT 'å…¶ä»–é…ä»¶',
   `kdate` varchar(20) NOT NULL COMMENT 'å¼€ç¥¨æ—¥æœŸ',
@@ -76,7 +116,7 @@ CREATE TABLE `gt_protables` (
 
 LOCK TABLES `gt_protables` WRITE;
 /*!40000 ALTER TABLE `gt_protables` DISABLE KEYS */;
-INSERT INTO `gt_protables` VALUES (1,'','','åŒ—äº¬å¤§å­¦','åˆ˜æŸæŸ','å¼ æŸæŸ','','','20190921',1200000,'',34545,435345345,'è¯»æŸæŸ','20110101','','','','','','','ab','abc','abc','abc','',0,0,0,0,0,0,0,'',0,0,0,0,0,1,1,1,1),(2,'201412','ç™½åŠ²æ¾','å¤©æ´¥å¤§å­¦','','å“ˆå“ˆå“ˆ','20142511','12051251','0',12000,'ä¸ç»™',2505464,4142245,'ç™½åŠ²æ¾','2013025','','','','','','','','','','','',0,0,0,0,0,0,0,'',0,0,1422597459,1,0,1,1,1,1),(3,'abc','abc','abc','','abc','abc','abc','',0,'abc',121,1212,'abc','dsf','','','','','','','','','','','',0,0,0,0,0,0,0,'',0,0,1422602979,1,1,1,1,1,1),(4,'sdfdsf','sdfdsf','dsfds','dsfdsf','dsfdsf','dsfdsf','dsfdsf','',200,'dsfdsf',12323,231321,'dsfdsf','23dsfds','','','','','','','','','','','',0,0,0,0,0,0,0,'',0,0,1422603156,1,1,1,1,1,1);
+INSERT INTO `gt_protables` VALUES (1,1,'20140514','ç™½åŠ²æ¾','åŒ—äº¬å¤§å­¦','åˆ˜æŸæŸ','å¼ æŸæŸ','','','20190921',1200000,'åˆ°ç¦',34545,435345345,'è¯»æŸæŸ',0,0,'','','20110101','20154545','46456456','dsfsdf','15645645','dsfdsf','sdfsdfs','E5 4620 V2','abc','5t','abc','abc','20152000',500,500,500,500,500,500,500,'20150125',50000,50000,0,0,0,0,0,0,1),(2,1,'201412','ç™½åŠ²æ¾','å¤©æ´¥å¤§å­¦','åˆ˜ä¸€é¦–','å“ˆå“ˆå“ˆ','20142511','12051251','0',12000,'ä¸ç»™',2505464,22222,'ç™½åŠ²æ¾',0,0,'','','2013025','','','','','','','2620`','6g recc ','2Tb ','x9dai','ABCABC','',0,0,0,0,0,0,0,'20162514',200000,120000,1422597459,0,0,1,1,0,1),(3,1,'abc','abc','abc','','abc','abc','abc','',0,'abc',121,1212,'abc',0,0,'','','dsf','','','','','','','','','','','','',0,0,0,0,0,0,0,'',0,0,1422602979,1,1,1,1,1,1),(4,1,'sdfdsf','sdfdsf','dsfds','dsfdsf','dsfdsf','dsfdsf','dsfdsf','',200,'dsfdsf',12323,231321,'dsfdsf',0,0,'','','23dsfds','','','','','','','','','','','','',0,0,0,0,0,0,0,'',0,0,1422603156,1,1,1,1,1,1);
 /*!40000 ALTER TABLE `gt_protables` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,4 +155,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-02-02 15:43:21
+-- Dump completed on 2015-02-06 17:50:21

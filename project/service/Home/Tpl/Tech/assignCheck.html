@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<meta http-equiv = "content-type" content = "text/html;charset=utf-8"/>
+	</head>
+	<body>			
+		<fieldset>
+			<legend>申请表详情</legend>
+			<p>
+				项目名称：{$list["projectname"]}	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;售后类型：{$type}	
+			</p>
+			<p>
+				购买人姓名：{$list["buyer"]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系电话：{$list["buyerphone"]}		
+			</p>
+			<p>
+				机器使用人姓名：{$list["user"]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系电话：{$list["userphone"]}			
+			</p>
+			<p>
+				业务负责人：{$list["business"]}			
+			</p>
+			<p>
+				机器生产时间：{$list["producttime"]}			
+			</p>
+			<p>
+				售后详情：<br/><textarea readonly = "readonly"  cols = "40"/>{$list["detail"]}</textarea>			
+			</p>
+			<p>
+				<form action = "__URL__/workAssign/aid/{$list['aid']}" method = "POST"> 
+				技术负责人：<input type = "text" name= "techresponsor" value = "{$list['techreponsor']}"/>			
+			</p>
+			<p>
+				<if condition="$list['assignstatus'] eq 0">
+					<input type = "submit" name = "assign" value = "指派"/>
+				</if>
+				<input type = "button" value = "返回列表" onclick = "history.go(-1)"/>			
+				</from>
+			</p>
+		</fieldset>
+
+	</body>
+</html>

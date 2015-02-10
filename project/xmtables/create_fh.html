@@ -5,12 +5,12 @@
 </head>
 <h2>发货</h2>
 <form action='create.php' method='post'>
-	<input type='text' name='sdate' placeholder='发货日期'><br />
-	<input type='text' name='stype'placeholder='发货方式/单号'><br>
-	<input type='text' name='techman' placeholder='安装调试人'><br>
-	<input type='text' name='tdate' placeholder='安装调试日期'><br>
-	<input type='text' name='checkdate' placeholder='验收日期'><br>
-	<input type='text' name='checkman' placeholder='验收人'><br>
+	发货日期:<input type='text' name='sdate' value="<?php echo $obj['sdate']?>"><br />
+	发货方式/单号:<input type='text' name='stype'value="<?php echo $obj['stype']?>"><br>
+	安装调试人:<input type='text' name='techman' value="<?php echo $obj['techman']?>"><br>
+	安装调试日期:<input type='text' name='tdate' value="<?php echo $obj['tdate']?>"><br>
+	验收日期:<input type='text' name='checkdate' value="<?php echo $obj['checkdate']?>"><br>
+	验收人:<input type='text' name='checkman' value="<?php echo $obj['checkman']?>"><br>
 	是否存为<abbr title="无法修改">最终</abbr>？<br>
     <input type="radio" name="fhstatus" checked value=0 >否
 	<input type="radio" name="fhstatus" value=1 >是<br>

@@ -54,7 +54,7 @@ if(isset($_GET['vid'])){
 		$view->assign('row',$brow);
 		$view->display('index');
     }else{
-		$view->display('url','success');
+		$view->display('url','success','专门测试一次下','login');
     }   
 }
 ?>

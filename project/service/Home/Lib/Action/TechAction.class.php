@@ -12,14 +12,11 @@
 			//var_dump($_SESSION);
 			
 			// 构建查询数组
-			$condition['status'] = 1;
+			$condition  = 'status=1 && (servicetype=1 || (adminstatus=1 && moneystatus=1 && busstatus=1))';
 			
 			//判断售后类型 未过质保期直接提交技术部 过质保期需要先经过三主管审批
-			if($apply->servicetype == 1) {
-				$condition['adminstatus'] = 1;
-				$condition['moneystatus'] = 1;
-				$condition['busstatus'] = 1;
-			}
+		   		
+		
 			
 			//$condition['terminate'] = 1;
 

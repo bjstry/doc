@@ -10,13 +10,15 @@
 				if($pass == $val['upass']){
 					$_SESSION['user']=$val['uname'];
 					$_SESSION['id']=$val['gid'];
-					echo "<script>alert('succes');</script>";
-					echo "<script>location.href='index.php'</script>";
+					$view->display('url','success');
+					//echo "<script>alert('succes');</script>";
+					//echo "<script>location.href='index.php'</script>";
 				}else{
 					$_SESSION['user']=null;
 					$_SESSION['id']=null;
-					echo "<script>alert('密码错误!');</script>";
-					echo "<script>javascript:history.back(-1);</script>";
+					$view->display('error');
+					//echo "<script>alert('密码错误!');</script>";
+					//echo "<script>javascript:history.back(-1);</script>";
 				}
 			}else{
 				$_SESSION['user']=null;

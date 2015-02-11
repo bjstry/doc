@@ -5,10 +5,10 @@
 </head>
 <h2>收款</h2>
 <form action='create.php' method='post'>
-	付款应到日期:<input type='text' name='gsdate' value="<?php echo $obj['gsdate']?>"><br />
-	实际付款日期:<input type='text' name='godate' value="<?php echo $obj['godate']?>"><br />
-	付款金额:<input type='text' name='gom' value="<?php echo $obj['gom']?>"><br>
-	应收账款:<input type='text' name='shom' value="<?php echo $obj['shom']?>"><br>
+	付款应到日期:<input type='text' name='gsdate' value="<?php echo $row['gsdate']?>"><br />
+	实际付款日期:<input type='text' name='godate' value="<?php echo $row['godate']?>"><br />
+	付款金额:<input type='text' name='gom' value="<?php echo $row['gom']?>"><br>
+	应收账款:<input type='text' name='shom' value="<?php echo $row['shom']?>"><br>
 	是否存为<abbr title="无法修改">最终</abbr>？<br>
     <input type="radio" name="skstatus" checked value=0 >否
 	<input type="radio" name="skstatus" value=1 >是<br>

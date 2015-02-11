@@ -5,15 +5,17 @@
 </head>
 <h2>开票</h2>
 <form action='create.php' method='post'>
-	开票日期:<input type='text' name='kdate' value="<?php echo $obj['kdate']?>"><br />
-	开票金额:<input type='text' name='kom'value="<?php echo $obj['kom']?>"><br>
-	增值税额:<input type='text' name='vtax' value="<?php echo $obj['vtax']?>"><br>
+	开票日期:<input type='text' name='kdate' value="<?php echo $row['kdate']?>"><br />
+	开票金额:<input type='text' name='kom'value="<?php echo $row['kom']?>"><br>
+	发票寄送日期:<input type='text' name='fsdate'value="<?php echo $row['fsdate']?>"><br>
+	发票寄送方式:<input type='text' name='fstype'value="<?php echo $row['fstype']?>"><br>
+	<!--增值税额:<input type='text' name='vtax' value="<?php echo $obj['vtax']?>"><br>
 	其他税额:<input type='text' name='othertax' value="<?php echo $obj['othertax']?>"><br>
 	售前成本:<input type='text' name='salescost' value="<?php echo $obj['salescost']?>"><br>
 	配件成本:<input type='text' name='accost' value="<?php echo $obj['accost']?>"><br>
 	送货及安装成本:<input type='text' name='sentcost' value="<?php echo $obj['sentcost']?>"><br>
 	相关人力成本:<input type='text' name='mancost' value="<?php echo $obj['mancost']?>"><br>
-	总成本:<input type='text' name='cost' value="<?php echo $obj['cost']?>"><br>
+	总成本:<input type='text' name='cost' value="<?php echo $obj['cost']?>"><br>-->
 	是否存为<abbr title="无法修改">最终</abbr>？<br>
     <input type="radio" name="kpstatus" checked value=0 >否
 	<input type="radio" name="kpstatus" value=1 >是<br>

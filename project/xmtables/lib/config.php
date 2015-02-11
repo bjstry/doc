@@ -34,4 +34,5 @@
 	
 	$mysql = new Mysql();
 	$mysql->connect($config['host'],$config['user'],$config['pass'],$config['db']);
+	$view = new View();
 ?>

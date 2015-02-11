@@ -21,23 +21,56 @@
 			include_once('create_fh.html');
 			break;
 		case 4:
-			$sql = "select `id` from `gt_protablekp` where `cid`=$_GET[id]";
+			$sql = "select * from `gt_protablekp` where `cid`=$_GET[id]";
 			$query=mysql_query($sql);
 			if($query){
-				$_SESSION['kp']=1;
-				$srow = mysql_fetch_array($query);
-				$view = new View();
+				while($row = mysql_fetch_array($query)){
+					$srow[]=$row;
+				}
 				$view->assign('srow',$srow);
-				$view->display('create_kp_list.html');
+				$view->display('create_kp_list');
 			}else{
-				include_once 'create_kp.html';
+				if(isset($_GET['type'])){
+					if($_GET['type']=='add'){
+						$_SESSION['kp']=1;
+						include_once 'create_kp.html';
+					}
+					if($_GET['type']=='upd'){
+						$_SESSION['kp_key']=$_GET['e'];
+						$_SESSION['kp']=null;
+						$sql = "select * from gt_protablekp where id=$_GET[e]";
+						$query=mysql_query($sql);
+						$row = mysql_fetch_array($query);
+						include_once 'create_kp.html';
+					}
+				}
 			}
 			break;
 		case 5:
-			include_once('create_sk.html');
+			$sql = "select * from `gt_protablesk` where `cid`=$_GET[id]";
+			$query=mysql_query($sql);
+			if($query){
+				while($row = mysql_fetch_array($query)){
+					$srow[]=$row;
+				}
+				$view->assign('srow',$srow);
+				$view->display('create_sk_list');
+			}else{
+				if(isset($_GET['type'])){
+					if($_GET['type']=='add'){
+						$_SESSION['sk']=1;
+						include_once 'create_sk.html';
+					}
+					if($_GET['type']=='upd'){
+						$_SESSION['sk_key']=$_GET['e'];
+						$_SESSION['sk']=null;
+						$sql = "select * from gt_protablesk where id=$_GET[e]";
+						$query=mysql_query($sql);
+						$row = mysql_fetch_array($query);
+						include_once 'create_sk.html';
+					}
+				}
+			}
 			break;
-	}
-	if(isset($_GET['e'])){
-		
 	}
 ?>

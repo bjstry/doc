@@ -1,6 +1,7 @@
 <div class='uk-grid'>
 <div class='uk-width-7-10 uk-container-center'>
 <table class='uk-table uk-table-hover'>
+  <a class='uk-button uk-button-primary' href="edit.php?id=<?php echo $row[id]?>">编辑</a>&nbsp;&nbsp;<span class='uk-button' onclick="print();">打印</span><a class='uk-button uk-float-right' onclick="history.go(-1);">返回</a>
   <br>
   <h2 class='uk-text-center' ><strong>项目管理表格</strong></h2>
   <tr>
@@ -72,10 +73,20 @@
   <tr>
     <td>货款应到日期</td><td>货款实到日期</td><td>付款金额</td><td>应收账款</td>
   </tr>
-
+	<?php 
+		$ssql = "select * from gt_protablesk where `cid`=$row[id]";
+		$squery = mysql_query($ssql);
+		while($ssrow=mysql_fetch_array($squery)){
+	?>
+  <tr>
+    <td><em><?php echo $ssrow['gsdate']?></td><td><em><?php echo $ssrow['godate']?></td><td><em><?php echo $ssrow['gom']?></td><td><em><?php echo $ssrow['shom']?></em></td>
+  </tr>
+	<?php 
+	}
+	?>
 </table>
 </div>
-<div class='uk-width-7-10 uk-container-center uk-margin-top'>
+<div class='uk-width-7-10 uk-container-center uk-margin-top uk-margin-bottom'>
   <p class='uk-text-center'>艮泰项目管理表格</p>
 </div>
 </div>

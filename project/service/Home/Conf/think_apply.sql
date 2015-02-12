@@ -47,7 +47,7 @@ CREATE TABLE `think_apply` (
   `badvice` varchar(150) CHARACTER SET utf8 NOT NULL,
   `cadvice` varchar(150) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`aid`)
-) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -56,7 +56,7 @@ CREATE TABLE `think_apply` (
 
 LOCK TABLES `think_apply` WRITE;
 /*!40000 ALTER TABLE `think_apply` DISABLE KEYS */;
-INSERT INTO `think_apply` VALUES (41,'gentai-bjs',1,'ss','sss','sss','ddsdsd','ywb','0000-00-00','sdsdsdsadsad','2015-02-11 03:09:23',1,'',0,0,0,0,'jsb','',1,0,'',''),(42,'sdsdsadsa',0,'dsad','sadsad','sadsad','dssdsd','ywb','0000-00-00','sdsadsada','2015-02-11 06:39:15',1,'ewe',0,0,0,0,'jsb','',1,0,'',''),(43,'yfhughg',0,'ghhgh','','','','ywb','0000-00-00','','2015-02-11 06:41:37',1,'',0,0,0,0,'jsb','abcabcabc',1,1,'',''),(44,'baijinsong',0,'abc','abc','abc','abc','ywb','2015-02-26','abc','2015-02-11 06:43:29',1,'',0,0,0,0,'','',0,0,'','');
+INSERT INTO `think_apply` VALUES (41,'gentai-bjs',1,'ss','sss','sss','ddsdsd','ywb','0000-00-00','sdsdsdsadsad','2015-02-11 03:09:23',1,'',0,0,0,0,'jsb','',1,0,'',''),(42,'sdsdsadsa',0,'dsad','sadsad','sadsad','dssdsd','ywb','0000-00-00','sdsadsada','2015-02-11 06:39:15',1,'ewe',0,0,0,0,'jsb','',1,0,'',''),(43,'yfhughg',0,'ghhgh','','','','ywb','0000-00-00','','2015-02-11 06:41:37',1,'',0,0,0,0,'jsb','abcabcabc',1,1,'',''),(44,'baijinsong',0,'abc','abc','abc','abc','ywb','2015-02-26','abc','2015-02-11 06:43:29',1,'',0,0,0,0,'','',0,0,'',''),(45,'43dsrfgg434',0,'','','','','ywb','0000-00-00','','2015-02-11 07:46:01',2,'',0,0,0,0,'jsb','',1,0,'','sefdfdfdf'),(46,'abasdfdasfdsf',1,'aaaaa','aaa','aaa','aaaa','ywb','2015-02-28','aaaa','2015-02-11 08:09:44',1,'',0,0,0,0,'','',0,0,'',''),(47,'没有过质保',1,'abc','abc','abc','sdfdsf','ywb','2015-03-11','dsfdsf','2015-02-11 08:31:57',1,'',0,0,0,0,'','',0,0,'',''),(48,'已过质保',0,'abc','abc','abc','abc','ywb','2015-02-28','abdsf','2015-02-11 08:38:00',1,'',1,1,1,0,'','',0,0,'','');
 /*!40000 ALTER TABLE `think_apply` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -69,4 +69,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-02-11 14:47:34
+-- Dump completed on 2015-02-12  9:16:40

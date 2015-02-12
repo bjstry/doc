@@ -1,7 +1,7 @@
 <div class='uk-grid'>
 <div class='uk-width-7-10 uk-container-center'>
 <table class='uk-table uk-table-hover'>
-  <a class='uk-button uk-button-primary' href="edit.php?id=<?php echo $row[id]?>">编辑</a>&nbsp;&nbsp;<span class='uk-button' onclick="print();">打印</span><a class='uk-button uk-float-right' onclick="history.go(-1);">返回</a>
+  <?php if($_SESSION['id']!=0) {  echo "<a class='uk-button uk-button-primary' href=edit.php?id=".$row[id].">编辑</a>&nbsp;&nbsp;"; }?><span class='uk-button' onclick="print();">打印</span><a class='uk-button uk-float-right' onclick="history.go(-1);">返回</a>
   <br>
   <h2 class='uk-text-center' ><strong>项目管理表格</strong></h2>
   <tr>

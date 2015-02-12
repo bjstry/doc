@@ -1,7 +1,6 @@
 <?php
 	include_once('./lib/config.php');
 	if(!$_POST or !$_SESSION['user']){
-		//print_r($_POST);
 		die('非法访问！');
 		exit();
 	}else{
@@ -10,8 +9,9 @@
 				$sql = "update `gt_protables` set `date`='$_POST[date]',`author`='$_POST[author]',`customer_a`='$_POST[customer_a]',`customer_b`='$_POST[customer_b]',`salesman`='$_POST[salesman]',`aom`='$_POST[aom]',`mdate`='$_POST[mdate]',`ydate`='$_POST[ydate]',`cdate`='$_POST[cdate]',`paytype`='$_POST[paytype]',`cnum`='$_POST[cnum]',`prjman`='$_POST[prjman]',`startom`='$_POST[startom]',`overom`='$_POST[overom]',`tman`='$_POST[tman]',`otman`='$_POST[otman]',`htstatus`=$_POST[htstatus] where `id`=$_SESSION[gid]";
 				$resut = mysql_query($sql);
 				if($resut){
-					die('提交成功,<a href=\'index.php\'>返回</a>');
-					$_SESSION['gid']=null;
+					unset($_SESSION['gid']);
+					$view->display('url','success','提交成功！');
+					//die('提交成功,<a href=\'index.php\'>返回</a>');
 				}else{
 					echo 'SQL - '.$sql.'<br>';
 					die('操作错误: '.mysql_error());
@@ -20,7 +20,8 @@
 				$sql = "insert into `gt_protables` (`id`,`date`,`author`,`customer_a`,`customer_b`,`salesman`,`aom`,`mdate`,`ydate`,`cdate`,`paytype`,`cnum`,`prjman`,`startom`,`overom`,`tman`,`otman`,`subdate`,`htstatus`,`showstatus`) values ('','$_POST[date]','$_POST[author]','$_POST[customer_a]','$_POST[customer_b]','$_POST[salesman]','$_POST[aom]','$_POST[mdate]','$_POST[ydate]','$_POST[cdate]','$_POST[paytype]','$_POST[cnum]','$_POST[prjman]',$_POST[startom],$_POST[overom],'$_POST[tman]','$_POST[otman]',".mktime().",$_POST[htstatus],1)";
 				$resut = mysql_query($sql);
 				if($resut){
-					die('添加成功,<a href=\'index.php\'>返回</a>');
+					$view->display('url','success','提交成功！');
+					//die('添加成功,<a href=\'index.php\'>返回</a>');
 				}else{
 					echo 'SQL - '.$sql.'<br>';
 					die('操作错误: '.mysql_error());
@@ -30,7 +31,8 @@
 			$sql = "update `gt_protables` set `odate`='$_POST[odate]',`onum`=$_POST[onum],`cpu`='$_POST[cpu]',`memery`='$_POST[memery]',`harddisk`='$_POST[harddisk]',`board`='$_POST[board]',`other`='$_POST[other]',`xdstatus`=$_POST[xdstatus]  where `id`=$_SESSION[gid]";
 			$resut = mysql_query($sql);
 			if($resut){
-				die("提交成功,<a href='index.php'>返回</a>");
+				$view->display('url','success','提交成功！');
+				//die("提交成功,<a href='index.php'>返回</a>");
 			}else {
 				die('操作错误： '.mysql_error());
 			}
@@ -38,7 +40,8 @@
 			$sql = "update `gt_protables` set `sdate`='$_POST[sdate]',`stype`='$_POST[stype]',`techman`='$_POST[techman]',`tdate`='$_POST[tdate]',`checkdate`='$_POST[checkdate]',`checkman`='$_POST[checkman]',`fhstatus`=$_POST[fhstatus] where `id`=$_SESSION[gid]";
 			$resut = mysql_query($sql);
 			if($resut){
-				die("提交成功,<a href='index.php'>返回</a>");
+				$view->display('url','success','提交成功！');
+				//die("提交成功,<a href='index.php'>返回</a>");
 			}else{
 				die('操作错误： '.mysql_error());
 			}
@@ -48,7 +51,9 @@
 				$sql = "insert into `gt_protablekp` (`id`,`cid`,`kdate`,`kom`,`fsdate`,`fstype`) values ('',$_SESSION[gid],'$_POST[kdate]',$_POST[kom],'$_POST[fsdate]','$_POST[fstype]')";
 				$resut = mysql_query($sql);
 				if($resut){
-					die('添加成功,<a href=\'index.php\'>返回</a>');
+					unset($_SESSION['kp']);
+					$view->display('url','success','添加成功！');
+					//die('添加成功,<a href=\'index.php\'>返回</a>');
 				}else{
 					die('操作错误: '.mysql_error());
 				}
@@ -59,8 +64,8 @@
 				$resut = mysql_query($upsql);
 				if($resut){
 					mysql_query($sql);
-					die("提交成功,<a href='index.php'>返回</a>");
-					$_SESSION['kp_key']=null;
+					unset($_SESSION['kp_key']);
+					$view->display('url','success','提交成功！');
 				}else{
 					die('操作错误： '.mysql_error());
 				}
@@ -70,7 +75,8 @@
 				$sql = "insert into `gt_protablesk` (`id`,`cid`,`gsdate`,`godate`,`gom`,`shom`) values ('',$_SESSION[gid],'$_POST[gsdate]',$_POST[godate],'$_POST[gom]','$_POST[shom]')";
 				$resut = mysql_query($sql);
 				if($resut){
-					die("提交成功,<a href='index.php'>返回</a>");
+					$view->display('url','success','添加成功！');
+					//die("提交成功,<a href='index.php'>返回</a>");
 				}else{
 					die('操作错误： '.mysql_error());
 				}
@@ -80,8 +86,9 @@
 				$resut = mysql_query($upsql);
 				if($resut){
 					mysql_query($sql);
-					die("提交成功,<a href='index.php'>返回</a>");
-					$_SESSION['sk_key']=null;
+					unset($_SESSION['sk_key']);
+					$view->display('url','success','提交成功！');
+					//die("提交成功,<a href='index.php'>返回</a>");
 				}else{
 					die('操作错误： '.mysql_error());
 				} 

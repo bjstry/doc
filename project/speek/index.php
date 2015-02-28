@@ -1,4 +1,4 @@
 <?php
-	define('PRJ','Home');
+	define('PRJ','project');
 	require './Speek/Speek.php';
 ?>

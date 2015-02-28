@@ -1,5 +1,4 @@
 <?php
-	// 本类由系统自动生成，仅供测试用途
 	class IndexAction extends Action {
 		public function index(){
 			if($_SESSION["username"] == "") {
@@ -37,6 +36,6 @@
 			session('username',null);
 			session('department',null);
 			session('guid',null);
-			$this->success("安全退出成功！",'__APP__/User/login');		
+			$this->success("安全退出成功！",'__APP__/User/login');
 		}
 }

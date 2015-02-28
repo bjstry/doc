@@ -4,7 +4,6 @@ class Speek{
 		Speek::LoadConf();
 		Speek::CreateDir();
 		Speek::GetCm();
-		echo $_GET['c'].'<br>'.$_GET['m'];
 	}
 	private static function CreateDir(){
 		if(!file_exists(PRJ)) mkdir(PRJ);

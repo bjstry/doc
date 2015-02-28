@@ -25,4 +25,30 @@ function C($name=null,$value=null){
 	}
 	return null;
 }
+function M($a){
+	$obj = new M();
+	$obj->init($a);
+	return $obj;
+}
+function D($a){
+	if(empty($a)){
+		echo '模块名未定义！';
+		exit();
+	}
+	$modelfile = C('PRJ_MDIR').ucwords($a).C('DT_M_NAME').CEXT;
+	if(!is_file($modelfile)){
+		echo '模块:'.$a.'-不存在！';
+		exit();
+	}else{
+		include_once $modelfile;
+	}
+	$class = $a.C('DT_M_NAME');
+	if(!class_exists($class)){
+		die('模块:'.$a.'-未定义!');
+		exit();
+	}
+	$obj = new $class;
+	$obj->init($a);
+	return $obj;
+}
 ?>

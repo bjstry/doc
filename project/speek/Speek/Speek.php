@@ -12,5 +12,6 @@
 	defined('SYS_LOG') or define('SYS_LOG',SYS.'/Log/');
 	require SYS_LIB.'/functions.php';
 	require SYS_CORE.'/Speek.class.php';
+	require SYS_LIB.'Tpl/Smarty'.CEXT;
 	Speek::Run();
 ?>

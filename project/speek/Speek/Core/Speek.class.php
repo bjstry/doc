@@ -37,14 +37,20 @@ class Speek{
 			$_GET['c'] = !empty($_GET['c'])?$_GET['c']:C('DT_CONTROLLER');
 			$_GET['m'] = !empty($_GET['m'])?$_GET['m']:C('DT_ACTION');
 		}else if(C('DT_URLTYPE')==2){
-			$path = explode('/',trim($_SERVER['PATH_INFO']));
-			$_GET['c'] = !empty($path[1])?$path[1]:'';
-			$_GET['m'] = !empty($path[2])?$path[2]:'';
-			
+			if(empty($_SERVER['PATH_INFO'])){
+				$_GET['c'] = C('DT_CONTROLLER');
+				$_GET['m'] = C('DT_ACTION');
+			}else{
+				$path = explode('/',trim($_SERVER['PATH_INFO']));
+				$_GET['c'] = !empty($path[1])?$path[1]:'';
+				$_GET['m'] = !empty($path[2])?$path[2]:'';
+			}
 		}else if(C('DT_URLTYPE')==3){
-			$path = explode('/',trim($_SERVER['PATH_INFO']));
-			$c = !empty($path[1])?$path[1]:'';
-			$m = !empty($path[2])?$path[2]:'';
+			if(!empty($_SERVER['PATH_INFO'])){
+				$path = explode('/',trim($_SERVER['PATH_INFO']));
+				$c = !empty($path[1])?$path[1]:'';
+				$m = !empty($path[2])?$path[2]:'';
+			}
 			$_GET['c'] = !empty($_GET['c'])?$_GET['c']:C('DT_CONTROLLER');
 			$_GET['m'] = !empty($_GET['m'])?$_GET['c']:C('DT_ACTION');
 			$_GET['c'] = !empty($c)?$c:$_GET['c'];
@@ -59,12 +65,6 @@ class Speek{
 		if(is_file(SYS_CONF.'Config'.EXT)){
 			C(include(SYS_CONF.'Config'.EXT));
 			is_file(C('PRJ_CONF').'Config'.EXT)?C(array_merge(include(SYS_CONF.'Config'.EXT),include(C('PRJ_CONF').'Config'.EXT))):C(include(SYS_CONF.'Config'.EXT));
-		}
-		$smarty = SYS_LIB.'Tpl/Smarty'.CEXT;
-		if(!is_file($smarty)){
-			exit('模板核心库不存在！');
-		}else{
-			include_once $smarty;
 		}
 	}
 	private static function LoadFile($a,$b){

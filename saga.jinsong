@@ -1,0 +1,13 @@
+SAGA
+
+First 
+rpm -ivh armadillo-3.800.2-1.el6op.x86_64.rpm
+
+1. install wxGTK with unicode
+2. yum install wxGTK-devel proj-devel gdal-devel jasper-devel libtiff-devel unixODBC-devel
+3. yum install gcc gcc-c++ make automake libtool subversion
+4. tar xvf saga-2.0.8.tar.bz2
+5. cd saga-source
+6. ./configure --enable-unicode
+7. make
+8. make install

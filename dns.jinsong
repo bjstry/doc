@@ -1,0 +1,31 @@
+edit /etc/named.conf
+options {
+	listen-on port 53 { any; };
+	allow-transfer { none; };  //必填  不许别人进行zone转移
+	allow-query     { any; };
+}
+
+and add this  
+zone "gentai" IN{       //zone名称
+	type master;        //类型
+	file "named.gentai";//档案位置
+};
+
+create /var/named/named.gentai
+
+$TTL 600
+@   IN SOA master.gentai. bjstry.163.com.(
+        2011080401 3H 15M 1W 1D) 
+@   IN  NS master.gentai.
+master.gentai. IN A 192.168.2.111
+@   IN MX 10 master.gentai.
+
+jinsong.gentai. IN A 192.168.2.111
+new.gentai. IN A 192.168.2.110
+zzy.gentai. IN A 192.168.2.112
+805.gentai. IN A 10.0.0.30
+
+
+
+service named restart
+enjoy!

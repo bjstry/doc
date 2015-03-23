@@ -1,0 +1,54 @@
+首先关闭semdmail
+service sendmail stop
+chkconfig sendmail off
+
+1 配置dns服务器
+编辑 /etc/named.conf 添加一下内容
+zone "gentai.com" IN{
+	type master;
+	file "named.gentai.com";
+};
+
+在/var/named/ 创建文件 named.gentai.com
+
+$TTL 600
+@   IN SOA master.gentai.com. bjstry.163.com.(
+        2011080401 3H 15M 1W 1D) 
+@   IN  NS master.gentai.com.
+master.gentai.com. IN A 192.168.2.111
+
+jinsong-904.gentai.com. IN A 192.168.2.111
+mail.gentai.com. IN A 192.168.2.111
+gentai.com. IN MX 10 mail.gentai.com.
+
+192.168.2.111为邮件服务器ip地址
+
+2 配置postfix服务器
+编辑 vim /etc/postfix/main.cf postfix配置文件
+75行 myhostname = jinsong-904.gentai.com #主机名
+83行 mydomain = gentai.com #域名
+99行 myorigin = $mydomain
+116行 inet_interfaces = all
+166行 mydestination = $myhostname, jinsong-904.$mydomain, $mydomain, #加入自己的主机.域名
+264行 mynetworks = 192.168.2.0/24, 127.0.0.0/8 #填入网域
+419行 home_mailbox = Maildir/
+
+service postfix restart #启动相关服务
+chkconfig postfix on #开机自启
+
+3 配置imap/smtp服务器
+编辑 vim /etc/dovecot/dovecot.conf
+20行 protocols = imap pop3 lmtp
+保存退出
+service dovecot restart #启动相关服务
+chkconfig dovecot on #开机自启
+
+客户端软件配置
+打开桌面左上角 应用程序->Intelnet->Thunderbird Email
+添加邮件帐号
+你的名字: 随便输入
+电子邮件: gentai@gentai.com  #gentai是邮件服务器主机的用户
+密码    : gentai             #gentai帐号对应密码
+填完后点击继续，再点击手动配置， 在接收和发出栏 服务器主机名 填入 mail.gentai.com ，其他的自动，然后点击右下角中间的重新测试按钮，一切正常后点击完成即可。
+
+enjoy !

@@ -1,0 +1,5 @@
+/etc/yp.conf
+
+domain 805server server 805-serv
+
+

@@ -1,0 +1,10 @@
+1 Download Labkey-Server
+2 Download Tomcat copy tomcat to /usr/local/ or set env
+3 install postgres 
+  su postgres
+  initdb
+  pg_ctl start
+  psql -h 127.0.0.1 -d postgres -U postgres
+  createlang -d template1 PLpgsql
+  createlang -d labkey PLpgsql
+

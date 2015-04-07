@@ -1,0 +1,35 @@
+scp Nwchem-6.3.revision2-src.2013-10-17.tar.gz
+cd /opt/software
+tar xvf Nwchem-6.3.revision2-src.2013-10-17.tar.gz
+mv nwchem-6.3.revision2-src.2013-10-17 nwchem-6.3
+cd nwchem-6.3/src
+export NWCHEM_TOP=/opt/software/nwchem-6.3
+export NWCHEM_TARGET=LINUX64
+make nwchem_config NWCHEM_MODULES=all
+export MPI_LOC=/opt/software/mpich2-gnu
+export MPI_LIB=$MPI_LOC/lib
+export MPI_INCLUDE=$MPI_LOC/include
+export LIBMPI="-lmpichf90 -lmpich -lpthread"
+export USE_MPI=y
+export ARMCI_NETWORK=VIA
+make nwchem_config NWCHEM_MODULES=all
+make FC=/opt/software/mpich2-gnu/bin/mpif90 -j
+
+
+vim /etc/profile
+#####Setting for nwchem######
+export PATH=/opt/software/nwchem-6.3/bin/LINUX64/:$PATH
+export LD_LIBRARY_PATH=/opt/software/nwchem-6.3/lib/LINUX64/:$LD_LIBRARY_PATH
+
+
+
+cd /opt/software
+chmod -R 755 nwchem-6.3
+source /etc/profile
+cp /opt/software/nwchem-6.3/src/nwchem.nw /home/gentai/Desktop/soft-test/nwchem-test
+su gentai
+mpirun -np 4 nwchem nwchem.nw
+
+
+  cd /home/gentai/Desktop/soft-test/nwchem-test
+  mpirun -np 4 nwchem nwchem.nw

@@ -1,0 +1,34 @@
+#############vmd-1.9.1 install#####################
+tar -xvf vmd-1.9.1.bin.LINUXAMD64.opengl.tar.gz
+cd vmd-1.9.1/
+vim configure
+    将第16行改为  $install_bin_dir="/opt/software/vmd/bin";
+    将第20行改为  $install_library_dir="/opt/software/vmd-bin/lib/$install_name";
+./configure LINUXAMD64
+cd src
+make install 
+cd /opt/software/vmd/bin
+mv vmd vmd.1
+vim vmd
+    写入以下信息：
+    export LANG=C
+    export LC_ALL=C
+    export XLIB_SKIP_ARGB_VISUALS=1
+    exec vmd.1 "$@"
+    保存推出
+chmod +x vmd
+在/etc/profile中增加以下vmd环境变量：
+    export PATH=/opt/software/vmd/bin:$PATH
+    export LD_LIBRARY_PATH=/opt/software/vmd/lib:$LD_LIBRARY_PATH
+
+############vmd test###############################
+1.在任意终端中输入vmd回车即可看到两个vmd界面：VMD Main 和VMD 1.9.1 OpenGL Display
+2.单击VMD Main中菜单栏中的File-New Molecule，出现Molecule File Browser窗口界面
+3.单击Molecule File Browser中的Browse选项，在下面的Filename一栏中输入
+  /home/gentai/Desktop/soft-test/vmd-test
+  单击选择窗口上面的dna.pdb文件，单击右下角的OK就返回到Molecule File Browser界面
+  单击右下角的Load
+4.在VMD 1.9.1 OpenGL Display界面中出现DNA结构画面即为测试成功！
+
+
+

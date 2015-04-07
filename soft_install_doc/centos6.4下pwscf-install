@@ -1,0 +1,10 @@
+tar xvf espresso-5.1.tar.gz /opt/software
+把mathlib下包解压到/opt/mathlib
+
+./configure CC=mpicc FC=mpif90 F77=mpif77 "SCALAPACK_LIBS=-L/opt/mathlib/scalapack/scalapack-intel -lscalapack -lblacs_MPI-LINUX-0" 
+
+make all
+
+如果报错，没有blacs_MPI-LINUX-0时，创建链接指向libblacs_MPI-LINUX-0.a：ln -s /opt/mathlib/blacs/blacs-intel/blacs_MPI-LINUX-0.a /opt/mathlib/scalapack/scalapack-intel/libblacs_MPI-LINUX-0.a 
+
+继续make all

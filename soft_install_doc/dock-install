@@ -1,0 +1,17 @@
+PREFIX_DIR=/opt/software
+mkdir $PREFIX_DIR/dock-6.5
+tar xvf dock.6.5_source.tar.gz
+cd dock6/install
+export MPICH_HOME=/opt/software/mpich2-gnu
+./configure
+./configure gnu
+make install
+make dockclean
+./configure gnu parallel
+make dock
+make test
+cd ../..
+cp -r dock6/* $PREFIX_DIR/dock-6.5
+echo "export PATH=$PREFIX_DIR/dock-6.5/bin"':$PATH' >> /etc/profile
+rm -rf dock6
+rm -rf dock.6.5_souce.tar.gz

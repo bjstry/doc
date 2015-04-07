@@ -1,0 +1,56 @@
+首先which mpicc查看是否为gun，不是通过临时添加环境变量
+export PATH=/opt/software/mpich2-gnu/bin:$PATH
+export PATH=/opt/software/mpich2-gnu/sbin:$PATH
+export LD_LIBRARY_PATH=/opt/software/gnu/lib:$LD_LIBRARY_PATH
+换为gnu编译器编译
+
+
+1,下载tk8.6.1-src.tar.gz tcl8.6.1-src.tar.gz 以及OpenSees软件freeglut-2.6.0-1.el6.x86_64 freeglut-devel-2.6.0-1.el6.x86_64
+
+安装rpm包：
+rpm -ivh  freeglut-2.6.0-1.el6.x86_64.rpm
+rpm -ivh  freeglut-devel-2.6.0-1.el6.x86_64.rpm
+
+tar xvf tcl8.6.1-src.tar.gz
+cd tcl8.6.1/unix
+./configure --prefix=/opt/software/OpenSees/tcl8.6.1 --enable-threads --enable-64bit
+make
+make install
+
+tar xvf tk8.6.1-src.tar.gz
+cd  tk8.6.1/unix
+./configure --prefix=/opt/software/OpenSees/tk8.6.1 --enable-threads --enable-64bit -with-tcl=/opt/software/OpenSees/tcl8.6.1/lib/ --with-x
+make
+make install
+
+tar xvf OpenSees.tar.gz -C /root
+cd 	/root/OpenSees
+vim Makefile.def
+修改：OpenSees_PROGRAM=/opt/software/OpenSees 
+TCL_INCLUDES = -I/opt/software/OpenSees/tcl8.6.1/include
+make
+完成后会在/opt/software/OpenSees下生成bin文件夹下有OpenSees
+
+编译opensees在/root下编译
+mkdir -p /root/lib 
+mkdir -p /root/bin
+
+报错时，根据报错
+commands.cpp(1506): error: class "Tcl_Interp" has no member "result"
+    sprintf(interp->result,"%f",time);
+
+
+vim /opt/software/OpenSees/SRC/recorder/TclRecorderCommands.cpp
+//  sprintf(interp->result,"%d",recorderTag);
+
+vim SRC/tcl/commands.cpp
+?interp->result
+注释掉这些行
+如果还报错，根据错误提示，找到配置文件，然后继续:?interp->result，注释掉这些行。
+make
+不能用-j
+不能用并行
+
+
+
+FE_LIBRARY      = $(HOME)/lib/libOpenSees.a

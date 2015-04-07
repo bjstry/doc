@@ -1,0 +1,15 @@
+以gentai用户
+tar xvf olb-0.8r0.tgz -C /home/gentai
+cd /home/gentai/olb-0.8r0
+make
+
+生成例子,并放到桌面
+cd /home/gentai/olb-0.8r0/examples/bstep2d
+make
+mkdir -p /home/gentai/Desktop/soft-test/openlb-test
+cp -a /home/gentai/olb-0.8r0/examples/bstep2d /home/gentai/Desktop/soft-test/openlb-test
+
+例子测试  
+cd /home/gentai/Desktop/soft-test/openlb-test/bstep2d
+./bstep2d
+

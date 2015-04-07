@@ -1,0 +1,17 @@
+1.python setup.py
+  
+一路忽略安装下去
+
+
+#####setting for code_aster#####
+export PATH=/opt/aster/bin:$PATH
+
+aster-test
+
+Code_Aster
+  cd /home/gentai/Desktop/soft-test/code_aster-test
+  as_run alamain.py
+
+
+
+

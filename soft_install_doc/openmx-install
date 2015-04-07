@@ -1,0 +1,36 @@
+1.官网www.openmx-square.org下载源码包openmx3.6.tar.gz和补丁patch3.6.1.tar.gz
+
+2.icc重新编译mpich
+./configure --prefix=/opt/software/mpich2-1.4.1-intel CC=icc CXX=icpc F77=ifort "CPPFLAGS=-DNDEBUG" --enable-shared
+make
+make -j install
+注：mpich重新编译加了"CPPFLAGS=-DNDEBUG"参数，否则会由于mpich本身bug，安装mpich时会报错。
+
+3.解压
+tar xvf openmx3.6.tar.gz -C /opt/software
+tar xvf patch3.6.1.tar.gz -C /opt/software/openmx3.6/source
+cd /opt/software/openmx3.6/source
+mv /opt/software/openmx3.6/source/GaAs.out ../work/input_example
+
+4.修改编译
+临时添加mpich-1.4.1-intel环境变量
+export PATH=/opt/software/mpich2-1.4.1-intel/bin:$PATH
+export PATH=/opt/software/mpich2-1.4.1-intel/sbin:$PATH
+export LD_LIBRARY_PATH=/opt/software/mpich2-intel-intel/lib:$LD_LIBRARY_PATH
+
+cd /opt/software/openmx3.6/source
+vim makefile
+找到CC=...及LIB=...这两行并做如下替换
+CC      = mpicc -Dnoomp -I/opt/mathlib/fftw-3.3.3/include
+LIB     = -L/opt/intel/icc/composer_xe_2013.3.163/mkl/lib/intel64 -lmkl_core -lmkl_intel_lp64 -lmkl_sequential
+
+然后make install
+生成openmx可执行文件，查看是否复制到../work目录下，若没有cp openmx ../work
+
+5.添加环境变量
+####Setting for openmx######
+export PATH=/opt/software/openmx3.6/work:$PATH
+
+6.测试
+cd /home/gentai/Desktop/soft-test/openmx-test/work
+mpirun -np 4 openmx Methane.dat > met.std

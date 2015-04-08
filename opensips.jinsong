@@ -3,7 +3,7 @@ yum install opensips opensips-mysql -y
 
 编辑 /etc/opensips/opensipsctlrc
 设置数据库参数，和域名(ip)地址端口号等
-opensipsctl create (创建数据库，输入root用户密码，然后一路yes)
+opensipsdbctl create (创建数据库，输入root用户密码，然后一路yes)
 编辑 /etc/opensips/opensips.cfg
 设置监听地址端口 
 

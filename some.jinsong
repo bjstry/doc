@@ -1,3 +1,17 @@
 1 高斯
 GAUSS_SCRDIR=/tmp/lstone/g03
 qdel -p 强制杀死队列
+硬盘安装centos
+kernel (hd0,7)/isolinux/vmlinuz linux repo=hd:/dev/sda8:/ 
+initrd (hd0,7)/isolinux/initrd.img
+
+
+内核模块相关
+modprobe xxx 加载模块(解决依赖模块)
+modprobe -r xxx 卸载模块(卸载依赖模块)
+modprobe xxx xxx模块为/lib/modules/4.0.0/modules.dep内包含的模块
+depmod 将/lib/modules/4.0.0/kernel/下所有module添加到 modules.dep 类似updatedb
+lsmod 列出所有已加载模块
+insmod /url/xx.ko 加载模块 需指定绝对路径，且不解决依赖关系
+rmmod xxx 移除模块 需按照依赖关系手动卸载
+modinfo /url/xxx.ko 获取modelue相关信息

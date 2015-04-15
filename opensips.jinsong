@@ -13,3 +13,6 @@ opensipsctl add user@domain pass
 开启服务
 opensipsctl start
 chkconfig opensips on
+
+注意事项
+注册帐号的时候，如果端口发生变化必须指定端口号，注册商和帐号都需要指定。

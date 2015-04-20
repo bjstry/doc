@@ -14,5 +14,16 @@ opensipsctl add user@domain pass
 opensipsctl start
 chkconfig opensips on
 
+客户端配置
+应用程序->Internet->Ekiga 软电话
+1配置向导
+前进->输入姓名，前进—>勾选我不想..前进->勾选我不想..前进->选择局域网，前进->选择音频设备，前进->选择摄像头，前进->应用
+2添加帐号
+编辑->账户->账户(A)->添加一个SIP账户(A)->输入相关信息
+
 注意事项
 注册帐号的时候，如果端口发生变化必须指定端口号，注册商和帐号都需要指定。
+
+** 在centos6系列系统，客户段软件ekiga音频库识别有问题，必须添加链接文件
+** cd /usr/lib64
+** ln -s ptlib-2.6.5 2.6.5

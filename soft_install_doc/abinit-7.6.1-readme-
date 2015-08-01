@@ -1,0 +1,25 @@
+gentai用户下
+mkdir -p ~/.abinit/tarballs
+mv lapack-abinit_6.10.tar.gz ~/.abinit/tarballs
+tar zxvf abinit-7.6.1.tar.gz 
+cd abinit-7.6.1
+
+which mpicc查看是否为gnu的mpicc，若不是，添加临时环境变量
+export PATH=/opt/software/mpich2-gnu/bin:$PATH
+export LD_LIBRARY_PATH=/opt/software/gnu/lib:$LD_LIBRARY_PATH
+
+./configure --prefix=/opt/software/abinit-7.6.1 CC=mpicc FC=mpif90 --enable-mpi=yes
+8. make 
+9. make install  #(root)
+10.vim /etc/profile
+export PATH=/opt/abinit-*.*.*/bin：￥PATH
+export LD_LIBRARY_PATH=/opt/abinit-*.*.*/lib:$LD_LIBRARY_PATH
+
+BenchMark
+1.tar zxvf abinit-test.tar.gz 
+cd abinit-test
+mpirun -np N abinit < in.files > OUT 
+
+#N 进程数！
+!@!HSzld
+

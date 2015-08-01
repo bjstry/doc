@@ -1,0 +1,20 @@
+1.安装所需组件
+libctl-3.2.1.tar.gz
+hdf5-1.6.10.tar.bz2
+blas
+lapack
+
+2.编译用gcc、gfortran、mpich2-gnu
+a.libctl
+tar xvf libctl-3.2.1.tar.gz
+./configure --prefix=/opt/software/mpb-1.5/libctl-3.2.1 --enable-shared CC=gcc FC=gfortran F77=/opt/software/mpich2-gnu/bin/mpif77
+make -j
+make -j install
+
+b.hdf5
+tar xvf hdf5-1.6.10.tar.bz2
+./configure --prefix=/opt/software/mpb-1.5/hdf5-1.6.10 --enable-shared --enable-threadsafe --enable-parallel CC=/opt/software/mpich2-gnu/bin/mpicc
+
+c.mpb
+
+./configure --prefix=/opt/software/mpb-1.5 --with-mpi --enable-shared --enable-debug --enable-prof --with-fftw2 --with-blas=/opt/mathlib/blas/blas-gnu/blas_LINUX.a --with-lapack=/opt/mathlib/lapack/lapack-gnu/liblapack.a --with-libctl=/opt/software/mpb-1.5/libctl-3.2.1 CC=/opt/software/mpich2-gnu/bin/mpicc LDFLAGS="-L/opt/software/meep-1.2/hdf5-1.6.10/lib/ -L/opt/mathlib/fftw-2.1.5/lib/ -L/opt/sotware/meep-1.2/libctl-3.2.1/lib" CPPFLAGS="-I/opt/software/meep-1.2/hdf5-1.6.10/include/ -I/opt/mathlib/fftw-2.1.5/include/ -I/opt/software/meep-1.2/libctl-3.2.1/include/" F77=/opt/software/mpich2-gnu/bin/mpif77 MPICC=/opt/software/mpich2-gnu/bin/mpicc

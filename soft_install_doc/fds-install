@@ -1,0 +1,45 @@
+1,FDS软件下载：
+使用root 执行：svn checkout http://fds-smv.googlecode.com/svn/trunk/FDS/trunk/ fds-smv-read-only
+在当前的文件目录下生成 fds-smv-read-only文件夹，进入FDS_Compilation后选择对应的版本的文件
+基于intel编译器的mpich2并行版本安装FDS：
+cd mpi_intel_linux_64
+修改make_fds.sh文件，注释掉source的两行（第6，7行）后保存退出。
+修改环境变量，设置默认的mpich2为intel编译器编译的。
+执行sh make_fds.sh
+后生成fds_mpi_intel_linux_64二进制文件。
+
+SMV安装：
+cd fds-smv-read-only/SMV/Build/intel_linux_64
+vim make_smv.sh 
+
+#!/bin/bash -f
+source ../setopts.sh $*
+export IFORT_COMPILER_LIB=/opt/intel/icc/composer_xe_2013.3.163/compiler/lib/
+#source ../test_ifort.sh
+#source $IFORT_COMPILER/bin/compilervars.sh intel64
+LIBDIR=../LIBS/lib_linux_intel_64/
+source ../test_libs.sh
+
+make -f ../Makefile clean
+eval make -j4 ${SMV_MAKE_OPTS} -f ../Makefile intel_linux_64
+
+
+屏蔽掉2，3，4，6行，修改 ../Makefile中的
+$(IFORT_COMPILER_LIB)为/opt/intel/composer_xe_2013_sp1.1.106/compiler/lib/intel64/
+后执行sh  make_smv.sh
+生成smokeview_linux_64二进制文件即可。
+
+
+2.添加环境变量
+#####setting for fds#####
+export PATH=/opt/software/FDS-SMV/FDS_Compilation/mpi_intel_linux_64:$PATH
+export PATH=/opt/software/FDS-SMV/SMV/Build/intel_linux_64:$PATH
+
+
+3,FDS使用：
+cd fds-smv-read-only/Verification/Pressure_Effects
+mpirun -np 2 fds_mpi_intel_linux_64 isentropic.fds使用后可以生成.smv文件
+smokeview_linux_64 isentropic.smv打开图形界面来查看计算模拟结果。
+
+
+后处理需要显卡

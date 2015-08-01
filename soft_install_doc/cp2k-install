@@ -1,0 +1,56 @@
+把libint-1.1.4.tar.gz解压到/opt/mathlib
+
+###################################################################
+#
+cd /opt/software/cp2k-2.4.0/makefiles
+cp Linux-x86-64-intel.popt-modified /opt/software/cp2k-2.4.0/arch
+cd /opt/software/cp2k-2.4.0/arch
+mv Linux-x86-64-intel.popt-modified Linux-x86-64-intel.popt
+  
+make ARCH=Linux-x86-64-intel VERSION=popt 2>&1 | tee make.log
+输出文件看第一次报错出现
+
+make清理
+make ARCH=Linux-x86-64-intel VERSION=popt realclean
+
+/opt/software/cp2k-2.4.0/exe/Linux-x86-64-intel/cp2k.popt
+
+
+###################################################################
+1.Makefile中修改
+export VERSION=popt
+
+
+dbcsr_config.F(19): error #6580: Name in only-list does not exist
+google查找
+2.vim Linux-x86-64-intel.popt
+删除标记-heap-arrays 64
+
+3./home/gentai/cp2k-2.4.0/src/dbcsr_lib
+vim dbcsr_error_handling.F
+注释PRIVATE
+!PRIVATE
+
+测试readme
+###################################################################
+cp2k
+  cd /home/gentai/cp2k-2.4.0/tests/MC/regtest
+  mpirun -np 4 cp2k.popt MC_QS.inp
+
+
+This is a known compiler bug which we reported to Intel and will apparently be fixed in the next releases of the compiler. If you want to use version 13.1.3 then comment out line 23 (i.e. PRIVATE) of dbcsr_lib/dbcsr_error_handling.F and the code should compile/ run fine.
+
+Also, when you start compiling the parallel versions you should remove the -heap-arrays flag. With SSMP/PSMP builds we had lots of problems caused by this flag.
+
+
+
+
+
+cp2k
+cp -ar cp2k-2.4.0/tests/ /home/gentai/Desktop/soft-test/cp2k-test/
+cd /home/gentai/Desktop/soft-test/cp2k-test/tests/MC/regtest
+mpirun -np 4 cp2k.popt MC_QS.inp
+
+
+环境变量添加
+/opt/software/cp2k-2.4.0/exe/Linux-x86-64-intel/cp2k.popt

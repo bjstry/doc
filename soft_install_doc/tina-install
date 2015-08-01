@@ -1,0 +1,18 @@
+				tina-install
+tar xvf tina-libs-6.0rcbuild010.tar.gz
+cd tina-libs-6.0rcbuild010
+./configure --prefix=/opt/software/tina --enable-static CC=/opt/software/mpich2-gnu/bin/mpicc
+make
+make install
+
+tar xvf tina-tools-6.0rcbuild010.tar.gz
+cd tina-tools-6.0rcbuild010
+./configure --prefix=/opt/software/tina CC=/opt/software/mpich2-gnu/bin/mpicc --with-tina-includes=/opt/software/tina/include/ --with-tina-libraries=/opt/software/tina/lib
+make
+make install
+
+vim /etc/profile
+export PATH=/opt/software/tina/bin:$PATH
+
+测试：
+终端中输入tinaTool可以打开软件的界面

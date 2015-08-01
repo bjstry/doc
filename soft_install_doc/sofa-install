@@ -1,0 +1,17 @@
+cmake version >2.8.8
+tar xvf glew-1.10.0-2.src.tar.gz
+cd glew-1.10.0
+make
+make install
+svn checkout svn://scm.gforge.inria.fr/svnroot/sofa/trunk/Sofa
+git clone git://scm.gforge.inria.fr/sofa/sofa.git
+cd sofa
+mkdir build
+ccmake ..
+make -j 4
+
+
+
+
+
+拷贝zgt机器上编译软件，注释掉/etc/profile中qt选项，并用yum update qt*升级qt

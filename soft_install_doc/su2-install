@@ -1,0 +1,26 @@
+SU2安装文档
+
+1.在官网上
+cgns http://cgns.sourceforge.net/download.html
+下载SU2源码包,解压。
+tar xvf SU2.tar.bz2 -C /home/gentai
+cd /home/gentai/SU2
+2.编译
+（1）./configure --prefix=/opt/software/su2/ --with-MPI=/opt/software/mpich2-gnu/bin/mpic++ CXX=/opt/software/mpich2-gnu/bin/mpicxx CC=/opt/software/mpich2-gnu/bin/mpicc 
+   注：  执行configure后会提示加入环境变量，如下是本人执行过程中提示加入的环境变量内容：
+
+  export SU2_RUN="/opt/software/su2/bin"
+  export SU2_HOME="/home/gentai/su2"
+  export PATH=$PATH:$SU2_RUN
+  export PYTHONPATH=$PYTHONPATH:$SU2_RUN
+	
+  a.执行vim ~/.bashrc加入上面提示的环境变量
+  b.执行source ~/.bashrc
+（2）make -j 2>&1 | tee make.log 
+（3）make install
+   注：提示Nothing to be done for `install-data-am‘，不管，因为bin里面已经生成文件
+
+3.例子测试	
+ (1)tar xvf su2-test.tar.bz2 -C /home/gentai/Desktop/soft-test
+  cd /home/gentai/Desktop/soft-test/su2-test/euler/channel
+  parallel_computation.py -f inv_channel_RK.cfg -n 4  

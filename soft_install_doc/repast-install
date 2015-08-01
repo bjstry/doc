@@ -1,0 +1,9 @@
+1.网址http://sourceforge.jp/projects/sfnet_repast/releases/下载软件安装包repastj-3.1.tar.gz；
+
+2.解压
+tar xvf repastj-3.1.tar.gz -C /home/gentai
+
+3.运行
+cd /home/gentai/Repast-3.1
+sh repast.sh
+

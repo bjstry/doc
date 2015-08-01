@@ -1,0 +1,24 @@
+geant4.9.5
+
+下载geant4.9.5.p01.tar.gz
+tar xvf geant4.9.5.p01.tar.gz -C /opt/software
+cd /opt/software
+mkdir geant4.9.5
+cd geant4.9.5.p01
+mkdir geant4.9.5-build
+cd geant4.9.5-build
+cmake  -DCMAKE_INSTALL_PREFIX=/opt/software/geant4.9.5-install -DGEANT4_USE_OPENGL_X11=ON -DGEANT4_USE_RAYTRACER_X11=ON -DGEANT4_INSTALL_INSTALL_EXAMPLES=ON    /opt/software/geant4.9.5.p01
+make
+make install
+
+源码geant4.9.5.p01
+二进制geant4.9.5
+
+
+测试方法如下：
+cd /opt/software/geant4.9.5.p01/examples/novice
+mkdir N01-test
+cd N01-test
+cmake  -DGeant4_DIR=/opt/software/a/lib64/Geant4-9.5.1/    /opt/software/geant4.9.5.p01/examples/novice/N02
+make  然后当前路径产生可执行文件 直接运行即可
+

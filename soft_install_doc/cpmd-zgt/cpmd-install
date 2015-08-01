@@ -1,0 +1,13 @@
+1,下载cpmd软件最新版本：cpmd-v3_17_1.tar.gz
+2，解压 tar xvf cpmd-v3_17_1.tar.gz
+3,cd CPMD
+4,./mkconfig.sh IFORT-AMD64-MPI > Makefile
+5，修改Makefile第15行，删除-tpp6。第16行修改为-lmkl_core -lmkl_sequential -lmkl_intel_lp64 -L/opt/intel/icc/composer_xe_2013.3.163/mkl/lib/intel64/
+第22的mpicc修改为/opt/software/mpich2-intel/mpicc,23 24行的mpif77修改为/opt/software/mpich2-intel/mpif77
+make
+cp cpmd.x /usr/bin/
+测试：
+tar xvf cpmd-test.tar.gz
+cd test
+mpirun -np 2 cpmd.x test.inp
+

@@ -1,0 +1,106 @@
+                            yade安装步骤
+
+先更新cmake到2.8版本以上，在此不再赘述。
+
+1.tar -xvf trunk-1.07.0.tar.gz -C /opt/software
+  cd trunk-1.07.0
+  mkdir build
+  cd build
+  ccmake .. -DINSTALL_PREFIX=/opt/software/trunk-1.07.0/install
+
+EIGEN3_INCLUDE_DIR /opt/software/trunk-1.07.0/lib/eigen3.0.7/include
+LOKI_INCLUDE_DIR /opt/software/trunk-1.07.0/lib/loki-0.1.7/include/loki
+LOKI_LIBRARY /opt/software/trunk-1.07.0/lib/loki-0.1.7/lib
+  make -j
+
+  修改以下路径 
+
+cd /opt/software/trunk-1.07.0
+mkdir lib
+
+a.gsl路径 gsl-1.16 ///若不报错，可跳过
+./configure --prefix=/opt/software/trunk-1.07.0/lib/gsl-1.16
+
+b.eigen3路径 eigen3.0.7
+tar xvf eigen-eigen-d1ce119f32bf.tar.bz2
+cd eigen-eigen-d1ce119f32bf
+mkdir build
+cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=/opt/software/trunk-1.07.0/lib/eigen3.0.7
+make install
+
+c.loki路径  loki-0.1.7
+make
+
+2.
+ln -s /usr/lib64/libicuuc.so.42.1 /usr/lib64/libicuuc.so
+ln -s /usr/lib64/libicui18n.so.42.1 usr/lib64/libicui18n.so
+
+
+
+
+make /////切忌不要加make -j 核数，除非是在服务器上，加多核编译后非常用内存，不加的话4G内存刚好够用，超swap1G左右
+
+[ 93%] Building CXX object CMakeFiles/yade.dir/lib/pyutil/gil.cpp.o
+[ 94%] Building CXX object CMakeFiles/yade.dir/core/main/pyboot.cpp.o
+make[2]: *** 没有规则可以创建“lib64/libyade.so”需要的目标“/usr/lib64/lib64/libboost_python-mt.so.5”。 停止。
+
+解决方案
+
+a. mkdir -p /usr/lib64/lib64/
+
+b. cp -ar /usr/lib64/libboost_* /usr/lib64/lib64/
+
+make 
+
+Linking CXX shared library lib64/wrapper.so
+[100%] Built target wrapper
+
+3.执行报错
+
+[root@tech05 build]# cd bins/
+[root@tech05 bins]# ls
+yade-1.07.0  yade-1.07.0-batch
+
+[root@tech05 bins]# ./yade-1.07.0
+Traceback (most recent call last):
+  File "./yade-1.07.0", line 29, in <module>
+    raise RuntimeError('Libraries are not found! ('+libDir+'/py/yade/__init__.py, /py/yade/__init__.py)')
+RuntimeError: Libraries are not found! (/root/Desktop/trunk-1.07.0/lib64/yade-1.07.0/py/yade/__init__.py, /py/yade/__init__.py)
+
+解决办法
+
+a.mkdir -p /opt/software/trunk-1.07.0/install/lib64/yade-1.07.0/py/yade
+
+ mkdir -p  /root/Desktop/trunk-1.07.0/lib64/yade-1.07.0/py/yade/
+
+b.
+cd /opt/software/trunk-1.07.0/build
+cp __init__.py /root/Desktop/trunk-1.07.0/lib64/yade-1.07.0/py/yade/
+
+[root@tech05 bins]# ./yade-1.07.0
+Traceback (most recent call last):
+  File "./yade-1.07.0", line 35, in <module>
+    raise RuntimeError("\n\nPlease install 'python-argparse' package.\n")
+RuntimeError: 
+
+Please install 'python-argparse' package.
+
+解决办法：
+
+tar -xvf   argparse-1.2.1.tar.gz
+
+cd argparse-1.2.1
+  
+python setup.py install
+
+[root@tech05 bins]# ./yade-1.07.0
+Welcome to Yade 1.07.0 
+Traceback (most recent call last):
+  File "./yade-1.07.0", line 125, in <module>
+    import yade
+  File "/root/Desktop/trunk-1.07.0/lib64/yade-1.07.0/py/yade/__init__.py", line 47, in <module>
+    import config
+ImportError: No module named config
+
+目前未找出解决方案。

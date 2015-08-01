@@ -1,0 +1,33 @@
+LIGGGHTS-install
+tar xvf LIGGGHTS_2p3p8.tar_.gz -C /home/gentai/
+cd LIGGGHTS-PUBLIC/src/STUBS
+make
+cd ../
+vim MAKE/Makefile.mkl
+修改
+15行 CC =            mpicc
+
+18行LINK =          mpicc
+
+19行LINKFLAGS =-O -L/opt/intel/icc/composer_xe_2013/mkl/lib -lstdc++ -lpthread -L/opt/mathlib/blas/blas-intel/ -lblas
+20行LIB =           -lstdc++ -lpthread
+42行MPI_INC =       -DMPICH_SKIP_MPICXX -I/opt/software/mpich2-intel/include
+43行MPI_PATH =  -L/opt/software/mpich2-intel/lib
+44行MPI_LIB =       -lmpich  -lpthread
+53行FT_INC =-DFFT_FFTW -I/opt/mathlib/fftw-2.1.5/include
+54行FFT_PATH =  -L/opt/mathlib/fftw-2.1.5/lib
+55行FFT_LIB =       -lfftw
+保存退出
+make clean-all
+make -j 4 mkl  会在当前目录生成lmp_mkl
+mkdir -p /opt/software/LIGGGHTS
+cp /home/gentai/LIGGGHTS-PUBLIC/src/lmp_mkl /opt/software/LIGGGHTS
+添加环境变量
+vim /etc/profile
+export PATH=/opt/software/LIGGGHTS:$PATH
+
+测试
+tar xvf LIGGGHTS-test.tar.gz -C /home/gentai/Desktop/soft-test
+cd  LIGGGHTS-test
+source /etc/profile
+ mpirun -np 4 lmp_mkl <in.cohesion

@@ -1,0 +1,43 @@
+vasp 编译
+一、编译vasp.*.lib
+   根据硬件平台选取相应编译配置文件，通常使用 makefile.linux_ifc_P4
+   cd vasp.*.lib
+   cp makefile.linux_ifc_P4 makefile
+   修改 makefile
+   CPP = gcc ... 改为 CPP = icc ...
+   FC=ifc 改为 FC=ifort
+   make 生成 libdmy.a (如有报错忽略，生成文件即可)
+二、编译libintel64 fftw3xf
+ 1 cd /opt/intel/icc/composer_xe_2013.3.163/mkl/interfaces/fftw3xf
+ 2 make libintel64
+三、编译vasp二进制文件
+ 1 根据第一步，拷贝相应配置文件 
+ cd vasp.*.*
+ cp makefile.linux_ifc_P4 makefile
+ 2 跟据现成的makefile文件对应修改makefile
+ 3 make
+四、设置环境变量
+
+注:编译会涉及到openmpi intel mkl库 fftw库 GotoBLAS2库，在生产服务器上均有，如果没有请对应安装。
+
+makefile 修改参考
+1 fortran flags
+FFLAGS = -I/opt/intel/icc/composer_xe_2013.3.163/mkl/include/fftw/  -FR  -assume byterecl   -heap-arrays 64
+OFLAG=-03 -ip -ftz
+
+2 mkl
+BLAS=/opt/mathlib/GotoBLAS2/libgoto2.so
+LAPACK=-L/opt/intel/icc/composer_xe_2013.3.163/mkl/lib/intel64 -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread
+
+3 fortran linker for mpi
+FC=/opt/software/openmpi-1.8.1/bin/mpif77 #具体看openmpi安装位置
+FCL=$(FC)
+
+4 location of SCALAPACK
+BLACS=/opt/intel/icc/composer_xe_2013.3.163/mkl/lib/intel64/libmkl_blacs_openmpi_lp64.a
+SCA_=/opt/intel/icc/composer_xe_2013.3.163/mkl/lib/intel64/libmkl_scalapack_lp64.a
+
+5 libraries for mpi
+LIB如有注释，去掉三行注释
+FFT3D= fftmpi.o fftmpi_map.o fftw3d.o fft3dlib.o  /opt/intel/icc/composer_xe_2013.3.163/mkl/interfaces/fftw3xf/libfftw3xf_intel.a
+INCS= -I/opt/intel/icc/composer_xe_2013.3.163/mkl/include/fftw/

@@ -1,8 +1,9 @@
-###iptables setting for jinsong###
-EXTIF='eth0' #not safe ip
-#INIF='eth0' #safe ip
-#INNET='192.168.2.120' #allow host
-INNET='192.168.2.0/24' #allow ip net
+###iptables setting by jinsong###
+EXTIF='eth1' #外部ip
+INIF='eth0' #内部ip
+#INNET='192.168.2.120' #允许主机
+INNET='192.168.2.0/24,192.168.3.0/24' #允许网段
+OUTNET='192.168.0.0/24,172.16.147.0/24,10.0.0.0/24' #允许外部网段
 echo "1" > /proc/sys/net/ipv4/ip_forward
 iptables -F
 iptables -X
@@ -10,8 +11,11 @@ iptables -Z
 iptables -P INPUT DROP
 iptables -P OUTPUT ACCEPT
 iptables -P FORWARD ACCEPT
+modprobe ip_conntrack_ftp #for FTP
 iptables -A INPUT -i lo -j ACCEPT
 iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
-
-iptables -A INPUT -s $INNET -p TCP -i $EXTIF --dport 21 --sport 1024:65534 -j ACCEPT #FTP
-iptables -A INPUT -s $INNET -p TCP -i $EXTIF --dport 22 --sport 1024:65534 -j ACCEPT #SSH
+iptables -A INPUT -s $INNET -i $INIF -j ACCEPT
+iptables -A INPUT -s $INNET -i $EXTIF -j ACCEPT
+iptables -A INPUT -s $OUTNET -p TCP -i $EXTIF --dport 21 --sport 1024:65534 -j ACCEPT #FTP
+iptables -A INPUT -s $OUTNET -p TCP -i $EXTIF --dport 1024: -m state --state ESTABLISHED,RELATED -j ACCEPT #for FTP
+iptables -A INPUT -s $OUTNET -p TCP -i $EXTIF --dport 22 --sport 1024:65534 -j ACCEPT #SSH

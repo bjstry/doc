@@ -1,0 +1,12 @@
+dump -S /dev/sda1 #查看备份此分区需要多少容量,bytes
+dump -0u -f /root/sda1.dump /boot #备份/dev/sda1 (BOOT)
+-0级别，0为完整备份，1-9未增量备份，-u为更新到/etc/dumpdates记录仅支持文件系统
+dump -W列出在/etc/fstab里面的分区是否有备份过
+用dump备份非文件系统(目录)
+dump -0j -f /opt.dump /opt #目录仅支持0完整备份，且无法更新/etc/dumpdates -j为压缩备份
+
+还原
+restore -t -f /opt.dump #查看备份，类似tar -t
+restore -C -f /root/sda1.dump #对比备份文件与实际差别
+restore -i /opt.dump #互动模式还原
+restore -r /root.dump 这个filesystem还原，针对文件系统的备份,必须到文件系统下

@@ -3,7 +3,10 @@ service sendmail stop
 chkconfig sendmail off
 
 1 配置dns服务器  所有节点必须设置此服务器ip为dns
-编辑 /etc/named.conf 添加一下内容
+编辑 /etc/named.conf
+11行 localhost/127.0.0.1设置为any
+17行 localhost/127.0.0.1设置为any
+添加以下内容
 zone "gentai.com" IN{
 	type master;
 	file "named.gentai.com";

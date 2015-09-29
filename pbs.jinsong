@@ -67,3 +67,6 @@ NP=`cat $PBS_NODEFILE|wc -l`
 cat $PBS_NODEFILE > /tmp/nodefile.$$
 /opt/software/ansys_inc/v121/fluent/bin/fluent  3d -t$NP -pib -mpi=hp  -cnf=/tmp/nodefile.$$
 rm -f /tmp/nodefile.$$
+
+
+#PBS -l nodes=node02+node04:ppn=2

@@ -69,4 +69,14 @@ cat $PBS_NODEFILE > /tmp/nodefile.$$
 rm -f /tmp/nodefile.$$
 
 
+pbs_matlib
+#!/bin/bash                                                                     
+#PBS -N matlab-test 
+#PBS -q gentai
+#PBS -l nodes=1:ppn=1
+#PBS -j oe
+cd $PBS_O_WORKDIR
+matlab -nojvm -nodisplay -nosplash -nodesktop <my.m 1>runm.log 2>runm.err
+
+#多机器分配
 #PBS -l nodes=node02+node04:ppn=2

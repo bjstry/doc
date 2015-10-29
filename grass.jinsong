@@ -8,3 +8,27 @@ yum install grass -y
 yum install flex bison zlib-devel  tcl-devel tk-devel gcc-c++ gettext libtiff-devel libpng-devel sqlite-devel mesa-libGL-devel mesa-libGLU-devel mesa-libGLw-devel mesa-libOSMesa-devel libXmu-devel python-devel gtk2-devel ncurses-devel postgresql-devel make
 (如报mesa-libOS Mesa-devel找不到可继续执行。)
 rpm -ivh armadillo-3.800.2-1.el6op.x86_64.rpm(如果系统提示已安装更新版本请卸载系统新版本)
+
+
+如果提示以下错误执行下列操作即可
+
+
+
+Error: Package: grass-libs-6.4.4-6.el6.x86_64 (epel)
+	           Requires: libgeos-3.3.2.so()(64bit)
+	           Available: geos-3.3.2-1.el6.x86_64 (epel)
+	               libgeos-3.3.2.so()(64bit)
+	           Installed: geos-3.3.8-2.el6.x86_64 (@elgis)
+	               Not found
+				              Available: geos-3.2.2-2.el6.x86_64 (elgis)
+	               Not found
+				              Available: geos-3.3.0-1.el6.x86_64 (elgis)
+	               Not found
+				              Available: geos-3.3.1-2.el6.x86_64 (elgis)
+	               Not found
+				              Available: geos-3.3.6-1_0.el6.x86_64 (elgis)
+
+cd /etc/yum.repos.d
+mv elgis.repo elgis.repo.bak
+mv elgis-testing.repo elgis-testing.repo.bak
+然后再执行yum install grass -y 即可

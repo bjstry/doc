@@ -1,0 +1,33 @@
+快速开始
+
+1 创建项目目录，创建index.php入口文件，定义项目名称,引入核心文件,生成相关项目目录;
+  define('PRJ','Home');
+  require './Speek/Speek.php';   //核心文件位置视实际情况而定，框架在当前目录
+  
+  目录结构
+  PRJ---Home---------C       //控制器
+   |			     Com     //第三方函数
+   |	             Conf    //项目配置
+   |				 Log     //项目日志
+   |				 M       //模块
+   |				 T       //模板
+   |				 |------default //默认模板主题	
+   |				 T_c     //模板编译
+   |				 T_cache //输出缓存	
+   | ---index.php            //主入口文件
+
+2 在控制器目录里创建主控制器文件IndexC.class.php,并创建主入口函数Index();
+
+<?php
+class IndexC extends C{
+	public function Index(){
+		//your code...
+		$this->display();
+	}
+}
+?>
+
+3 在模板默认主题目录创建模板文件IndexIndex.html
+
+4 enjoy!
+

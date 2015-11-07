@@ -1,5 +1,8 @@
 定时执行任务
 
+service crond start
+chkconfig crond on
+
 /etc/cron.allow #允许使用的帐号
 /etc/cron.deny #禁止使用的帐号
 

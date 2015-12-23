@@ -182,7 +182,7 @@ FCL=$(FC)
 
 CPP    = $(CPP_) -DMPI  -DHOST=\"LinuxIFC\" -DIFC \
      -Dkind8 -DCACHE_SIZE=4000 -DPGF90 -Davoidalloc -DNGZhalf \
-     -DMPI_BLOCK=8000 \
+     -DMPI_BLOCK=8000 
 #    -DRPROMU_DGEMV  -DRACCMU_DGEMV
 
 #-----------------------------------------------------------------------

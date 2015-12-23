@@ -2,7 +2,9 @@ grass
 rpm -ivh epel-release-6-8.noarch.rpm
 rpm -ivh rpmfusion-free-release-6-1.noarch.rpm
 rpm -ivh rpmfusion-nonfree-release-6-1.noarch.rpm
-rpm -Uvh http://elgis.argeo.org/repos/6/elgis-release-6-6_0.noarch.rpm
+
+############rpm -Uvh http://elgis.argeo.org/repos/6/elgis-release-6-6_0.noarch.rpm
+
 yum install grass -y
 如果报错，执行后面操作
 yum install flex bison zlib-devel  tcl-devel tk-devel gcc-c++ gettext libtiff-devel libpng-devel sqlite-devel mesa-libGL-devel mesa-libGLU-devel mesa-libGLw-devel mesa-libOSMesa-devel libXmu-devel python-devel gtk2-devel ncurses-devel postgresql-devel make

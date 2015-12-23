@@ -1,0 +1,162 @@
+Ganglia是伯克利开发的一个集群监控软件。可以监视和显示集群中的节点的各种状态信息，比如：cpu 、mem、硬盘利用率， I/O负载、网络流量情况等，同时可以将历史数据以曲线方式通过php页面呈现。
+
+而ganglia又依赖于一个web服务器用来显示集群状态，用rrdtool来存储数据和生成曲线图，需要xml解析因此需要expat，配置文件解析需要libconfuse。安装apche的httpd还需要支持php4以上，同时还有一些依赖软件。
+
+
+
+ganglia监控节点配置
+安装ganglia需要这几个包
+confuse-2.7.tar.gz
+ganglia-3.3.7.tar.gz
+rrdtool-1.4.8.tar.gz
+安装操作如下
+cp confuse-2.7 ganglia-3.3.7.tar.gz rrdtool-1.4.8.tar.gz /opt/ganglia/
+cd /opt/ganglia/
+tar -xvf confuse-2.7.tar.gz
+./configure --prefix=/opt/software/confuse-2.7/  --enable-shared CFLAGS=-fPIC
+make
+make install
+
+tar xvf rrdtool-1.4.8.tar.gz
+cd rrdtool-1.4.8
+./configure --prefix=/opt/software/rrdtool
+make
+make install
+
+tar xvf ganglia-3.3.7.tar.gz
+cd ganglia-3.3.7
+./configure --prefix=/opt/software/ganglia/ --enable-gexec --with-static-modules --with-gmetad --with-librrd=/opt/software/rrdtool CPPFLAGS=-I/opt/software/confuse-2.7/include LDFLAGS=-L/opt/software/confuse-2.7/lib
+make
+make install
+
+安装ganglia时，先看下当前目录下README中，这个3.3.7版本在171行中描述LibConfuse版本2.5是不合适的，这里我用的confuse版本为2.7高于2.5，是适合这个3.3.7的ganglia的
+
+修改httpd配置文件，启动httpd服务
+vim /etc/httpd/conf/httpd.conf 
+276行 ServerName localhost:80
+292行 DocumentRoot "/var/www/html
+/etc/init.d/httpd  start
+打开浏览器输入本机ip可以看见apache测试页，即告成功
+
+复制ganglia的web文件
+cd /var/www/html
+mkdir ganglia
+cd /opt/ganglia/ganglia-3.3.7
+cp -a web/* /var/www/html/ganglia
+
+生成gmetad配置文件和服务文件
+cd /etc/
+mkdir ganglia 
+cd /opt/ganglia/ganglia-3.3.7
+cp gmetad/gmetad.init /etc/init.d/gmetad 
+cp gmetad/gmetad.conf /etc/ganglia/gmetad.conf
+chkconfig --add gmetad
+chkconfig --level 345 gmetad on
+
+修改vim /etc/init.d/gmetad 
+GMETAD=/opt/ganglia/ganglia-3.3.7/gmetad/gmetad 
+
+
+生成gmond配置文件和服务文件
+cd /opt/ganglia/ganglia-3.3.7/gmond
+cp gmond.init /etc/init.d/gmond
+./gmond -t > /etc/ganglia/gmond.conf
+cp /etc/ganglia/gmond.conf  /opt/software/ganglia/etc/gmond.conf
+
+修改vim /etc/init.d/gmond 
+GMOND=/opt/ganglia/ganglia-3.3.7/gmond/gmond
+
+修改gmetad.conf配置文件
+vim /etc/ganglia/gmetad.conf 
+45 46 行，修改为
+data_source "node01" 192.168.0.55
+data_source "node02" 1.0.0.56
+
+106行，修改为
+setuid_username "nobody"
+132行，修改为
+rrd_rootdir "/var/lib/ganglia/rrds"
+
+修改gmond.conf配置文件
+cluster {
+  name = "node01"  节点名字
+  owner = "unspecified"
+  latlong = "unspecified"
+  url = "unspecified
+所示地方修改节点名字
+
+
+修改/var/www/html/ganglia/conf_default.php
+ # Where gmetad stores the rrd archives.
+29 $conf['gmetad_root'] = "/var/lib/ganglia"; 修改成这个路径
+30 $conf['rrds'] = "${conf['gmetad_root']}/rrds";
+
+ #$conf['rrdtool'] = "/usr/bin/rrdtool";
+47 $conf['rrdtool'] = "/opt/software/rrdtool/bin/rrdtool";修改成这个路径
+
+ganglia被监控节点的配置
+被监控节点的配置只需要两个包就可以咯
+confuse-2.7.tar.gz
+ganglia-3.3.7.tar.gz
+
+cp confuse-2.7 ganglia-3.3.7.tar.gz /opt/ganglia
+cd /opt/ganglia
+tar xvf confuse-2.7.tar.gz
+./configure --prefix=/opt/software/confuse-2.7 --enable-shared CFLAGS=-fPIC
+make
+make install
+
+tar xvf ganglia-3.3.7.tar.gz
+cd ganglia-3.3.7
+./configure  --prefix=/opt/software/ganglia/ --enable-gexec  --with-gmond --with-librrd=/opt/software/rrdtool CPPFLAGS=-I/opt/software/confuse-2.7/include/ LDFLAGS=-L/opt/software/confuse-2.7/lib/
+make
+make install
+
+被监控端需要--with-gmond这个安装好就行
+
+生成gmond配置文件和服务文件
+cd /opt/ganglia/ganglia-3.3.7/gmond
+cp gmond.init /etc/init.d/gmond
+./gmond -t > /etc/ganglia/gmond.conf
+cp /etc/ganglia/gmond.conf  /opt/software/ganglia/etc/gmond.conf
+
+修改vim /etc/init.d/gmond 
+GMOND=/opt/ganglia/ganglia-3.3.7/gmond/gmond
+
+修改vim /etc/ganglia/gmond.conf
+45行
+52行
+60行port这里改成统一的端口号8651 如果还有第二个被监控节点可以改成8652等等
+
+重启服务 /etc/init.d/gmond  restart
+
+主监控端修改vim /etc/ganglia/gmetad.conf
+这里修改成下面这个样子就好了，节点名字和/etc/hosts对应，IP和端口号和次节点一致，
+data_source "tech04" localhost
+data_source "lbx" 192.168.0.16:8650
+data_source "zpg" 192.168.0.11:8651
+data_source "zzy" 192.168.0.15:8652
+
+(主节点不加端口号，其它节点加）
+重启这两个服务就行了
+/etc/init.d/gmetad  restart
+/etc/init.d/gmond  restart
+
+主监控端
+mkdir -p /var/lib/ganglia 
+cd /var/lib/ganglia
+mkdir conf 
+mkdir dwoo 
+mkdir rrds创建这3个文件夹
+cd dwoo 
+mkdir cache 
+mkdir compiled创建这2个文件夹
+cd /var/lib/
+chmod 777 -R /var/lib/ganglia/
+chown nobody:nobody -R /var/lib/ganglia/
+
+另：解决打开浏览器只能看到ganglia界面，而看不到监控节点问题
+打开/var/log/messages 信息中如果频繁报IP如239.2.11.71，那么就加路由规则如下
+ip route add 239.2.11.71 dev eth0
+重启gmetad gmond服务即可
+

@@ -1,0 +1,25 @@
+#iwconfig 
+查看是否已经识别无线网卡，若没有识别出来的话，需要安装对应的网卡驱动。
+
+#ip link set wlan0 up 
+启动这个无线网卡。
+
+#iwlist wlp3s0 scan
+扫描无线网络，找到自己的ssid
+
+ 无密码
+ iwconfig wlp3s0 essid "ssid"
+ dhcpcd wlp3s0
+ 有密码
+ wpa_passphrase ssid "ssid-password" >> /etc/wpa_supplicant/wpa_supplicant.conf
+
+wpa_supplicant -i wlp3s0 -c /etc/wpa_supplicant/wpa_supplicant.conf
+dhcpcd wlp3s0
+ok
+
+依赖:
+wireless_tools
+wpa_supplicant
+
+pacman -S alsa-firmware alsa-tools pulseaudio-alsa
+声音

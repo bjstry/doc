@@ -1,0 +1,8 @@
+1 /etc/dhcp/dhcpd.conf
+next-server 192.168.18.5;
+filename "pxelinux.0";
+
+2 /var/lib/tftpboot/pxelinux.cfg/default
+  label linux
+  kernel vmlinuz
+  append initrd=initrd.img text ks=ftp://192.168.18.5/ks.cfg

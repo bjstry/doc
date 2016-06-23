@@ -1,0 +1,14 @@
+lang en_US.UTF-8
+keyboard us
+timezone Asia/Shanghai
+auth --useshadow --enablemd5
+selinux --disabled
+firewall --disabled
+
+repo --name=a-base --baseurl=http://mirrors.163.com/centos/6/os/$basearch/
+repo --name=a-centosplus --baseurl=http://mirrors.163.com/centos/6/centosplus/$basearch/
+repo --name=a-cloud --baseurl=http://mirrors.163.com/centos/6/cloud/$basearch/
+repo --name=a-contrib --baseurl=http://mirrors.163.com/centos/6/contrib/$basearch/
+repo --name=a-updates --baseurl=http://mirrors.163.com/centos/6/updates/$basearch/
+repo --name=a-virt --baseurl=http://mirrors.163.com/centos/6/virt/$basearch/
+repo --name=a-storage --baseurl=http://mirrors.163.com/centos/6/storage/$basearch/

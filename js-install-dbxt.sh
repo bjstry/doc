@@ -60,7 +60,7 @@ then
     82
 
     w
-    EOF
+EOF
     mkfs.ext4 $boot
     mkfs.ext4 $root
     mkswap -L SWAP $swap
@@ -74,7 +74,7 @@ then
     root (hd0,1)
     setup (hd0)
     quit
-    EOF2
+EOF2
     umount $mboot && rm -rf $mboot
     umount $mroot && rm -rf $mroot
     echo 'everything is ok.'

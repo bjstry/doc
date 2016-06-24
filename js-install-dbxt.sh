@@ -2,8 +2,8 @@
 disk=$1
 smem=$2
 winfq="20M"
-bootfq="20M"
-rootfq="200M"
+bootfq="200M"
+rootfq="5G"
 swapfq=$2
 bootfile=$3
 rootfile=$4
@@ -11,11 +11,12 @@ if [ -b $disk ]
 then
 	echo $disk
 	fdisk=$disk
-else
-	echo "no device $disk"
-	fdisk=/dev/sda
-fi
-fdisk $fdisk <<EOF
+	boot=$fdisk"2"
+	root=$fdisk"3"
+	mboot=/mnt/boot
+	mroot=/mnt/root
+	swap=$fdisk"5"
+	fdisk $fdisk <<EOF
 d
 1
 d
@@ -54,23 +55,23 @@ t
 
 w
 EOF
-boot=$fdisk"2"
-root=$fdisk"3"
-mboot=/mnt/boot
-mroot=/mnt/root
-swap=$fdisk"5"
-mkfs.ext4 $boot
-mkfs.ext4 $root
-mkswap -L SWAP $swap
-e2label $boot BOOT
-e2label $root ROOT
-mkdir $mboot && mount $boot $mboot
-mkdir $mroot && mount $root $mroot
-tar xvf $bootfile -C $mboot
-tar xvf $rootfile -C $mroot
-grub << EOF2
+	mkfs.ext4 $boot
+	mkfs.ext4 $root
+	mkswap -L SWAP $swap
+	e2label $boot BOOT
+	e2label $root ROOT
+	mkdir $mboot && mount $boot $mboot
+	mkdir $mroot && mount $root $mroot
+	tar xvf $bootfile -C $mboot
+	tar xvf $rootfile -C $mroot
+	grub << EOF2
 root (hd0,1)
 setup (hd0)
 quit
 EOF2
-echo 'everything is ok.'
+	umount $mboot && rm -rf $mboot
+	umount $mroot && rm -rf $mroot
+	echo 'everything is ok.'
+else
+	echo "no device $disk !"
+fi

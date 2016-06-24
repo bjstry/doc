@@ -1,7 +1,7 @@
 #!/bin/bash
 #####自动安装打包系统脚本#####
 ###example  ./js-install-dbxt.sh /dev/sda 32G /data2/OS6.4/centos6.4-boot.tar.bz2 /data2/OS6.4/centos6.4-root.tar.bz2 ###
-###说明 脚本后面跟三个参数，第一个为要安装到的硬盘，第二个为虚拟内存大小，第三个为boot包绝对路径，第四个为root包绝对路径###
+###说明 脚本后面跟四个参数，第一个为要安装到的硬盘，第二个为虚拟内存大小，第三个为boot包绝对路径，第四个为root包绝对路径###
 disk=$1
 smem=$2
 ###参数设置 预留windows分区大小，带单位，默认200G###

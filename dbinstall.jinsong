@@ -2,14 +2,15 @@
 #####自动安装打包系统脚本#####
 ###example  ./js-install-dbxt.sh /dev/sda 32G /data2/OS6.4/centos6.4-boot.tar.bz2 /data2/OS6.4/centos6.4-root.tar.bz2 ###
 ###说明 脚本后面跟四个参数，第一个为要安装到的硬盘，第二个为虚拟内存大小，第三个为boot包绝对路径，第四个为root包绝对路径###
-if [ $1 = "--help" ];then
+if [[ $1 = "--help" ]];then
     echo "js打包系统自动安装程序 使用说明"
     echo ""
     echo '用法: dbinstall [虚拟内存] [boot包绝对路径] [root包绝对路径] [安装盘(/dev/sda)] [预留windows分区(200G)] [boot分区(256M)] [root分区(200G)] ...'
     echo ''
     echo '示例1: dbinstall 32G /boot/boot.tar.bz2 /root/root.tar.bz2  //默认选用/dev/sda win预留200G boot大小256M root大小200G'
     echo '示例2: dbinstall 32G /boot/boot.tar.bz2 /root/root.tar.bz2 /dev/sda 100G 256M 200G'
-    echo '自动安装打包系统'
+    echo ''
+    echo '自动安装打包系统,包含分区、格式化、打标签、解压boot root包，写入grub等操作'
     echo ''
     echo '-----------------------------------------'
     echo '--help                       获取帮助信息'
@@ -18,37 +19,61 @@ if [ $1 = "--help" ];then
     echo '请向bjstry@163.com报告错误'
     echo '作者bjstry 版本1.0'
     exit
-elif [ $1 = "--version" ];then
+elif [[ $1 = "--version" ]];then
     echo '版本1.0'
     exit
 fi
-swapfq=$1
-bootfile=$2
-rootfile=$3
+if [[ $1 =~ ^[0-9]+[M,G]$ ]];then
+    swapfq=$1
+else
+    echo '错误: 虚拟内存值不正确'
+    exit
+fi
+if [ -f $2 ];then
+    bootfile=$2
+else
+    echo "错误: $2: No such file or directory"
+    exit
+fi
+if [ -f $3 ];then
+    rootfile=$3
+else
+    echo "错误: $3: No such file or directory"
+    exit
+fi
 if [[ $4 = "" ]];then
     disk="/dev/sdz"
 else
     disk=$4
 fi
-smem=$1
 ###参数设置 预留windows分区大小，带单位，默认200G###
 if [[ $5 = "" ]];then
     winfq="200G"
-else
+elif [[ $5 =~ ^[0-9]+[M,G]$ ]];then
     winfq=$5
+else
+    echo '错误: win预留分区值不正确!'
+    exit
 fi
 ###参数设置 boot分区大小,默认256M###
 if [[ $6 = "" ]];then
     bootfq="256M"
-else
+elif [[ $6 =~ ^[0-9]+[M,G]$ ]];then
     bootfq=$6
+else
+    echo '错误: boot分区值不正确!'
+    exit
 fi
 ###参数设置 root分区大小,默认200G###
 if [[ $7 = "" ]];then
     rootfq="200G"
-else
+elif [[ $7 =~ ^[0-9]+[M,G]$ ]];then
     rootfq=$7
+else
+    echo '错误: root分区值不正确!'
+    exit
 fi
+#echo $swapfq $bootfile $rootfile $disk $winfq $bootfq $rootfq
 if [ -b $disk ]
 then
     echo $disk

@@ -1,7 +1,5 @@
 #!/bin/bash
-#####自动安装打包系统脚本#####
-###example  ./js-install-dbxt.sh /dev/sda 32G /data2/OS6.4/centos6.4-boot.tar.bz2 /data2/OS6.4/centos6.4-root.tar.bz2 ###
-###说明 脚本后面跟四个参数，第一个为要安装到的硬盘，第二个为虚拟内存大小，第三个为boot包绝对路径，第四个为root包绝对路径###
+#####js打包系统自动安装程序#####
 if [[ $1 = "--help" ]];then
     echo "js打包系统自动安装程序 使用说明"
     echo ""
@@ -29,20 +27,20 @@ else
     echo '错误: 虚拟内存值不正确'
     exit
 fi
-if [ -f $2 ];then
+if [[ -f $2 && $2 != "" ]];then
     bootfile=$2
 else
-    echo "错误: $2: No such file or directory"
+    echo "错误: bootfile $2: No such file or directory"
     exit
 fi
-if [ -f $3 ];then
+if [[ -f $3 && $3 != "" ]];then
     rootfile=$3
 else
-    echo "错误: $3: No such file or directory"
+    echo "错误: rootfile $3: No such file or directory"
     exit
 fi
 if [[ $4 = "" ]];then
-    disk="/dev/sdz"
+    disk="/dev/sda"
 else
     disk=$4
 fi

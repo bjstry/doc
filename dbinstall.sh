@@ -21,6 +21,10 @@ elif [[ $1 = "--version" ]];then
     echo '版本1.0'
     exit
 fi
+if [ `id -u` != 0 ];then
+    echo 'normal user only can use --help or --version'
+    exit
+fi
 if [[ $1 =~ ^[0-9]+[M,G]$ ]];then
     swapfq=$1
 else

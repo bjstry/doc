@@ -75,6 +75,7 @@ else
     echo '错误: root分区值不正确!'
     exit
 fi
+maxdisk=`fdisk -l | grep $disk   | sed -n '1p' | awk '{print $3}'`
 #echo $swapfq $bootfile $rootfile $disk $winfq $bootfq $rootfq
 if [ -b $disk ]
 then

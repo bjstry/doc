@@ -132,8 +132,8 @@ EOF
     e2label $root ROOT
     mkdir $mboot && mount $boot $mboot
     mkdir $mroot && mount $root $mroot
-    tar xvf $bootfile -C $mboot
-    tar xvf $rootfile -C $mroot
+    tar xvf $bootfile -C $mboot 
+    tar xvf $rootfile -C $mroot -I pbzip2
     grub << EOF2
     root (hd0,1)
     setup (hd0)

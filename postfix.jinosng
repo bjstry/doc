@@ -1,0 +1,5 @@
+postqueue -q or mailq 查看邮件队列
+postqueue -q | wc -l 查看队列长度
+find /var/spool/postfix/deferred/ -type f -exec ls -l {} \;  查看没发出去的邮件
+find /var/spool/postfix/deferred -type f -exec ls -l {} \; | wc -l 统计数量
+

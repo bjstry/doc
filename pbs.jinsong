@@ -1,3 +1,34 @@
+qmgr -c "set server default_queue=shuoxing"
+设置默认队列为shuoxing
+
+qmgr -c "create queue SIESTA queue_type=execution"
+创建SIESTA队列，并且指定类型为execution
+qmgr -c "set queue SIESTA started=true"
+指定SIESTA队列中的任务可以被调度执行
+qmgr -c "set queue SIESTA enabled=true"
+指定SIESTA队列可以接受新的任务
+
+qmgr -c "delete queue test"
+删除队列test
+
+qmgr -c "set queue SIESTA acl_group_enable=true"
+指定SIESTA队列专属某一个用户组
+qmgr -c "set queue SIESTA acl_groups=siesta"
+指定SIESTA队列的专属用户组为siesta用户组，只有属于siesta用户组的用户才能向改队列中提交任务
+qmgr -c "set queue SIESTA acl_group_sloppy=true"
+指定是不是只看用户的第一用户组来决定对队列的使用权。如果该项没有，则只有第一用户组为siesta的用户组才能向该队列对提交任务，如果该项为true，表示检查用户的其他用户组属性。
+
+qmgr -c "set queue SIESTA resources_default.neednodes=siesta"
+指定SIESTA队列使用的计算节点是siesta属性的
+
+qmgr -c "p s"查看创建的队列情况
+
+qmgr -c "set queue batch acl_host_enable=true"
+描述可提交作业的主机
+
+qmgr -c "set queue batch acl_hosts=cu01+cu02"
+描述一系列主机，可以通过该队列进行提交作业的
+
 pbs串行程序：
 #!/bin/bash
 #PBS -N [taskname]

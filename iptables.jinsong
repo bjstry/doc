@@ -1,14 +1,14 @@
 ###iptables setting by jinsong###
-EXTIF='eth1' #外部ip
+EXTIF='eth0' #外部ip
 INIF='eth0' #内部ip
 #INNET='192.168.2.120' #允许主机
-INNET='192.168.2.0/24,192.168.3.0/24' #允许网段
+INNET='192.168.2.0/24' #允许网段
 OUTNET='192.168.0.0/24,172.16.147.0/24,10.0.0.0/24' #允许外部网段
 echo "1" > /proc/sys/net/ipv4/ip_forward
 iptables -F
 iptables -X
 iptables -Z
-iptables -P INPUT DROP
+iptables -P INPUT ACCEPT
 iptables -P OUTPUT ACCEPT
 iptables -P FORWARD ACCEPT
 modprobe ip_conntrack_ftp #for FTP

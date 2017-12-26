@@ -1,0 +1,5 @@
+cmake -DCMAKE_CXX_COMPILER="/opt/software/gcc-4.9.4/bin/g++" -DCMAKE_C_COMPILER="/opt/software/gcc-4.9.4/bin/gcc" -DCMAKE_Fortran_COMPILER="/opt/software/gcc-4.9.4/bin/gfortran" -DCMAKE_INSTALL_PREFIX="/opt/software/root-6" -DPYTHON_EXECUTABLE="/opt/software/python-2.7.10/bin/python" -DPYTHON_INCLUDE_DIR="/opt/software/python-2.7.10/include/python2.7/" -DPYTHON_LIBRARY="/opt/software/python-2.7.10/lib/libpython2.7.so" /opt/software/root-6.08.06-src
+
+make 
+
+make install

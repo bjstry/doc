@@ -1,0 +1,9 @@
+cd Obj
+../Src/obj_setup.sh
+../Src/configure --prefix=/opt/software/siasta-x.x --enable-mpi FC=/opt/software/mpich2-intel/bin/mpif90
+编辑arch.make
+BLAS_LIBS=/opt/mathlib/blas/blas-intel/blas_LINUX.a
+LAPACK_LIBS=/opt/mathlib/lapack/lapack-intel/liblapack.a
+BLACS_LIBS=/opt/mathlib/blacs/blacs-intel/blacsCinit_MPI-LINUX-0.a /opt/mathlib/blacs/blacs-intel/blacsF77init_MPI-LINUX-0.a /opt/mathlib/blacs/blacs-intel/blacs_MPI-LINUX-0.a
+SCALAPACK_LIBS=/opt/mathlib/scalapack/scalapack-intel/libscalapack.a
+make

@@ -1,0 +1,118 @@
+Howto-WIEN2k v 0.12 May 8 2006
+=============================
+0. make sure you got some good compiler and libraries,
+   e.g. ifort9 and mkl8 or later (free for academic use from intel)
+   on your computer
+   If you are the administrator of the computer update
+   '/etc/ld.so.conf' with paths to the libraries you are using:
+   /opt/intel/fc/9.0/lib
+   /opt/intel/mkl/8.0.1/lib/32
+   (just an example above) and run 'ldconfig'
+   check that the compiler is in your path
+   (if you enter 'ifort' is it found?)
+   
+1. copy a recent distribution of WIEN2k, for example
+   'WIEN2k_06.2_060309.tar' located at '/HOME/ikeno' on "earth"
+   or at '/home/weine' on "earth"
+For the following steps also refer to the WIEN2k manual
+=======================================================
+also check http://www.wien2k.at/reg_user/index.html
+for F.A.Q. and searching the WIEN2k mailing list
+
+2. create a directory to install WIEN2k, for example 'WIEN2k/06.2'
+   move your tar-file there, expand files etc:
+   $ tar xvf WIEN2k_06.2_060309.tar
+   $ gzip -d *.gz
+   $ ./expand_lapw   
+   clean up a bit by:
+   $ mkdir tars
+   $ mv *.tar tars
+3. configure and compile WIEN2k by running
+   $ ./siteconfig
+   you can choose for example system 'J'
+   modify the settings 'O', 'L' and 'R',
+   I use the following compiler flags on a  64-bit Opteron system:
+   O (FOPT)     -FR -w -mp1 -prec_div -pad -ip -DINTEL_VML -O3 -xW
+   L (LDFLAGS)  -L/opt/intel/fce/9.0/lib -i-static -lguide_stats -lsvml -lpthread
+   R (R_LIBS)   -L/opt/intel/mkl/8.0.1/lib/em64t -lmkl_lapack -lmkl_em64t -lguide -lpthread  
+   on a 32-bit Pentium 4 system I just modify:
+   -FR -w -mp1 -prec_div -pad -ip -DINTEL_VML -O3 -xW
+   -L/opt/intel/fc/9.0/lib -i-static -lguide_stats -lsvml -lpthread
+   -L/opt/intel/mkl/8.0.1/lib/32 -lmkl_lapack -lmkl_ia32 -lguide -lpthread  
+   you can also ask Ikeno-san for good compiler flags on your system
+   you might also try the default flags for system 'J' and check if they work
+   use the appropriate version of ifort, depending if you use 32-bit or 64-bit system
+   for itanium systems the compiler and flags would be a bit different
+   I found the flags I'm using by reading 'Fecher_CompileIntel.pdf'
+   the parameters NMATMAX and NMATMUL should reflect the RAM available on your
+   computer, e.g. on my 8 GB RAM opteron I used (though I'm no expert)
+   NMATMAX = 80000
+   NMATMUL = 8000
+   this also depends on
+4. configure the user environment
+   $ ./userconfig
+Questions about running WIEN2k
+==============================
+- first ask people in the group who are using it
+  (Yoshioka-san, Kuwabara-san and me, as far as I know)
+- refer to the WIEN2k manual, website (the F.A.Q. and mailinglist)
+Supercell calculations
+======================
+One easy method for creating supercells:
+(1) download appropriate experimental .cif file from the open database:
+    http://sdpd.univ-lemans.fr/cod/index.html
+(2) import the .cif file in the 'MS modeling' program for 'Windows'
+    'File' ->'Import'
+   
+    a supercell is easily created by using:
+    'Build' ->'Symmetry' ->'Supercell'
+    to export back to another .cif file, just use
+    'File' ->'Export'
+(3) before uploading the .cif file into WIEN2k one need to
+    undosify the file, use
+    $ perl -pi -e 's/\r\n/\n/g' name_of_file
+(4) copy the .cif file to the workdir and use 'StructGenTM'
+    beware that when you load the .cif file into WIEN2k, the last digits
+    will be set to zeros, e.g.
+    '0.22222000' instead of '0.22222222'
+    this should be fixed - by hand, or much more preferably by a script
+    (I use a script called 'mksr' which search and replace patterns in files)
+(5) for 'StructGenTM' to understand that you want to make a supercell calc
+    you must break the symmetry somehow (if you're not doing impurity calc)
+Running jobs directly (without the webinterface)
+================================================
+you may not always be able to run the webinterface for WIEN2k on the machine
+you want to run your jobs on. Fortunately it is very easy to use anyway, e.g.:
+(1) copy the .struct file to your workdir
+(2) $ init_lapw
+    follow the instructions, it might be useful to have
+    'export EDITOR="vi"' in .bashrc
+(3) $ run_lapw -ec 0.0001 -i 30
+    start calcs, flags here just as example. A (better?) alternative might be
+    to run the jobs from a script instead, e.g. in the file 'run':
+    -------------------------------------
+    # my WIEN2k script-file, 8 May 2006
+    cd /home/path_to_my_workdir
+    run_lapw -ec 0.0001 -i 30
+    cd /home/path_to_my_workdir2
+    run_lapw -ec 0.0001 -i 30
+   
+    exit
+    -------------------------------------
+    $ chmod 744 run
+    $ nohup ./run &
+    by using 'nohup' the script will continue to run even after you logout
+    from the computer
+
+In the program 'MS modeling' from Accelrys available on Windows systems
+one can create supercells
+Using the open database it is possible to download .cif files with
+experimental information on structures
+One can use MSm to import .cif files and with them as basis
+create supercells, later one can export the supercell as a
+.cif file, which can be read by WIEN2k
+OBS: when using .cif as a template for creating a WIEN2k .struct,
+the last three decimals in .struct will be zeros, you have to put
+in the correct decimals by hand (or with some script)
+The freely available program xcrysden can read WIEN2k .struct-files and
+show the structure， 

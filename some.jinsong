@@ -15,3 +15,7 @@ lsmod 列出所有已加载模块
 insmod /url/xx.ko 加载模块 需指定绝对路径，且不解决依赖关系
 rmmod xxx 移除模块 需按照依赖关系手动卸载
 modinfo /url/xxx.ko 获取modelue相关信息
+
+
+关于西交大张某旭linux图形界面卡顿 cpu占用高的记录
+top查看cpu使用率50%，但是top里没有任何高占用的进程，通过各种查看方法均无发查到,后通过perf top -s comm,pid,symbol 查出一堆unknown进程，通过ll /proc/pid，定位二进制程序，删除整个目录结局，怀疑为挖矿病毒

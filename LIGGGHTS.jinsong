@@ -1,0 +1,12 @@
+1 安装(root)拷贝VTK-6.3.0-ok-tar.bz2  liggghts-3.8-ok.tar.bz2 到 /opt/software 
+  cd /opt/software
+  tar pxvf VTK-6.3.0-ok-tar.bz2 -I pbzip2
+  tar pxvf liggghts-3.8-ok.tar.bz2 -I pbzip2
+
+2 测试
+  shuoxing 拷贝ligghts-test.tar.bz2 到 /home/shuoxing/
+  cd /home/shuoxing
+  tar pxvf liggghts-test.tar.bz2 -I pbzip2
+  cd liggghts-test
+  export LD_LIBRARY_PATH=/opt/software/VTK-6.3/lib/:$LD_LIBRARY_PATH
+  /opt/software/liggghts-3.8-src/src/lmp_mpi  < in.mesh_tet

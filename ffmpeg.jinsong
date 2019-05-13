@@ -1,0 +1,5 @@
+ffmpeg.exe -i input.ts -vcodec libx265 -pix_fmt yuv420p10le -acodec copy output.ts
+-i 源文件
+-vcodec libx265 调用libx265
+-pix_fmt yuv420p10le  10bit
+-acodec copy 

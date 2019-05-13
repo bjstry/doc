@@ -4,7 +4,11 @@ ffmpeg.exe -i input.ts -vcodec libx265 -pix_fmt yuv420p10le -acodec copy output.
 -pix_fmt yuv420p10le  10bit
 -acodec copy   //音频转码参数  直接复制  等同于 -c:a copy
 -scodec copy   //字幕转码参数  直接复制  等同于 -c:s copy
--preset slow   //转码速度(速度慢质量高)  
+-preset slow   //转码速度ultrafast、superfast、veryfast、faster、fast、medium、slow、slower、veryslow、placebo (速度慢质量高)  
+
+--tune film:电影、真人类型 animation:动画 grain:需要保留大量的grain时用 stillimage:静态图像编码时使用 psnr:为提高psnr做了优化的参数
+ssim:为提高ssim做了优化的参数 fastdecode:可以快速解码的参数 zerolatency:零延迟，用在需要非常低的延迟的情况下，比如电视电话会议的编码。
+
 -s 320x240     //指定分辨率
 -r 24          //指定帧率
 -map 0:0       //从源码中添加流到输出文件 不指定默认只选择单个视频和音频，无多余音频和字幕等(等同下例)
@@ -24,3 +28,6 @@ ffmpeg -i input.mkv \
     -c:a:1 libfaac -b:a:1 96k \             第二条音频流编码为aac (96kbps)
     -c:s copy \                             字幕流复制
     output.mkv
+ffmpeg -i input.mkv -map 0 -c copy -c:v mpeg2video output.mkv   //只编码视频流，复制其他所有流
+-map 0 -c copy 复制所有流
+-c:v mpeg2video 编码视频流

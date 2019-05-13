@@ -1,16 +1,26 @@
 ffmpeg.exe -i input.ts -vcodec libx265 -pix_fmt yuv420p10le -acodec copy output.ts
 -i 源文件
--vcodec libx265/hevc_nvenc //视频转码参数 调用libx265/hevc_nvenc nvidia 硬件加速
+-vcodec libx265/hevc_nvenc //视频转码参数 调用libx265/hevc_nvenc nvidia 硬件加速 等同于 -c:v hevc_nvenc
 -pix_fmt yuv420p10le  10bit
--acodec copy   //音频转码参数  直接复制
--scodec copy   //字幕转码参数  直接复制
+-acodec copy   //音频转码参数  直接复制  等同于 -c:a copy
+-scodec copy   //字幕转码参数  直接复制  等同于 -c:s copy
 -preset slow   //转码速度(速度慢质量高)  
 -s 320x240     //指定分辨率
 -r 24          //指定帧率
--map 0:0       //从源码中添加流到输出文件
+-map 0:0       //从源码中添加流到输出文件 不指定默认只选择单个视频和音频，无多余音频和字幕等(等同下例)
+#ffmpeg -i INPUT -map single_highest_quality_video_stream_from_all_inputs -map single_highest_quality_audio_stream_from_all_inputs OUTPUT
+fmpeg -i input.mkv //查看视频信息(流等信息)
 
 ffmpeg -codecs | sls cuvid
 检查ffmpeg是否支持 nvenc 转码
 
 ffmpeg -h encoder=hevc_nvenc
 检查 x265 nvenc 的可以使用的选项
+
+ffmpeg -i input.mkv \
+    -map 0:0 -map 0:1 -map 0:1 -map 0:3 \   选择四个流并排序
+    -c:v copy \                             视频流直接复制
+    -c:a:0 libmp3lame -b:a:0 128k \         第一条音频流编码为mp3(128kbps) 
+    -c:a:1 libfaac -b:a:1 96k \             第二条音频流编码为aac (96kbps)
+    -c:s copy \                             字幕流复制
+    output.mkv

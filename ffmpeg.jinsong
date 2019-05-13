@@ -12,22 +12,23 @@ ssim:为提高ssim做了优化的参数 fastdecode:可以快速解码的参数 z
 -s 320x240     //指定分辨率
 -r 24          //指定帧率
 -map 0:0       //从源码中添加流到输出文件 不指定默认只选择单个视频和音频，无多余音频和字幕等(等同下例)
-#ffmpeg -i INPUT -map single_highest_quality_video_stream_from_all_inputs -map single_highest_quality_audio_stream_from_all_inputs OUTPUT
-fmpeg -i input.mkv //查看视频信息(流等信息)
+ #ffmpeg -i INPUT -map single_highest_quality_video_stream_from_all_inputs -map single_highest_quality_audio_stream_from_all_inputs OUTPUT
 
-ffmpeg -codecs | sls cuvid
-检查ffmpeg是否支持 nvenc 转码
-
-ffmpeg -h encoder=hevc_nvenc
-检查 x265 nvenc 的可以使用的选项
-
-ffmpeg -i input.mkv \
+ ffmpeg -i input.mkv \
     -map 0:0 -map 0:1 -map 0:1 -map 0:3 \   选择四个流并排序
     -c:v copy \                             视频流直接复制
     -c:a:0 libmp3lame -b:a:0 128k \         第一条音频流编码为mp3(128kbps) 
     -c:a:1 libfaac -b:a:1 96k \             第二条音频流编码为aac (96kbps)
     -c:s copy \                             字幕流复制
     output.mkv
-ffmpeg -i input.mkv -map 0 -c copy -c:v mpeg2video output.mkv   //只编码视频流，复制其他所有流
--map 0 -c copy 复制所有流
--c:v mpeg2video 编码视频流
+ ffmpeg -i input.mkv -map 0 -c copy -c:v mpeg2video output.mkv   //只编码视频流，复制其他所有流
+  -map 0 -c copy 复制所有流
+  -c:v mpeg2video 编码视频流
+ fmpeg -i input.mkv //查看视频信息(流等信息)
+ -disposition:a:0 default //设置第一个音频为默认  v:0 / s:0  视频流/字幕流
+
+ffmpeg -codecs | sls cuvid
+检查ffmpeg是否支持 nvenc 转码
+
+ffmpeg -h encoder=hevc_nvenc
+检查 x265 nvenc 的可以使用的选项

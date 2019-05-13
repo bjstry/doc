@@ -1,6 +1,6 @@
 ffmpeg.exe -i input.ts -vcodec libx265 -pix_fmt yuv420p10le -acodec copy output.ts
 -i 源文件
--vcodec libx265/hevc_nvenc //视频转码参数 调用libx265/hevc_nvenc nvidia 硬件加速 等同于 -c:v hevc_nvenc
+-vcodec libx265/hevc_nvenc/hevc_amf/hevc_qsv //指定编解码器 cpu/nvidia加速/amd加速/intel加速  等同于 -c:v hevc_nvenc
 -pix_fmt yuv420p10le  10bit
 -acodec copy   //音频转码参数  直接复制  等同于 -c:a copy
 -scodec copy   //字幕转码参数  直接复制  等同于 -c:s copy

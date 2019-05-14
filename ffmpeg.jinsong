@@ -1,4 +1,5 @@
 ffmpeg.exe -i input.ts -vcodec libx265 -pix_fmt yuv420p10le -acodec copy output.ts
+ -profile:v main10 -level:v 6.2 -tier high  //10 bit  6.2 level  high tier
 -i 源文件
 -vcodec libx265/hevc_nvenc/hevc_amf/hevc_qsv //指定编解码器 cpu/nvidia加速/amd加速/intel加速  等同于 -c:v hevc_nvenc
 -pix_fmt yuv420p10le  10bit

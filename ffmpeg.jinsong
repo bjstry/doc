@@ -5,6 +5,8 @@ ffmpeg.exe -i input.ts -vcodec libx265 -pix_fmt yuv420p10le -acodec copy output.
 -pix_fmt yuv420p10le  10bit
 -acodec copy   //音频转码参数  直接复制  等同于 -c:a copy
 -scodec copy   //字幕转码参数  直接复制  等同于 -c:s copy
+
+ ffmpeg -ss 00:00:00 -t 00:00:03 -y -i test.mp4 -c:v copy -c:a copy test1.mp4  //将视频前三秒剪辑成一个新视频
 -preset slow   //转码速度ultrafast、superfast、veryfast、faster、fast、medium、slow、slower、veryslow、placebo (速度慢质量高)  
 
 --tune film:电影、真人类型 animation:动画 grain:需要保留大量的grain时用 stillimage:静态图像编码时使用 psnr:为提高psnr做了优化的参数

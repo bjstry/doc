@@ -1,19 +1,18 @@
-ffmpeg.exe -i input.ts -vcodec libx265 -pix_fmt yuv420p10le -acodec copy output.ts
- -profile:v main10 -level:v 6.2 -tier high  //10 bit  6.2 level  high tier
--i 源文件
--x265-params crf=26:psy-rd=1:profile=main10:level=6.2:tier=high
-
--vcodec libx265/hevc_nvenc/hevc_amf/hevc_qsv //指定编解码器 cpu/nvidia加速/amd加速/intel加速  等同于 -c:v hevc_nvenc
--pix_fmt yuv420p10le  10bit
--acodec copy   //音频转码参数  直接复制  等同于 -c:a copy
--scodec copy   //字幕转码参数  直接复制  等同于 -c:s copy
-
- ffmpeg -ss 00:00:00 -t 00:00:03 -y -i test.mp4 -c:v copy -c:a copy test1.mp4  //将视频前三秒剪辑成一个新视频
--preset slow   //转码速度ultrafast、superfast、veryfast、faster、fast、medium、slow、slower、veryslow、placebo (速度慢质量高)  
-
+ffmpeg.exe -i input.ts -c:v libx265 -x265-params crf=18 -pix_fmt yuv420p10le -acodec copy output.ts
+    -x265-params crf=26:psy-rd=1:profile=main10:level=6.2:tier=high (libx265)
+ffmpeg.exe -i input.ts -c:v hevc_nvenc -preset slow -profile main10 -level:v 6.2 -tier high -pix_fmt yuv420p10le output.ts
+    -profile:v main10 -level:v 6.2 -tier high (hevc_nvenc) //10 bit  6.2 level  high tier
+  -i 源文件
+  -vcodec libx265/hevc_nvenc/hevc_amf/hevc_qsv //指定编解码器 cpu/nvidia加速/amd加速/intel加速  等同于 -c:v hevc_nvenc
+  -pix_fmt yuv420p10le  10bit
+  -acodec copy   //音频转码参数  直接复制  等同于 -c:a copy
+  -scodec copy   //字幕转码参数  直接复制  等同于 -c:s copy
+ffmpeg -ss 00:00:00 -t 00:00:03 -y -i test.mp4 -c:v copy -c:a copy test1.mp4  //将视频前三秒剪辑成一个新视频
+  -preset slow   //转码速度ultrafast、superfast、veryfast、faster、fast、medium、slow、slower、veryslow、placebo (速度慢质量高)  
+  libx265和hevc_nvec 不同
+-crf 18 //libx265 设置质量，一般从18-28合适，值越低效果越好  hevc_nvenc 不支持
 --tune film:电影、真人类型 animation:动画 grain:需要保留大量的grain时用 stillimage:静态图像编码时使用 psnr:为提高psnr做了优化的参数
 ssim:为提高ssim做了优化的参数 fastdecode:可以快速解码的参数 zerolatency:零延迟，用在需要非常低的延迟的情况下，比如电视电话会议的编码。
-
 -s 320x240     //指定分辨率
 -r 24          //指定帧率
 -map 0:0       //从源码中添加流到输出文件 不指定默认只选择单个视频和音频，无多余音频和字幕等(等同下例)

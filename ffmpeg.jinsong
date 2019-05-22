@@ -25,7 +25,8 @@ ssim:为提高ssim做了优化的参数 fastdecode:可以快速解码的参数 z
     -c:a:1 libfaac -b:a:1 96k \             第二条音频流编码为aac (96kbps)
     -c:s copy \                             字幕流复制
     output.mkv
- ffmpeg -i input.mkv -map 0 -c copy -c:v mpeg2video output.mkv   //只编码视频流，复制其他所有流
+ ffmpeg -i input.mkv -max_muxing_queue_size 1024 -map 0 -c copy -c:v mpeg2video output.mkv   //只编码视频流，复制其他所有流
+  -max_muxing_queue_size 1024 为了防止容器封装时队列溢出，增大容器封装队列大小
   -map 0 -c copy 复制所有流
   -c:v mpeg2video 编码视频流
  fmpeg -i input.mkv //查看视频信息(流等信息)

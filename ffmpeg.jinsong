@@ -32,6 +32,9 @@ ssim:为提高ssim做了优化的参数 fastdecode:可以快速解码的参数 z
  fmpeg -i input.mkv //查看视频信息(流等信息)
  -disposition:a:0 default //设置第一个音频为默认  v:0 / s:0  视频流/字幕流
 
+for %a in ("*.mp4") do ffmpeg -i "%a" -c:v hevc_nvenc -b:v 1500k -profile:v main10 -level 6.2 -tier high -pix_fmt p010le -c:a copy -y "test\%~na.mkv"
+批处理，将当前目录所有mp4转码到test目录下，后缀改成mkv
+
 ffmpeg -codecs | sls cuvid
 检查ffmpeg是否支持 nvenc 转码
 

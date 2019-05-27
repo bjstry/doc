@@ -1,5 +1,6 @@
 ffmpeg.exe -i input.ts -c:v libx265 -x265-params crf=18 -pix_fmt yuv420p10le -acodec copy output.ts
     -x265-params crf=26:psy-rd=1:profile=main10:level=6.2:tier=high (libx265)
+     colorprim=bt2020:transfer=smpte2084:colormatrix=bt2020nc hdr
 ffmpeg.exe -i input.ts -c:v hevc_nvenc -preset slow -profile main10 -level:v 6.2 -tier high -pix_fmt yuv420p10le output.ts
     -profile:v main10 -level:v 6.2 -tier high (hevc_nvenc) //10 bit  6.2 level  high tier
   -i 源文件

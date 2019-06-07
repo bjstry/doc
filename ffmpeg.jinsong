@@ -41,3 +41,6 @@ ffmpeg -codecs | sls cuvid
 
 ffmpeg -h encoder=hevc_nvenc
 检查 x265 nvenc 的可以使用的选项
+
+pcm_mulaw
+pcm_s16le

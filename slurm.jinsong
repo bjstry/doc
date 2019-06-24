@@ -1,0 +1,9 @@
+启动
+systemctl start munge
+systemctl start slurmctld //主节点
+systemctl start slurmdbd  //可选
+systemctl start slurmd    //子节点
+
+sbatch -n 20 -w "node[01-02]" -o my.out my.script //提交一个任务用20核，并且指定node01,node02节点
+srun -N3 -l /bin/hostname  //请求3个节点执行
+srun -n3 -l /bin/hostnae   //请求3个核执行

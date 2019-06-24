@@ -1,0 +1,46 @@
+ffmpeg.exe -i input.ts -c:v libx265 -x265-params crf=18 -pix_fmt yuv420p10le -acodec copy output.ts
+    -x265-params crf=26:psy-rd=1:profile=main10:level=6.2:tier=high (libx265)
+     colorprim=bt2020:transfer=smpte2084:colormatrix=bt2020nc hdr
+ffmpeg.exe -i input.ts -c:v hevc_nvenc -preset slow -profile main10 -level:v 6.2 -tier high -pix_fmt yuv420p10le output.ts
+    -profile:v main10 -level:v 6.2 -tier high (hevc_nvenc) //10 bit  6.2 level  high tier
+  -i 源文件
+  -vcodec libx265/hevc_nvenc/hevc_amf/hevc_qsv //指定编解码器 cpu/nvidia加速/amd加速/intel加速  等同于 -c:v hevc_nvenc
+  -pix_fmt yuv420p10le  10bit
+  -acodec copy   //音频转码参数  直接复制  等同于 -c:a copy
+  -scodec copy   //字幕转码参数  直接复制  等同于 -c:s copy
+ffmpeg -ss 00:00:00 -t 00:00:03 -y -i test.mp4 -c:v copy -c:a copy test1.mp4  //将视频前三秒剪辑成一个新视频
+  -preset slow   //转码速度ultrafast、superfast、veryfast、faster、fast、medium、slow、slower、veryslow、placebo (速度慢质量高)  
+  libx265和hevc_nvec 不同
+-crf 18 //libx265 设置质量，一般从18-28合适，值越低效果越好  hevc_nvenc 不支持
+--tune film:电影、真人类型 animation:动画 grain:需要保留大量的grain时用 stillimage:静态图像编码时使用 psnr:为提高psnr做了优化的参数
+ssim:为提高ssim做了优化的参数 fastdecode:可以快速解码的参数 zerolatency:零延迟，用在需要非常低的延迟的情况下，比如电视电话会议的编码。
+-s 320x240     //指定分辨率
+-r 24          //指定帧率
+-map 0:0       //从源码中添加流到输出文件 不指定默认只选择单个视频和音频，无多余音频和字幕等(等同下例)
+ #ffmpeg -i INPUT -map single_highest_quality_video_stream_from_all_inputs -map single_highest_quality_audio_stream_from_all_inputs OUTPUT
+
+ ffmpeg -i input.mkv \
+    -map 0:0 -map 0:1 -map 0:1 -map 0:3 \   选择四个流并排序
+    -c:v copy \                             视频流直接复制
+    -c:a:0 libmp3lame -b:a:0 128k \         第一条音频流编码为mp3(128kbps) 
+    -c:a:1 libfaac -b:a:1 96k \             第二条音频流编码为aac (96kbps)
+    -c:s copy \                             字幕流复制
+    output.mkv
+ ffmpeg -i input.mkv -max_muxing_queue_size 1024 -map 0 -c copy -c:v mpeg2video output.mkv   //只编码视频流，复制其他所有流
+  -max_muxing_queue_size 1024 为了防止容器封装时队列溢出，增大容器封装队列大小
+  -map 0 -c copy 复制所有流
+  -c:v mpeg2video 编码视频流
+ fmpeg -i input.mkv //查看视频信息(流等信息)
+ -disposition:a:0 default //设置第一个音频为默认  v:0 / s:0  视频流/字幕流
+
+for %a in ("*.mp4") do ffmpeg -i "%a" -c:v hevc_nvenc -b:v 1500k -profile:v main10 -level 6.2 -tier high -pix_fmt p010le -c:a copy -y "test\%~na.mkv"
+批处理，将当前目录所有mp4转码到test目录下，后缀改成mkv
+
+ffmpeg -codecs | sls cuvid
+检查ffmpeg是否支持 nvenc 转码
+
+ffmpeg -h encoder=hevc_nvenc
+检查 x265 nvenc 的可以使用的选项
+
+pcm_mulaw
+pcm_s16le

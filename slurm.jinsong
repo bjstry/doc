@@ -7,3 +7,26 @@ systemctl start slurmd    //子节点
 sbatch -n 20 -w "node[01-02]" -o my.out my.script //提交一个任务用20核，并且指定node01,node02节点
 srun -N3 -l /bin/hostname  //请求3个节点执行
 srun -n3 -l /bin/hostnae   //请求3个核执行
+
+
+#!/bin/sh
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=4
+#SBATCH --mem=1000
+cd $SLURM_SUBMIT_DIR
+srun  -n4 --mpi=pmi2 --mem=1000 /opt/software/lammps-16Mar18/src/lmp_intel_mpich  < in.comb3  2>&1 | tee test.log
+slurm.conf 
+ select/cons_res  //精细化配置可用资源
+
+    CPU (CR_CPU): CPU as a consumable resource.
+        No notion of sockets, cores, or threads.
+        On a multi-core system CPUs will be cores.
+        On a multi-core/hyperthread system CPUs will be threads.
+        On a single-core systems CPUs are CPUs. ;-)
+    Board (CR_Board): Baseboard as a consumable resource.
+    Socket (CR_Socket): Socket as a consumable resource.
+    Core (CR_Core): Core as a consumable resource.
+    Memory (CR_Memory) Memory only as a consumable resource. Note! CR_Memory assumes OverSubscribe=Yes
+    Socket and Memory (CR_Socket_Memory): Socket and Memory as consumable resources.
+    Core and Memory (CR_Core_Memory): Core and Memory as consumable resources.
+    CPU and Memory (CR_CPU_Memory) CPU and Memory as consumable resources.

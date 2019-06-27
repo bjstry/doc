@@ -8,11 +8,19 @@ sbatch -n 20 -w "node[01-02]" -o my.out my.script //提交一个任务用20核�
 srun -N3 -l /bin/hostname  //请求3个节点执行
 srun -n3 -l /bin/hostnae   //请求3个核执行
 
-
+job.bt //脚本
 #!/bin/sh
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=4
-#SBATCH --mem=1000
+#SBATCH 
+         -N  //使用的节点数
+         -n  //作业要加载的任务数(简单理解核数,自由分配)
+         * -c  //每个任务需要的处理器数
+         -o out.file //指定输出文件
+         -t 100 //指定计算时间，超时退出
+         --mem //指定每个节点使用的内存数，单位为MB
+         --job-name=testname //作业名称
+         --ntasks-per-node=4 //指定每个节点使用的任务数(每个节点核数)
+         
+         
 cd $SLURM_SUBMIT_DIR
 srun  -n4 --mpi=pmi2 --mem=1000 /opt/software/lammps-16Mar18/src/lmp_intel_mpich  < in.comb3  2>&1 | tee test.log
 slurm.conf 

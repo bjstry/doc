@@ -3,3 +3,7 @@
  生成添加驱动的 initramfs文件
  dracut --add-drivers "nfs nfsd nvme nvme_core uas usb_storage"
  dracut --add-drivers "nfs nfsd nvme nvme_core uas usb_storage raid_class libsas libata mpt2sas scsi_transport_sas"
+
+2
+ /etc/dracut.conf 
+ add_dracutmodules+="nfs base network"

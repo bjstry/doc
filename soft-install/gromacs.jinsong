@@ -1,7 +1,11 @@
 1 下载、解压源码包，进入源码包路径
 2 创建编译目录 mkdir build && cd build
 3 执行以下命令编译(GPU版本，如无GPU去掉GMXGPU=ON GMXUSEOPENCL=ON 等相关参数)
-cmake .. -DGMX_GPU=ON -DGMX_USE_OPENCL=ON -DGMX_MPI=on -DCMAKE_PREFIX_PATH=/opt/software/gromacs-5.1.3 -DGMX_SIMD=AVX2_256 -DGMX_FFT_LIBRARY=mkl -DMKL_INCLUDE_DIR=/opt/intel/icc/mkl/include/ -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc
+cmake .. -DGMX_GPU=ON -DGMX_USE_OPENCL=ON -DGMX_MPI=on -DCMAKE_INSTALL_PREFIX=/opt/software/gromacs-5.1.3 -DGMX_SIMD=AVX2_256 -DGMX_FFT_LIBRARY=mkl -DMKL_INCLUDE_DIR=/opt/intel/icc/mkl/include/ -DCMAKE_C_COMPILER=icc -DCMAKE_CXX_COMPILER=icpc
 4 make && make check
 5 make install
 GPU版本需要提前安装CUDA及显卡驱动，并且需要OpenCL，可在pkgs.org搜索opencl-header包安装。
+
+
+old  3.3.3
+./configure --prefix=/opt/software/gromacs-3.3.3-js CC=icc F77=ifort CXX=icpc  --enable-mpi --with-fft=fftw3 CPPFLAGS=-I/opt/mathlib/fftw-3.3.5/include/ LDFLAGS=-L/opt/mathlib/fftw-3.3.5/lib/

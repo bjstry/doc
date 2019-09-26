@@ -1,0 +1,148 @@
+
+google
+---------- V2Ray 配置信息 -------------
+ 地址 (Address) = 34.84.152.136
+ 端口 (Port) = 18820
+ 用户ID (User ID / UUID) = d12c8abb-c0ab-441b-bbb5-b4473550177f
+ 额外ID (Alter Id) = 233
+ 传输协议 (Network) = tcp
+ 伪装类型 (header type) = none
+---------- END -------------
+V2Ray 客户端使用教程: https://233v2.com/post/4/
+提示: 输入 v2ray url 可生成 vmess URL 链接 / 输入 v2ray qr 可生成二维码链接
+
+---------- Shadowsocks 配置信息 -------------
+ 服务器地址 = 34.84.152.136
+ 服务器端口 = 18821
+ 密码 = bjs56233one
+ 加密协议 = chacha20-ietf-poly1305
+ SS 链接 = ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpianM1NjIzM29uZUAzNC44NC4xNTIuMTM2OjE4ODIx#233v2.com_ss_34.84.152.
+136
+ 备注: Shadowsocks Win 4.0.6 客户端可能无法识别该 SS 链接
+提示: 输入 v2ray ssqr 可生成 Shadowsocks 二维码链
+
+
+
+
+
+free
+
+[Interface]
+PrivateKey = YOUR_PRIVATE_KEY
+Address = 10.10.32.81
+DNS = 10.31.33.7
+
+[Peer]
+Presharedkey = wUkextYEWzQn2JFJDd/1jl+SHtz0pL+vVd4mvKl3HHw=
+PublicKey = 1RQkmVFsPFeYFNK1wE3/eznIcNasyLmTCWDnPSRNoD8=
+
+Endpoint = cryptofree.cstorm.is:443
+AllowedIPs = 0.0.0.0/0
+PersistentKeepalive = 25
+
+
+
+
+
+
+
+google
+#-----------------------------------------------------------------------
+[Interface]
+PrivateKey = gK1f2m61JQGfj6Rx8AwTsGS70ygRzcYdDGTc6PCwTmg=
+Address = 10.0.0.178/24, fd08:620c:4df0:65eb::178/64
+DNS = 8.8.8.8, 2001:4860:4860::8888
+[Peer]
+PublicKey = l19bVteRrV52kb2NFa9DKayafqCOfNHvUPNo/+dKTW4=
+Endpoint = 34.84.152.136:19829
+AllowedIPs = 0.0.0.0/0, ::0/0
+PersistentKeepalive = 25
+#-----------------------------------------------------------------------
+[Interface]
+PrivateKey = SFWAiiJ9HNhyKvK+5bDVNQeHYIKXQcCkOFDCZ1uzanA=
+Address = 10.0.0.186/24, fd08:620c:4df0:65eb::186/64
+DNS = 8.8.8.8, 2001:4860:4860::8888
+[Peer]
+PublicKey = l19bVteRrV52kb2NFa9DKayafqCOfNHvUPNo/+dKTW4=
+Endpoint = 34.84.152.136:19829
+AllowedIPs = 0.0.0.0/0, ::0/0
+PersistentKeepalive = 2
+
+
+
+亚马逊
+---------- V2Ray 配置信息 -------------
+
+ 地址 (Address) = 18.218.195.162
+
+ 端口 (Port) = 18818
+
+ 用户ID (User ID / UUID) = f88860e7-0386-46b8-9035-a570cd80c36b
+
+ 额外ID (Alter Id) = 233
+
+ 传输协议 (Network) = tcp
+
+ 伪装类型 (header type) = none
+
+---------- END -------------
+
+V2Ray 客户端使用教程: https://233v2.com/post/4/
+
+提示: 输入 v2ray url 可生成 vmess URL 链接 / 输入 v2ray qr 可生成二维码链接
+vmess://ewoidiI6ICIyIiwKInBzIjogIjIzM3YyLmNvbV8xOC4yMTguMTk1LjE2MiIsCiJhZGQiOiAiMTguMjE4LjE5NS4xNjIiLAoicG9ydCI6ICIxODgxOCIsCiJpZCI6ICJmODg4NjBlNy0wMzg2LTQ2YjgtOTAzNS1hNTcwY2Q4MGMzNmIiLAoiYWlkIjogIjIzMyIsCiJuZXQiOiAidGNwIiwKInR5cGUiOiAibm9uZSIsCiJob3N0IjogIiIsCiJwYXRoIjogIiIsCiJ0bHMiOiAiIgp9Cg==
+
+---------- Shadowsocks 配置信息 -------------
+
+ 服务器地址 = 18.218.195.162
+
+ 服务器端口 = 18819
+
+ 密码 = bjs56233one
+
+ 加密协议 = chacha20-ietf-poly1305
+
+ SS 链接 = ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpianM1NjIzM29uZUAxOC4yMTguMTk1LjE2MjoxODgxOQ==#233v2.com_ss_18.218.195.162
+
+ 备注: Shadowsocks Win 4.0.6 客户端可能无法识别该 SS 链接
+
+提示: 输入 v2ray ssqr 可生成 Shadowsocks 二维码链接
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpianM1NjIzM29uZUAxOC4yMTguMTk1LjE2MjoxODgxOQ==#233v2.com_ss_18.218.195.162
+
+
+
+yatai
+---------- V2Ray 配置信息 -------------
+
+ 地址 (Address) = 13.231.172.134
+
+ 端口 (Port) = 18818
+
+ 用户ID (User ID / UUID) = e9a78913-b8d3-4b98-b93b-43199cf548ab
+
+ 额外ID (Alter Id) = 233
+
+ 传输协议 (Network) = tcp
+
+ 伪装类型 (header type) = none
+
+---------- END -------------
+
+vmess://ewoidiI6ICIyIiwKInBzIjogIjIzM3YyLmNvbV8xMy4yMzEuMTcyLjEzNCIsCiJhZGQiOiAiMTMuMjMxLjE3Mi4xMzQiLAoicG9ydCI6ICIxODgxOCIsCiJpZCI6ICJlOWE3ODkxMy1iOGQzLTRiOTgtYjkzYi00MzE5OWNmNTQ4YWIiLAoiYWlkIjogIjIzMyIsCiJuZXQiOiAidGNwIiwKInR5cGUiOiAibm9uZSIsCiJob3N0IjogIiIsCiJwYXRoIjogIiIsCiJ0bHMiOiAiIgp9Cg==
+
+
+---------- Shadowsocks 配置信息 -------------
+
+ 服务器地址 = 13.231.172.134
+
+ 服务器端口 = 18819
+
+ 密码 = bjs56233one
+
+ 加密协议 = chacha20-ietf-poly1305
+
+ SS 链接 = ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpianM1NjIzM29uZUAxMy4yMzEuMTcyLjEzNDoxODgxOQ==#233v2.com_ss_13.231.172.134
+
+ 备注: Shadowsocks Win 4.0.6 客户端可能无法识别该 SS 链接
+
+提示: 输入 v2ray ssqr 可生成 Shadowsocks 二维码链接

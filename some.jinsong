@@ -1,28 +1,28 @@
 1 高斯
 GAUSS_SCRDIR=/tmp/lstone/g03
-qdel -p 强制杀死队列
-硬盘安装centos
-kernel (hd0,7)/isolinux/vmlinuz linux repo=hd:/dev/sda8:/ 
-initrd (hd0,7)/isolinux/initrd.img
+2 qdel -p 强制杀死队列
+3 硬盘安装centos
+ kernel (hd0,7)/isolinux/vmlinuz linux repo=hd:/dev/sda8:/ 
+ initrd (hd0,7)/isolinux/initrd.img
 
 
-内核模块相关
-modprobe xxx 加载模块(解决依赖模块)
-modprobe -r xxx 卸载模块(卸载依赖模块)
-modprobe xxx xxx模块为/lib/modules/4.0.0/modules.dep内包含的模块
-depmod 将/lib/modules/4.0.0/kernel/下所有module添加到 modules.dep 类似updatedb
-lsmod 列出所有已加载模块
-insmod /url/xx.ko 加载模块 需指定绝对路径，且不解决依赖关系
-rmmod xxx 移除模块 需按照依赖关系手动卸载
-modinfo /url/xxx.ko 获取modelue相关信息
+4内核模块相关
+ modprobe xxx 加载模块(解决依赖模块)
+ modprobe -r xxx 卸载模块(卸载依赖模块)
+ modprobe xxx xxx模块为/lib/modules/4.0.0/modules.dep内包含的模块
+ depmod 将/lib/modules/4.0.0/kernel/下所有module添加到 modules.dep 类似updatedb
+ lsmod 列出所有已加载模块
+ insmod /url/xx.ko 加载模块 需指定绝对路径，且不解决依赖关系
+ rmmod xxx 移除模块 需按照依赖关系手动卸载
+ modinfo /url/xxx.ko 获取modelue相关信息
 
 
-关于西交大张某旭linux图形界面卡顿 cpu占用高的记录
+5 关于西交大张某旭linux图形界面卡顿 cpu占用高的记录
 top查看cpu使用率50%，但是top里没有任何高占用的进程，通过各种查看方法均无发查到,后通过perf top -s comm,pid,symbol 查出一堆unknown进程，通过ll /proc/pid，定位二进制程序，删除整个目录结局，怀疑为挖矿病毒
 
 
 
-解决一次由于SSL证书到期导致的网站不能访问的问题（Nginx，php，Apache）
+6 解决一次由于SSL证书到期导致的网站不能访问的问题（Nginx，php，Apache）
 
 
 1. 现象
@@ -56,3 +56,6 @@ cd /etc/httpd/alias #删除旧的证书 rm -f *.db #创建新证书 /usr/sbin/ge
 百度了下发现是权限问题，重新授下权搞定。
 
 chown root.apache /etc/httpd/alias/*.db chmod 0640 /etc/httpd/alias/*.db
+
+7 ubuntu 启动不显示grub菜单，直接进入系统
+ bios pcie 关闭above 4G decoding解决 

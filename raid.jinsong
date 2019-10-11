@@ -1,0 +1,2 @@
+ubuntu 无法识别 主板组建的raid(intel fake),使用以下命令可以使用外部元数据
+mdadm --assemble --scan

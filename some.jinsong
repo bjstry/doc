@@ -1,10 +1,11 @@
 1 高斯
 GAUSS_SCRDIR=/tmp/lstone/g03
+
 2 qdel -p 强制杀死队列
+
 3 硬盘安装centos
  kernel (hd0,7)/isolinux/vmlinuz linux repo=hd:/dev/sda8:/ 
  initrd (hd0,7)/isolinux/initrd.img
-
 
 4内核模块相关
  modprobe xxx 加载模块(解决依赖模块)
@@ -15,7 +16,6 @@ GAUSS_SCRDIR=/tmp/lstone/g03
  insmod /url/xx.ko 加载模块 需指定绝对路径，且不解决依赖关系
  rmmod xxx 移除模块 需按照依赖关系手动卸载
  modinfo /url/xxx.ko 获取modelue相关信息
-
 
 5 关于西交大张某旭linux图形界面卡顿 cpu占用高的记录
 top查看cpu使用率50%，但是top里没有任何高占用的进程，通过各种查看方法均无发查到,后通过perf top -s comm,pid,symbol 查出一堆unknown进程，通过ll /proc/pid，定位二进制程序，删除整个目录结局，怀疑为挖矿病毒

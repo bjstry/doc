@@ -29,6 +29,9 @@ qmgr -c "set queue batch acl_host_enable=true"
 qmgr -c "set queue batch acl_hosts=cu01+cu02"
 描述一系列主机，可以通过该队列进行提交作业的
 
+#多机器分配
+#PBS -l nodes=node01:ppn=4+node04:ppn=4
+
 pbs串行程序：
 #!/bin/bash
 #PBS -N [taskname]
@@ -109,5 +112,3 @@ pbs_matlib
 cd $PBS_O_WORKDIR
 matlab -nojvm -nodisplay -nosplash -nodesktop <my.m 1>runm.log 2>runm.err
 
-#多机器分配
-#PBS -l nodes=node02+node04:ppn=2

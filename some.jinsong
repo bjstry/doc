@@ -68,3 +68,6 @@ g4560 z270
 HNDVF-47623-C6XMF-C34YY-RC3MV
 b450m mot 2600x
 CN2GF-JMB83-8KD4B-M49JT-KTQMV
+
+
+virt-install -n vm3 -r 1024 --vcpus 1 --cdrom=/data/vimages/FreeNAS-11.2-U6.iso   --disk path=/data/vstorge/vm2.qcow2,format=qcow2 --graphics vnc,listen=0.0.0.0,port=5924   --noautoconsole     --accelerate  --autostart

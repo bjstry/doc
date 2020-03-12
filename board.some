@@ -1,0 +1,10 @@
+想要通过超微的ipmi升级主板bios必须有激活许可证。
+超微主板ipmi的许可证验证原理：
+
+    1将 IPMI BMC MAC 地址作为 16 进制字串转为二进制
+	2使用 HMAC + SHA1 散列算法计算出 Key
+	3取前 24 位作为授权密钥
+生成许可证命令（其中ac1f6bxxxxxx为mac地址）：
+echo -n 'ac1f6bxxxxxx' | xxd -r -p | openssl dgst -sha1 -mac HMAC -macopt hexkey:8544E3B47ECA58F9583043F8 | awk '{print $2}' | cut -c 1-24
+填写许可证：
+登陆ipmi-》Miscellaneous-》Activate License-》填写以上命令生成的24位许可证号，每空4位

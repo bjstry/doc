@@ -1,0 +1,14 @@
+install and setting for munge(all nodes)
+   yum install munge-devel
+   echo 'something least 32 bytesi..............' > /etc/munge/munge.key
+   chown munge:munge -R /etc/munge/munge.key
+   chmod 700 /etc/munge/munge.key
+   systemctl start munge
+   systemctl enable munge
+
+install slurm /opt/software/slurm-20.02
+   yum install gtk2-devel mariadb-devel mariadb-server python3-devel
+   ./configure --prefix=/opt/software/slurm-20.02   && make && make install
+   mkdir -p /opt/software/slurm-20.02/log /opt/software/slurm-20.02/run /opt/software/slurm-20.02/spool/slurm
+   vim slurmctld.service slurmd.service ...
+

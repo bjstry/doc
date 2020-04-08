@@ -1,0 +1,11 @@
+1 停止当前mc 
+docker stop mc
+2 获取最新镜像
+docker pull roemer/bedrock-server:latest
+3 重新创建mc容器
+docker create --name=minecraft  -v "bedrock-config:/bedrock-server/config" -v "bedrock-worlds:/bedrock-server/worlds" -p 19132:19132/udp --restart=unless-stopped roemer/bedrock-server
+4 启动新容器
+docker start  minecraft
+5 删除旧的容器和镜像
+  docker container rm mc
+  docker image rm  image-id

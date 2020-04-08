@@ -10,5 +10,5 @@ install slurm /opt/software/slurm-20.02
    yum install gtk2-devel mariadb-devel mariadb-server python3-devel
    ./configure --prefix=/opt/software/slurm-20.02   && make && make install
    mkdir -p /opt/software/slurm-20.02/etc /opt/software/slurm-20.02/log /opt/software/slurm-20.02/run /opt/software/slurm-20.02/spool/slurm
-   vim slurmctld.service slurmd.service ...
+   vim slurmctld.service slurmd.service slurm.conf ...
 

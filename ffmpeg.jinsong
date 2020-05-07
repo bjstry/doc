@@ -44,3 +44,5 @@ ffmpeg -h encoder=hevc_nvenc
 
 pcm_mulaw
 pcm_s16le
+ffmpeg -i example.avi -vf crop=a:b:c:d  outputfilename
+其中a、b、c、d分别代表的参数是a为输出的宽度，b为输出的高度，c为需要左移的距离，d为序要上移的距离（单位默认为pixel）

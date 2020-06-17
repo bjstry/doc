@@ -10,4 +10,4 @@
 
 
  or 
- dracut -a "nfs base network" --add-drivers "nvme nvme_core uas usb_storage raid_class libsas libata mpt2sas scsi_transport_sas"   xxx.img xxx
+ dracut -a "nfs base network" --add-drivers "nvme nvme_core uas usb_storage raid_class libsas libata mpt2sas scsi_transport_sas megaraid_sas"   xxx.img xxx

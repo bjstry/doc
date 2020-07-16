@@ -11,22 +11,22 @@ srun  -N2 -n8 --ntasks-per-node=4   --mem-per-cpu=100M   /bin/hostname  //两个
 srun  -N2 -n8  /bin/hostname  //两个节点共8个核心执行，自动分配核心
 
 job.bt //脚本
+
 #!/bin/sh
 #SBATCH 
-         -N  //使用的节点数
-         -n  //作业要加载的任务数(简单理解核数,自由分配)
-         * -c  //每个任务需要的处理器数
-         -o out.file //指定输出文件
-         -t 100 //指定计算时间，超时退出
-         --mem //指定每个节点使用的内存数，单位为MB
-         --job-name=testname //作业名称
-         --ntasks-per-node=4 //指定每个节点使用的任务数(每个节点核数)
-         
-         
+-N  //使用的节点数
+-n  //作业要加载的任务数(简单理解核数,自由分配)
+-p debug  //指定分区,类似队列
+* -c  //每个任务需要的处理器数
+-o out.file //指定输出文件
+-t 100 //指定计算时间，超时退出
+--mem //指定每个节点使用的内存数，单位为MB
+--job-name=testname //作业名称
+--ntasks-per-node=4 //指定每个节点使用的任务数(每个节点核数)        
 cd $SLURM_SUBMIT_DIR
 srun  -n4 --mpi=pmi2 --mem=1000 /opt/software/lammps-16Mar18/src/lmp_intel_mpich  < in.comb3  2>&1 | tee test.log
-slurm.conf 
 
+slurm.conf 
 NodeName=node05 Procs=48 RealMemory=120000 State=IDLE
 
  select/cons_res  //精细化配置可用资源

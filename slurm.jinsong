@@ -27,7 +27,7 @@ cd $SLURM_SUBMIT_DIR
 srun  -n4 --mpi=pmi2 --mem=1000 /opt/software/lammps-16Mar18/src/lmp_intel_mpich  < in.comb3  2>&1 | tee test.log
 
 slurm.conf 
-NodeName=node05 Procs=48 RealMemory=120000 State=IDLE
+NodeName=node05 Procs=48 RealMemory=120000 MaxTime=INFINITE State=IDLE
 
  select/cons_res  //精细化配置可用资源
 

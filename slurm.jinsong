@@ -38,3 +38,20 @@ slurm.conf
     Socket and Memory (CR_Socket_Memory): Socket and Memory as consumable resources.
     Core and Memory (CR_Core_Memory): Core and Memory as consumable resources.
     CPU and Memory (CR_CPU_Memory) CPU and Memory as consumable resources.
+
+
+sacct      用于报告运行中或者已完成作业的作业或作业步骤的记帐信息
+salloc     用于为作业实时分配资源，这通常用于分配资源和生成shell，然后使用shell执行srun命令来启动并行任务。
+sattach   用于将标准输入、输出和错误加信号功能附加到当前正在运行的作业或作业步骤。可以多次附加到作业或从作业中分离。
+sbatch    用于提交脚本以供以后执行。脚本通常包含一个或多个srun命令来启动并行任务。
+sbcast     用于将文件从本地磁盘传输到分配给作业的节点上的本地磁盘，这可以用于有效地使用无盘计算节点，或提供相对于共享文件系统的改进性能。
+scancel   用于取消挂起或正在运行的作业或作业步骤。它还可以用于向与正在运行的作业或作业步骤相关联的所有进程发送任意信号。
+scontrol  是用于查看和/或修改Slurm状态的管理工具。请注意，许多scontrol命令只能用root用户执行。
+sinfo       报告由Slurm管理的分区和节点的状态。它有各种各样的过滤、排序和格式化选项。
+sprio       用于显示影响作业优先级的组件的详细视图。
+squeue    报告作业或作业步骤的状态。它有各种各样的过滤、排序和格式化选项。默认情况下，它按优先级顺序报告正在运行的作业，然后按优先级顺序报告挂起的作业。
+srun        用于提交作业以供执行或实时启动作业步骤。srun有多种选择来指定资源需求，包括：最小和最大节点数、核心数、要使用或不使用的指定节点，以及特定的节点特性（多少内存、磁盘空间、某些必需的特性等）。一个作业可以包含多个作业步骤，在作业的节点分配内，对独立或共享的资源按顺序或并行执行。
+sshare     显示有关群集上fairshare(公平份额?)使用情况的详细信息。请注意，这只在使用priority/multifactor插件时才可行。
+sstat       用于获取有关正在运行的作业或作业步骤使用的资源的信息。
+strigger  用于设置、获取或查看事件触发器事件。触发器包括节点关闭或作业接近其时间限制等情况。
+sview      是一个图形用户界面，用于获取和更新Slurm管理的作业、分区和节点的状态信息。

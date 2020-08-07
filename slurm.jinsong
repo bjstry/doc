@@ -7,23 +7,28 @@ systemctl start slurmd    //子节点
 sbatch -n 20 -w "node[01-02]" -o my.out my.script //提交一个任务用20核，并且指定node01,node02节点
 srun -N3 -l /bin/hostname  //请求3个节点执行
 srun -n3 -l /bin/hostnae   //请求3个核执行
+srun  -n8 -N2    -w "node[1-2]" -p big  --ntasks-per-node=4  --mem-per-cpu=100M /bin/hostname //两个节点(node1-2)共8个核心执行，每个节点四个核100M内存
+srun  -N2 -n8  /bin/hostname  //两个节点共8个核心执行，自动分配核心
 
 job.bt //脚本
+
 #!/bin/sh
 #SBATCH 
-         -N  //使用的节点数
-         -n  //作业要加载的任务数(简单理解核数,自由分配)
-         * -c  //每个任务需要的处理器数
-         -o out.file //指定输出文件
-         -t 100 //指定计算时间，超时退出
-         --mem //指定每个节点使用的内存数，单位为MB
-         --job-name=testname //作业名称
-         --ntasks-per-node=4 //指定每个节点使用的任务数(每个节点核数)
-         
-         
+  -N  //使用的节点数
+  -n  //作业要加载的任务数(简单理解核数,自由分配)
+  -p debug  //指定分区,类似队列
+  * -c  //每个任务需要的处理器数
+  -o out.file //指定输出文件
+  -t 100 //指定计算时间，超时退出
+  --mem //指定每个节点使用的内存数，单位为MB
+  --job-name=testname //作业名称
+  --ntasks-per-node=4 //指定每个节点使用的任务数(每个节点核数)        
 cd $SLURM_SUBMIT_DIR
 srun  -n4 --mpi=pmi2 --mem=1000 /opt/software/lammps-16Mar18/src/lmp_intel_mpich  < in.comb3  2>&1 | tee test.log
+
 slurm.conf 
+NodeName=node05 Procs=48 RealMemory=120000 MaxTime=INFINITE State=IDLE
+
  select/cons_res  //精细化配置可用资源
 
     CPU (CR_CPU): CPU as a consumable resource.
@@ -38,7 +43,6 @@ slurm.conf
     Socket and Memory (CR_Socket_Memory): Socket and Memory as consumable resources.
     Core and Memory (CR_Core_Memory): Core and Memory as consumable resources.
     CPU and Memory (CR_CPU_Memory) CPU and Memory as consumable resources.
-
 
 sacct      用于报告运行中或者已完成作业的作业或作业步骤的记帐信息
 salloc     用于为作业实时分配资源，这通常用于分配资源和生成shell，然后使用shell执行srun命令来启动并行任务。

@@ -71,7 +71,6 @@ CN2GF-JMB83-8KD4B-M49JT-KTQMV
 
 
 virt-install -n vm3 -r 1024 --vcpus 1 --cdrom=/data/vimages/FreeNAS-11.2-U6.iso   --disk path=/data/vstorge/vm2.qcow2,format=qcow2 --graphics vnc,listen=0.0.0.0,port=5924   --noautoconsole     --accelerate  --autostart
-
-MCE log 
+MCE log
 grep [0-9] /sys/devices/system/edac/mc/mc*/csrow0/ch*_ce_count   // 排查出错的内存定位
 dmidecode -t memory | grep 'Locator: '                          //  查看主板内存出厂定位

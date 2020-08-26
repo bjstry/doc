@@ -77,3 +77,7 @@ dmidecode -t memory | grep 'Locator: '                          //  查看主板
 
 ./IPMICFG-Linux.x86_64   -user list                           // 获取用户id
 ./IPMICFG-Linux.x86_64   -user  setpwd 2   'password'         //修改IMPI密码  2 为用户id, password 为密码
+
+matlab ansys 远程桌面lic报错解决 
+matlab: license 文件中 "SIGN=" 全部替换为 "TS_OK SIGN="
+ansys: license 文件中 "SIGN2=" 全部替换为 "TS_OK SIGN2="

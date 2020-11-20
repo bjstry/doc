@@ -1,2 +1,10 @@
 ubuntu 无法识别 主板组建的raid(intel fake),使用以下命令可以使用外部元数据
 mdadm --assemble --scan
+CentOS7  raid5   xfs 分区扩容
+1  首先将硬盘添加到磁盘阵列，并启用活动
+   mdadm /dev/md127  -a  /dev/sdx
+   mdadm /dev/md127 -G n8  //-n指的活动盘数量 
+2  卸载分区，然后使用parted 工具扩展分区容量 
+   parted   resizepart   1(分区编号)     -1(使用全部空间)
+3  挂载分区，然后通过xfs_growfs 在线扩容
+   xfs_growfs /alldata

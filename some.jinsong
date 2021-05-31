@@ -81,3 +81,5 @@ dmidecode -t memory | grep 'Locator: '                          //  查看主板
 matlab ansys 远程桌面lic报错解决 
 matlab: license 文件中 "SIGN=" 全部替换为 "TS_OK SIGN="
 ansys: license 文件中 "SIGN2=" 全部替换为 "TS_OK SIGN2="
+
+2021 05 31  西交大最近多起挖矿病毒，占用top命令，在自启动 定时周期里使用名为 pwnrig的程序强行覆盖top指令。

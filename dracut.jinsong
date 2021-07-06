@@ -10,5 +10,6 @@
 
  ixgbe  intel 万兆网卡驱动
  e1000e  intel I219-V 千兆网卡驱动
+ igb  intel I215-AT 千兆网卡驱动
  or 
- dracut -a "nfs base network" --add-drivers "e1000e ixgbe nvme nvme_core uas usb_storage raid_class libsas libata mpt2sas scsi_transport_sas megaraid_sas"   xxx.img xxx
+ dracut -a "nfs base network" --add-drivers "e1000e ixgbe igb nvme nvme_core uas usb_storage raid_class libsas libata mpt2sas scsi_transport_sas megaraid_sas"   xxx.img xxx

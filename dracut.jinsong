@@ -13,5 +13,7 @@
  igb  intel I215-AT 千兆网卡驱动
  r8169 alx   asus asrock
  i40e    x11dpi-nt  万兆网卡驱动
+
+vmw_vsock_vmci_transport vsock vmwgfx ttm drm_kms_helper vmw_balloon drm vmw_pvscsi vmw_vmci vmxnet3   虚拟机网卡
  or 
- dracut -a "nfs base network" --add-drivers "r8169 alx e1000e ixgbe igb nvme nvme_core uas usb_storage raid_class libsas libata mpt2sas scsi_transport_sas megaraid_sas"   xxx.img xxx
+ dracut -a "nfs base network" --add-drivers "i40e r8169 alx e1000e ixgbe igb nvme nvme_core uas usb_storage raid_class libsas libata mpt2sas scsi_transport_sas megaraid_sas"   xxx.img xxx

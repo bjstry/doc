@@ -83,3 +83,23 @@ matlab: license 文件中 "SIGN=" 全部替换为 "TS_OK SIGN="
 ansys: license 文件中 "SIGN2=" 全部替换为 "TS_OK SIGN2="
 
 2021 05 31  西交大最近多起挖矿病毒，占用top命令，在自启动 定时周期里使用名为 pwnrig的程序强行覆盖top指令。
+
+
+Rpeak​=(CPU frequency in GHz per core)×(total number of cores on the machine)×(float operations per CPU cycle)
+Rpeak​ = 主频 x 核数 x CPU单周期浮点计算能力
+
+CPU单周期双精度浮点计算能力=2(加法+乘法)×指令集位宽÷64(双精度位宽)
+CPU单周期单精度浮点计算能力=2(加法+乘法)×指令集位宽÷32(单精度位宽)
+
+FMA(Fused Multiply-Add instructions，融合乘加指令) 单元：在 AVX2.0 指令集后支持了FMA3指令，
+
+
+CPU单周期双精度浮点计算能力=FMA单元数量×2(同时加法和乘法)×指令集位宽÷64(双精度位宽)
+CPU单周期单精度浮点计算能力=FMA单元数量×2(同时加法和乘法)×指令集位宽÷32(单精度位宽)
+
+
+双路 AMD EPYC 7F52；每 CPU 16 个核心 共 32 物理核心
+CPU max MHz: 3500.0000
+
+Rpeak​=3.5×32×2×2×256÷64=1792.0 Gflops
+Rpeak​=3.5×32×16=1792.0 Gflops

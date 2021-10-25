@@ -1,0 +1,78 @@
+#!/bin/bash
+if [[ $1 = "--help" ]];then
+    echo "js软件自动测试程序 使用说明"
+    echo ""
+    echo '用法: job_test [软件及版本] [算例压缩包绝对路径] [测试核数组合] [环境变量脚本(可选)] ...'
+    echo ''
+    echo '示例1: job_test vasp-5.4.4 /home/shuoxing/small.tar.bz2  8  //测试vasp 5.4.4 使用 small.tar.bz2算例，测试单次8核，使用默认环境变量'
+    echo '示例2: job_test vasp-6.1.0 /home/shuoxing/small.tar.bz2 40,20,10,8,4,1 /home/shuoxing/vasp.sh //测试vasp 6.1.0 使用small.tar.bz2算例，先后测试40、20、10、8、4、1核, souce /home/shuoxing/vasp.sh环境变量'
+    echo ''
+    echo ''
+    echo '-----------------------------------------'
+    echo '--help                       获取帮助信息'
+    echo '--version                    获取版本信息'
+    echo ''
+    echo '请向bjstry@163.com报告错误'
+    echo '作者bjstry 版本1.0'
+    exit
+elif [[ $1 = "--version" ]];then
+    echo '版本1.0'
+    exit
+fi
+OLD_IFS="$IFS"
+IFS=","
+core_arr=($3)
+IFS="$OLD_IFS"
+myexec=''
+myexecenv=''
+vaspenv="/opt/intel/parallel_studio_xe_2017/psxevars.sh intel64 && export MKL_DEBUG_CPU_TYPE=5 && export MKL_CBWR=AVX2 && export I_MPI_PIN_DOMAIN=numa && ulimit -s unlimited"
+
+
+for s in ${core_arr[@]}
+do
+vaspexc="mpirun -n $s /opt/software/$1/bin/vasp_std 2>&1 | tee js.test"
+if test ${1%%-*} = 'vasp'
+then 
+	myexec=$vaspexc
+	if [ -f "$4" ]
+	then
+		myexecenv=$4
+	else
+		myexecenv=$vaspenv
+	fi
+else
+	myexec='eles'
+fi
+
+su - shuoxing <<EOF
+shuoxing
+mkdir -p ~/jsjob_out
+echo '======记录日志开始======'
+echo '======记录日志开始==========================' >> ~/jsjob_out/js.log
+echo '' >> ~/jsjob_out/js.log
+echo '======创建测试目录======'
+date >> ~/jsjob_out/js.log
+echo '======创建测试目录======' >> ~/jsjob_out/js.log
+mkdir -p ~/test/${1%%-*}-$s-core-test
+cd ~/test/${1%%-*}-$s-core-test
+echo '======拷贝算例文件======'
+date >> ~/jsjob_out/js.log
+echo '======拷贝算例文件======'  >> ~/jsjob_out/js.log
+cp -rf $2  .
+tar pxf ${2##*/}
+echo '======进入测试目录======'
+echo '======进入测试目录======'  >> ~/jsjob_out/js.log
+cd *
+pwd >> ~/jsjob_out/js.log
+echo '======生效环境变量======'
+source $myexecenv
+echo '======生效环境变量======' >> ~/jsjob_out/js.log
+echo '$myexecenv' >> ~/jsjob_out/js.log
+echo '======开始执行算例======'
+date >> ~/jsjob_out/js.log
+echo '======开始执行算例======'  >> ~/jsjob_out/js.log
+echo $myexec >> ~/jsjob_out/js.log
+$myexec && echo '======算例执行结束======' && date >> ~/jsjob_out/js.log && echo '======算例执行结束======'  >> ~/jsjob_out/js.log && cp OUTCAR ~/jsjob_out/$s-core-OUTCAR && echo '' >> ~/jsjob_out/js.log && echo '======记录日志结束======' && echo '======记录日志结束==========================' >> ~/jsjob_out/js.log && echo '' >> ~/jsjob_out/js.log && echo '' >> ~/jsjob_out/js.log && echo '' >> ~/jsjob_out/js.log
+EOF
+
+done
